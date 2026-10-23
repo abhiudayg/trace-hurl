@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TraceHurl Evidence Report - RUN_ID: VERIFY1792726500</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-tint": "#7bd0ff",
+            "surface-container": "#1c2028",
+            "primary": "#8ed5ff",
+            "on-primary-container": "#004965",
+            "outline-variant": "#3e484f",
+            "secondary-container": "#00a572",
+            "on-error": "#690005",
+            "on-error-container": "#ffdad6",
+            "on-tertiary": "#3c0091",
+            "on-primary-fixed-variant": "#004c69",
+            "surface-container-highest": "#31353e",
+            "on-tertiary-container": "#520fbb",
+            "surface-container-lowest": "#0a0e16",
+            "tertiary-fixed-dim": "#d0bcff",
+            "surface": "#0f131c",
+            "on-tertiary-fixed-variant": "#5516be",
+            "background": "#0f131c",
+            "primary-container": "#38bdf8",
+            "on-secondary-fixed-variant": "#005236",
+            "surface-variant": "#31353e",
+            "on-tertiary-fixed": "#23005c",
+            "inverse-on-surface": "#2c3039",
+            "tertiary-fixed": "#e9ddff",
+            "primary-fixed": "#c4e7ff",
+            "tertiary-container": "#bda2ff",
+            "secondary-fixed-dim": "#4edea3",
+            "secondary-fixed": "#6ffbbe",
+            "outline": "#87929a",
+            "on-background": "#dfe2ee",
+            "surface-dim": "#0f131c",
+            "on-surface": "#dfe2ee",
+            "inverse-surface": "#dfe2ee",
+            "error-container": "#93000a",
+            "surface-container-low": "#181c24",
+            "secondary": "#4edea3",
+            "on-secondary": "#003824",
+            "on-primary-fixed": "#001e2c",
+            "surface-container-high": "#262a33",
+            "on-secondary-fixed": "#002113",
+            "surface-bright": "#353942",
+            "on-surface-variant": "#bdc8d1",
+            "error": "#ffb4ab",
+            "primary-fixed-dim": "#7bd0ff",
+            "tertiary": "#d5c3ff",
+            "on-secondary-container": "#00311f",
+            "on-primary": "#00354a",
+            "inverse-primary": "#00668a"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "space-lg": "1rem",
+            "margin-mobile": "0.75rem",
+            "space-xs": "0.25rem",
+            "space-xl": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-md": "0.75rem",
+            "gutter-compact": "0.5rem",
+            "gutter": "0.75rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Inter"],
+            "headline-xl": ["Inter"],
+            "code-sm": ["JetBrains Mono"],
+            "body-md": ["Inter"],
+            "headline-sm": ["Inter"],
+            "headline-lg": ["Inter"],
+            "code-lg": ["JetBrains Mono"],
+            "label-caps": ["JetBrains Mono"],
+            "headline-xl-mobile": ["Inter"],
+            "code-md": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "headline-xl": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "code-sm": ["11px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-sm": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "headline-lg": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "code-lg": ["13px", { "lineHeight": "20px", "fontWeight": "500" }],
+            "label-caps": ["10px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-xl-mobile": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "code-md": ["12px", { "lineHeight": "18px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Precision custom scrollbar for dense telemetry panels */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0e16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #31353e;
+      border-radius: 2px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3e484f;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 16px;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .material-symbols-outlined[data-weight="fill"] {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface antialiased font-body-md text-body-md overflow-x-hidden min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+<!-- ================= TOP NAVIGATION BAR (Predicted Shared Component: TopNavBar) ================= -->
+<header class="flex justify-between items-center w-full px-space-lg h-14 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant sticky top-0 z-50">
+<!-- Left cluster: Brand + Search Bar on Left + Run Identifiers -->
+<div class="flex items-center space-x-space-md">
+<!-- Brand Logo Anchor -->
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="deployed_code">deployed_code</span>
+<span class="text-headline-sm font-headline-sm font-semibold text-primary dark:text-primary tracking-tight">TraceHurl</span>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant mx-1"></div>
+<!-- Quick Search Bar on left -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2.5 text-outline text-[15px]" data-icon="search">search</span>
+<input class="bg-surface-container-lowest border border-outline-variant rounded-DEFAULT pl-8 pr-2.5 py-1 text-code-sm font-code-sm text-on-surface placeholder-outline focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container w-64 h-7 transition-colors" placeholder="Filter steps, assertions, headers..." type="text"/>
+<span class="absolute right-2 text-label-caps font-label-caps text-outline bg-surface-container px-1 py-0.5 rounded border border-outline-variant">⌘K</span>
+</div>
+<!-- Run Identification Tags -->
+<div class="hidden xl:flex items-center space-x-2 pl-2">
+<div class="flex items-center space-x-1.5 px-2 py-0.5 rounded bg-surface-container border border-outline-variant">
+<span class="text-label-caps font-label-caps text-outline">RUN_ID:</span>
+<span class="text-code-sm font-code-sm text-primary font-medium tracking-tight">VERIFY1792726500</span>
+</div>
+<div class="flex items-center space-x-1 px-2 py-0.5 rounded bg-error-container/20 border border-error/30 text-error">
+<span class="material-symbols-outlined text-[13px]" data-icon="cancel">cancel</span>
+<span class="text-label-caps font-label-caps font-bold">FAILED 2 issues</span>
+</div>
+<div class="flex items-center space-x-1 text-code-sm font-code-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]" data-icon="timer">timer</span>
+<span>4.52s</span>
+</div>
+<div class="flex items-center space-x-1 text-code-sm font-code-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]" data-icon="hub">hub</span>
+<span>8 workers</span>
+</div>
+<div class="flex items-center space-x-1 text-code-sm font-code-sm text-outline">
+<span class="material-symbols-outlined text-[14px]" data-icon="schedule">schedule</span>
+<span>2025-05-18T14:22:09Z</span>
+</div>
+</div>
+</div>
+<!-- Center Navigation Links -->
+<nav class="hidden md:flex items-center space-x-6">
+<a class="border-b-2 border-primary text-primary dark:text-primary font-semibold pb-1 text-label-caps font-label-caps" href="#runs">Runs</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface pb-1 transition-colors text-label-caps font-label-caps" href="#suites">Suites</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface pb-1 transition-colors text-label-caps font-label-caps" href="#environments">Environments</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface pb-1 transition-colors text-label-caps font-label-caps" href="#telemetry">Telemetry</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface pb-1 transition-colors text-label-caps font-label-caps" href="#assertions">Assertions</a>
+</nav>
+<!-- Trailing Icon Actions & Primary CTAs -->
+<div class="flex items-center space-x-2">
+<!-- Icon actions with strict literal names -->
+<button class="p-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" title="Integrated Terminal">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" title="Tune Execution Settings">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors relative" title="Notifications">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-1.5 h-1.5 bg-error rounded-full"></span>
+</button>
+<div class="h-4 w-[1px] bg-outline-variant mx-1"></div>
+<!-- Secondary Action -->
+<button class="px-2.5 py-1 text-code-sm font-code-sm bg-surface-container border border-outline-variant hover:border-primary-container text-on-surface rounded-DEFAULT active:scale-95 transition-all">
+        Share Run
+      </button>
+<!-- Primary Action -->
+<button class="px-3 py-1 text-code-sm font-code-sm bg-primary-container text-surface-container-lowest font-semibold rounded-DEFAULT hover:bg-surface-tint active:scale-95 transition-all flex items-center space-x-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" data-icon="file_download">file_download</span>
+<span>Export Report</span>
+</button>
+</div>
+</header>
+<!-- ================= COMPACT SIDE DOCK (Predicted Shared Component: SideNavBar) ================= -->
+<aside class="fixed top-14 left-0 h-[calc(100vh-3.5rem)] w-14 hover:w-64 transition-all duration-200 z-40 bg-surface-container-lowest dark:bg-surface-container-lowest border-r border-outline-variant dark:border-outline-variant group overflow-hidden hidden sm:block">
+<div class="flex flex-col justify-between h-full py-space-sm">
+<!-- Top cluster: Engine Node Info + Tabs -->
+<div class="space-y-3">
+<!-- Node Info Header (compact icon -> expands) -->
+<div class="px-3 py-1.5 flex items-center space-x-3 border-b border-outline-variant/40 pb-2">
+<div class="w-8 h-8 rounded-DEFAULT bg-surface-container-high flex items-center justify-center shrink-0 border border-outline-variant" title="Cluster Telemetry Node">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="developer_board">developer_board</span>
+</div>
+<div class="overflow-hidden whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+<div class="text-headline-sm font-headline-sm font-bold text-on-surface dark:text-on-surface">TraceHurl Engine</div>
+<div class="text-label-caps font-label-caps text-outline">v2.4.1-rc3</div>
+</div>
+</div>
+<!-- CTA: New Run -->
+<div class="px-2">
+<button class="w-full h-8 flex items-center justify-center group-hover:justify-start group-hover:px-2.5 rounded-DEFAULT bg-surface-container border border-outline-variant text-on-surface hover:border-primary transition-all text-code-sm font-code-sm">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="play_arrow">play_arrow</span>
+<span class="ml-2 font-medium overflow-hidden whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150">New Run</span>
+</button>
+</div>
+<!-- 5 Mandatory Tab Icons & Labels -->
+<nav class="space-y-0.5">
+<!-- Active tab: Runs -->
+<a class="flex items-center h-9 px-4 text-primary dark:text-primary border-l-2 border-primary bg-surface-container-high dark:bg-surface-container-high font-medium transition-colors" href="#runs">
+<span class="material-symbols-outlined shrink-0 text-[18px]" data-icon="data_object">data_object</span>
+<span class="ml-3 text-label-caps font-label-caps overflow-hidden whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150">Runs</span>
+</a>
+<!-- Matrix -->
+<a class="flex items-center h-9 px-4 text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container dark:hover:bg-surface-container transition-colors border-l-2 border-transparent" href="#matrix">
+<span class="material-symbols-outlined shrink-0 text-[18px]" data-icon="schema">schema</span>
+<span class="ml-3 text-label-caps font-label-caps overflow-hidden whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150">Matrix</span>
+</a>
+<!-- Traces -->
+<a class="flex items-center h-9 px-4 text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container dark:hover:bg-surface-container transition-colors border-l-2 border-transparent" href="#traces">
+<span class="material-symbols-outlined shrink-0 text-[18px]" data-icon="dynamic_form">dynamic_form</span>
+<span class="ml-3 text-label-caps font-label-caps overflow-hidden whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150">Traces</span>
+</a>
+<!-- Artifacts -->
+<a class="flex items-center h-9 px-4 text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container dark:hover:bg-surface-container transition-colors border-l-2 border-transparent" href="#artifacts">
+<span class="material-symbols-outlined shrink-0 text-[18px]" data-icon="history_toggle_off">history_toggle_off</span>
+<span class="ml-3 text-label-caps font-label-caps overflow-hidden whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150">Artifacts</span>
+</a>
+<!-- Settings -->
+<a class="flex items-center h-9 px-4 text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface hover:bg-surface-container dark:hover:bg-surface-container transition-colors border-l-2 border-transparent" href="#settings">
+<span class="material-symbols-outlined shrink-0 text-[18px]" data-icon="settings">settings</span>
+<span class="ml-3 text-label-caps font-label-caps overflow-hidden whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150">Settings</span>
+</a>
+</nav>
+</div>
+<!-- Footer Tabs: Documentation, Terminal -->
+<div class="border-t border-outline-variant/40 pt-2 space-y-0.5">
+<a class="flex items-center h-8 px-4 text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#docs">
+<span class="material-symbols-outlined shrink-0 text-[17px]" data-icon="menu_book">menu_book</span>
+<span class="ml-3 text-code-sm font-code-sm overflow-hidden whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150">Documentation</span>
+</a>
+<a class="flex items-center h-8 px-4 text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" href="#terminal">
+<span class="material-symbols-outlined shrink-0 text-[17px]" data-icon="terminal">terminal</span>
+<span class="ml-3 text-code-sm font-code-sm overflow-hidden whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150">Terminal</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- ================= MAIN TELEMETRY WORKSPACE ================= -->
+<main class="sm:pl-14 flex flex-col min-h-[calc(100vh-3.5rem)] pb-12">
+<!-- RUN STAGE & PIPELINE HEALTH SUMMARY BANNER -->
+<section class="bg-surface border-b border-outline-variant px-space-lg py-3">
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+<!-- Stages Flight Instrument Row -->
+<div class="flex flex-wrap items-center gap-2">
+<!-- Doctor Stage -->
+<div class="flex items-center space-x-2 bg-surface-container px-2.5 py-1.5 rounded-DEFAULT border border-outline-variant text-code-sm font-code-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="check_circle">check_circle</span>
+<div class="flex flex-col leading-tight">
+<span class="font-semibold text-on-surface flex items-center gap-1">Doctor <span class="text-label-caps font-label-caps text-secondary font-normal">Passed</span></span>
+<span class="text-label-caps font-label-caps text-outline">0.18s · 12 rules</span>
+</div>
+</div>
+<span class="text-outline-variant text-code-sm">→</span>
+<!-- Unit Stage -->
+<div class="flex items-center space-x-2 bg-surface-container px-2.5 py-1.5 rounded-DEFAULT border border-outline-variant text-code-sm font-code-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="check_circle">check_circle</span>
+<div class="flex flex-col leading-tight">
+<span class="font-semibold text-on-surface flex items-center gap-1">Unit <span class="text-label-caps font-label-caps text-secondary font-normal">Passed</span></span>
+<span class="text-label-caps font-label-caps text-outline">0.84s · 64 specs</span>
+</div>
+</div>
+<span class="text-outline-variant text-code-sm">→</span>
+<!-- Static Stage -->
+<div class="flex items-center space-x-2 bg-surface-container px-2.5 py-1.5 rounded-DEFAULT border border-outline-variant text-code-sm font-code-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="check_circle">check_circle</span>
+<div class="flex flex-col leading-tight">
+<span class="font-semibold text-on-surface flex items-center gap-1">Static <span class="text-label-caps font-label-caps text-secondary font-normal">Passed</span></span>
+<span class="text-label-caps font-label-caps text-outline">0.42s · Schema valid</span>
+</div>
+</div>
+<span class="text-outline-variant text-code-sm">→</span>
+<!-- Functional Stage (FAILED - Critical Highlight) -->
+<div class="flex items-center space-x-2 bg-error-container/20 px-2.5 py-1.5 rounded-DEFAULT border border-error/50 text-code-sm font-code-sm shadow-[0_0_12px_rgba(244,63,94,0.15)] relative">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping absolute -top-0.5 -right-0.5"></span>
+<span class="material-symbols-outlined text-error text-[16px]" data-icon="error">error</span>
+<div class="flex flex-col leading-tight">
+<div class="font-semibold text-on-surface flex items-center gap-1.5">
+                Functional
+                <span class="bg-error/20 text-error px-1 py-0.2 rounded text-label-caps font-label-caps font-bold">Failed: 2 errors</span>
+</div>
+<span class="text-label-caps font-label-caps text-error/80 font-medium">2.71s · 137 assertions</span>
+</div>
+</div>
+<span class="text-outline-variant text-code-sm">→</span>
+<!-- Live Checks -->
+<div class="flex items-center space-x-2 bg-surface-container px-2.5 py-1.5 rounded-DEFAULT border border-outline-variant text-code-sm font-code-sm">
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="check_circle">check_circle</span>
+<div class="flex flex-col leading-tight">
+<span class="font-semibold text-on-surface flex items-center gap-1">Live Checks <span class="text-label-caps font-label-caps text-secondary font-normal">Passed</span></span>
+<span class="text-label-caps font-label-caps text-outline">0.37s · Heartbeats OK</span>
+</div>
+</div>
+</div>
+<!-- Telemetry Counters Tally Strip -->
+<div class="flex items-center divide-x divide-outline-variant bg-surface-container-lowest border border-outline-variant rounded-DEFAULT overflow-hidden px-1">
+<div class="px-2.5 py-1 flex items-center gap-1.5">
+<span class="text-label-caps font-label-caps text-outline">TOTAL</span>
+<span class="text-code-sm font-code-sm font-bold text-on-surface">213</span>
+</div>
+<div class="px-2.5 py-1 flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[13px]" data-icon="done_all">done_all</span>
+<span class="text-label-caps font-label-caps font-semibold">209 passed</span>
+</div>
+<div class="px-2.5 py-1 flex items-center gap-1.5 text-error font-bold">
+<span class="material-symbols-outlined text-[13px]" data-icon="warning">warning</span>
+<span class="text-label-caps font-label-caps">2 failed</span>
+</div>
+<div class="px-2.5 py-1 flex items-center gap-1.5 text-on-surface-variant">
+<span class="text-label-caps font-label-caps text-outline">REJECTS:</span>
+<span class="text-code-sm font-code-sm text-tertiary">2 expected</span>
+</div>
+<div class="px-2.5 py-1 flex items-center gap-1.5 text-outline">
+<span class="text-label-caps font-label-caps">BLOCKED:</span>
+<span class="text-code-sm font-code-sm text-on-surface">0</span>
+</div>
+<div class="px-2.5 py-1 flex items-center gap-1.5 text-yellow-400">
+<span class="material-symbols-outlined text-[13px]" data-icon="report">report</span>
+<span class="text-label-caps font-label-caps">3 weak assertions</span>
+</div>
+</div>
+</div>
+</section>
+<!-- MASTER-DETAIL VIEWPORT (Left Scenario Explorer + Right Entry Detail View) -->
+<div class="flex-1 grid grid-cols-1 lg:grid-cols-12 min-h-0 bg-surface-container-lowest">
+<!-- ================= LEFT SCENARIO EXPLORER (4 cols desktop) ================= -->
+<section class="lg:col-span-4 border-r border-outline-variant bg-surface flex flex-col">
+<!-- Scenario Filter Header -->
+<div class="p-3 border-b border-outline-variant bg-surface space-y-2">
+<!-- Explorer Search Input -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2 text-outline text-[16px]" data-icon="filter_alt">filter_alt</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-DEFAULT pl-8 pr-16 py-1.5 text-code-sm font-code-sm text-on-surface placeholder-outline focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all" type="text" value="state:failed | loan"/>
+<div class="absolute right-2 flex items-center space-x-1">
+<span class="text-label-caps font-label-caps text-outline bg-surface-container px-1 rounded border border-outline-variant">5/213</span>
+<button class="text-outline hover:text-on-surface p-0.5" title="Clear Filter">
+<span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<!-- Filter Pills Row -->
+<div class="flex items-center justify-between text-label-caps font-label-caps pt-0.5">
+<div class="flex items-center space-x-1">
+<button class="px-2 py-0.5 rounded bg-surface-container border border-outline-variant text-on-surface-variant hover:text-on-surface">
+                All (213)
+              </button>
+<button class="px-2 py-0.5 rounded bg-error-container/20 border border-error/50 text-error font-semibold flex items-center space-x-1 shadow-sm">
+<span>Failed</span>
+<span class="bg-error text-surface-container-lowest px-1 rounded-sm text-[9px] font-bold">2</span>
+</button>
+<button class="px-2 py-0.5 rounded bg-surface-container border border-outline-variant text-tertiary hover:border-tertiary">
+                Rejections (2)
+              </button>
+<button class="px-2 py-0.5 rounded bg-surface-container border border-outline-variant text-yellow-300 hover:border-yellow-300">
+                Weak (3)
+              </button>
+</div>
+<!-- Failure Navigator (Previous / Next with '1 of 2' counter) -->
+<div class="flex items-center space-x-1 bg-surface-container-low px-1.5 py-0.5 rounded border border-outline-variant">
+<button class="text-outline hover:text-on-surface disabled:opacity-30" disabled="" title="Previous Failure">
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_upward">arrow_upward</span>
+</button>
+<span class="text-code-sm font-code-sm text-error font-medium px-0.5">1 of 2</span>
+<button class="text-outline hover:text-on-surface" title="Next Failure">
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_downward">arrow_downward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Scenario Entries Dense Telemetry List -->
+<div class="flex-1 overflow-y-auto divide-y divide-outline-variant/60">
+<!-- Entry 1 (ACTIVE / SELECTED / FAILING) -->
+<div class="bg-surface-container-high/60 border-l-2 border-primary-container p-2.5 cursor-pointer relative hover:bg-surface-container-high transition-colors">
+<div class="flex items-start justify-between gap-1 mb-1">
+<div class="flex items-center space-x-1.5 flex-wrap">
+<span class="bg-secondary-container/20 text-secondary px-1.5 py-0.5 rounded-DEFAULT text-label-caps font-label-caps font-bold border border-secondary-container/40">POST</span>
+<span class="bg-error/20 text-error px-1.5 py-0.5 rounded-DEFAULT text-label-caps font-label-caps font-bold border border-error/40">400</span>
+<span class="text-code-sm font-code-sm text-on-surface font-semibold truncate max-w-[210px]" title="Validate Loan Balance Limit Rejection">Validate Loan Balance Limit Rejection</span>
+</div>
+<span class="text-label-caps font-label-caps text-outline whitespace-nowrap">148ms</span>
+</div>
+<!-- Source file reference & Failure callout snippet -->
+<div class="flex items-center justify-between text-code-sm font-code-sm text-on-surface-variant">
+<div class="flex items-center space-x-1 text-outline">
+<span class="material-symbols-outlined text-[13px]" data-icon="description">description</span>
+<span>loan-import.hurl:142</span>
+</div>
+<span class="text-label-caps font-label-caps text-error bg-error/10 px-1 py-0.5 rounded border border-error/30 font-medium">FAIL line 146</span>
+</div>
+<!-- Failed assertion snippet inside list item -->
+<div class="mt-2 text-code-sm font-code-sm bg-surface-container-lowest p-1.5 rounded border border-error/30 text-on-surface">
+<div class="text-error truncate font-mono text-[11px] leading-tight">
+<span class="text-outline">$.error.code</span> != <span class="text-error font-semibold">"LOAN_EXCEEDS_LIMIT"</span>
+</div>
+<div class="text-outline truncate text-[10px] mt-0.5">got: "INVALID_ACCOUNT_STATE"</div>
+</div>
+</div>
+<!-- Entry 2 (Second Failed Scenario) -->
+<div class="p-2.5 hover:bg-surface-container-high/40 cursor-pointer transition-colors border-l-2 border-transparent">
+<div class="flex items-start justify-between gap-1 mb-1">
+<div class="flex items-center space-x-1.5 flex-wrap">
+<span class="bg-yellow-500/20 text-yellow-400 px-1.5 py-0.5 rounded-DEFAULT text-label-caps font-label-caps font-bold border border-yellow-500/40">PUT</span>
+<span class="bg-error/20 text-error px-1.5 py-0.5 rounded-DEFAULT text-label-caps font-label-caps font-bold border border-error/40">500</span>
+<span class="text-code-sm font-code-sm text-on-surface truncate max-w-[210px]" title="Batch Ledger Settlement Sync">Batch Ledger Settlement Sync</span>
+</div>
+<span class="text-label-caps font-label-caps text-outline whitespace-nowrap">312ms</span>
+</div>
+<div class="flex items-center justify-between text-code-sm font-code-sm text-on-surface-variant">
+<div class="flex items-center space-x-1 text-outline">
+<span class="material-symbols-outlined text-[13px]" data-icon="description">description</span>
+<span>settle-batch.hurl:89</span>
+</div>
+<span class="text-label-caps font-label-caps text-error bg-error/10 px-1 py-0.5 rounded border border-error/30">FAIL line 94</span>
+</div>
+</div>
+<!-- Entry 3 (Passed Scenario) -->
+<div class="p-2.5 hover:bg-surface-container-high/40 cursor-pointer transition-colors border-l-2 border-transparent">
+<div class="flex items-start justify-between gap-1 mb-1">
+<div class="flex items-center space-x-1.5 flex-wrap">
+<span class="bg-primary/20 text-primary px-1.5 py-0.5 rounded-DEFAULT text-label-caps font-label-caps font-bold border border-primary/40">GET</span>
+<span class="bg-secondary-container/20 text-secondary px-1.5 py-0.5 rounded-DEFAULT text-label-caps font-label-caps font-bold border border-secondary-container/40">200</span>
+<span class="text-code-sm font-code-sm text-on-surface truncate max-w-[210px]" title="Fetch Tenant Profile & Ledger Keys">Fetch Tenant Profile & Ledger Keys</span>
+</div>
+<span class="text-label-caps font-label-caps text-outline whitespace-nowrap">42ms</span>
+</div>
+<div class="flex items-center justify-between text-code-sm font-code-sm text-on-surface-variant">
+<div class="flex items-center space-x-1 text-outline">
+<span class="material-symbols-outlined text-[13px]" data-icon="description">description</span>
+<span>tenant-init.hurl:12</span>
+</div>
+<span class="text-label-caps font-label-caps text-secondary flex items-center space-x-0.5">
+<span class="material-symbols-outlined text-[12px]" data-icon="check">check</span>
+<span>8 / 8 OK</span>
+</span>
+</div>
+</div>
+<!-- Entry 4 (Passed Scenario) -->
+<div class="p-2.5 hover:bg-surface-container-high/40 cursor-pointer transition-colors border-l-2 border-transparent">
+<div class="flex items-start justify-between gap-1 mb-1">
+<div class="flex items-center space-x-1.5 flex-wrap">
+<span class="bg-secondary-container/20 text-secondary px-1.5 py-0.5 rounded-DEFAULT text-label-caps font-label-caps font-bold border border-secondary-container/40">POST</span>
+<span class="bg-secondary-container/20 text-secondary px-1.5 py-0.5 rounded-DEFAULT text-label-caps font-label-caps font-bold border border-secondary-container/40">201</span>
+<span class="text-code-sm font-code-sm text-on-surface truncate max-w-[210px]" title="Provision Virtual Escrow Wallet">Provision Virtual Escrow Wallet</span>
+</div>
+<span class="text-label-caps font-label-caps text-outline whitespace-nowrap">95ms</span>
+</div>
+<div class="flex items-center justify-between text-code-sm font-code-sm text-on-surface-variant">
+<div class="flex items-center space-x-1 text-outline">
+<span class="material-symbols-outlined text-[13px]" data-icon="description">description</span>
+<span>escrow-pool.hurl:45</span>
+</div>
+<span class="text-label-caps font-label-caps text-secondary flex items-center space-x-0.5">
+<span class="material-symbols-outlined text-[12px]" data-icon="check">check</span>
+<span>5 / 5 OK</span>
+</span>
+</div>
+</div>
+<!-- Entry 5 (Expected Reject Scenario) -->
+<div class="p-2.5 hover:bg-surface-container-high/40 cursor-pointer transition-colors border-l-2 border-transparent">
+<div class="flex items-start justify-between gap-1 mb-1">
+<div class="flex items-center space-x-1.5 flex-wrap">
+<span class="bg-secondary-container/20 text-secondary px-1.5 py-0.5 rounded-DEFAULT text-label-caps font-label-caps font-bold border border-secondary-container/40">POST</span>
+<span class="bg-tertiary-container/20 text-tertiary px-1.5 py-0.5 rounded-DEFAULT text-label-caps font-label-caps font-bold border border-tertiary-container/40">422</span>
+<span class="text-code-sm font-code-sm text-on-surface truncate max-w-[210px]" title="Enforce Sanctions Screening Boundary">Enforce Sanctions Screening Boundary</span>
+</div>
+<span class="text-label-caps font-label-caps text-outline whitespace-nowrap">84ms</span>
+</div>
+<div class="flex items-center justify-between text-code-sm font-code-sm text-on-surface-variant">
+<div class="flex items-center space-x-1 text-outline">
+<span class="material-symbols-outlined text-[13px]" data-icon="description">description</span>
+<span>compliance-gate.hurl:210</span>
+</div>
+<span class="text-label-caps font-label-caps text-tertiary flex items-center space-x-0.5">
+<span class="material-symbols-outlined text-[12px]" data-icon="shield">shield</span>
+<span>EXPECTED_REJECT</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Sidebar Footer Summary Indicator -->
+<div class="p-2 border-t border-outline-variant bg-surface-container-lowest text-label-caps font-label-caps text-outline flex items-center justify-between">
+<span>Worker 04 / Core Affinity #2</span>
+<span class="text-primary font-mono">1.2 MB/s telemetry</span>
+</div>
+</section>
+<!-- ================= RIGHT ENTRY DETAIL VIEW (8 cols desktop) ================= -->
+<section class="lg:col-span-8 flex flex-col overflow-y-auto bg-surface-container-lowest">
+<!-- ENTRY HEADER & WORKFLOW CONTROLS -->
+<div class="p-space-lg bg-surface border-b border-outline-variant space-y-3">
+<div class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3">
+<!-- HTTP Method Badge + Endpoint Path -->
+<div class="flex items-center space-x-2 flex-wrap gap-y-1">
+<span class="bg-secondary-container/20 text-secondary px-2 py-0.5 rounded-DEFAULT text-label-caps font-label-caps font-bold border border-secondary-container/40">POST</span>
+<span class="text-code-lg font-code-lg font-bold text-on-surface select-all break-all tracking-tight">/aion-api/v2/tenants/601130/accounts/acc_9921_fe89/loans/import</span>
+</div>
+<!-- Action Buttons Group -->
+<div class="flex items-center space-x-1.5 shrink-0">
+<button class="px-2 py-1 text-code-sm font-code-sm bg-surface-container border border-outline-variant hover:border-primary text-on-surface rounded-DEFAULT flex items-center space-x-1 transition-all" title="Copy exact cURL statement">
+<span class="material-symbols-outlined text-[14px]" data-icon="content_copy">content_copy</span>
+<span>Copy cURL</span>
+</button>
+<button class="px-2 py-1 text-code-sm font-code-sm bg-surface-container border border-outline-variant hover:border-primary text-on-surface rounded-DEFAULT flex items-center space-x-1 transition-all" title="Deep link to step">
+<span class="material-symbols-outlined text-[14px]" data-icon="link">link</span>
+<span>Link</span>
+</button>
+<button class="px-2 py-1 text-code-sm font-code-sm bg-surface-container border border-outline-variant hover:border-primary text-on-surface rounded-DEFAULT flex items-center space-x-1 transition-all" title="Execute only this query block">
+<span class="material-symbols-outlined text-primary text-[14px]" data-icon="replay">replay</span>
+<span>Re-run Solo</span>
+</button>
+<button class="px-2 py-1 text-code-sm font-code-sm bg-surface-container border border-outline-variant hover:border-primary text-on-surface rounded-DEFAULT flex items-center space-x-1 transition-all" title="Open in VSCode or JetBrains">
+<span class="material-symbols-outlined text-[14px]" data-icon="open_in_new">open_in_new</span>
+<span>Open in IDE</span>
+</button>
+</div>
+</div>
+<!-- Metadata Breadcrumb Row -->
+<div class="flex flex-wrap items-center gap-3 text-code-sm font-code-sm text-outline pt-1">
+<div class="flex items-center space-x-1 text-error bg-error/10 px-2 py-0.5 rounded border border-error/30 font-semibold">
+<span class="material-symbols-outlined text-[14px]" data-icon="cancel">cancel</span>
+<span>400 Bad Request</span>
+</div>
+<div class="flex items-center space-x-1">
+<span class="text-label-caps font-label-caps text-outline">STEP:</span>
+<span class="text-on-surface font-medium">Entry #14</span>
+</div>
+<div class="h-3 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center space-x-1">
+<span class="text-label-caps font-label-caps text-outline">LATENCY:</span>
+<span class="text-on-surface font-medium">148ms</span>
+<span class="text-outline text-label-caps font-label-caps">(TTFB: 132ms)</span>
+</div>
+<div class="h-3 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center space-x-1">
+<span class="text-label-caps font-label-caps text-outline">SOURCE:</span>
+<span class="text-primary font-mono">loan-import.hurl:142</span>
+</div>
+<div class="h-3 w-[1px] bg-outline-variant"></div>
+<div class="flex items-center space-x-1">
+<span class="text-label-caps font-label-caps text-outline">WORKER:</span>
+<span class="text-on-surface font-mono">worker-04 (node-us-east-2c)</span>
+</div>
+</div>
+<!-- Detail Navigation Tabs -->
+<div class="flex items-center space-x-4 border-t border-outline-variant/60 pt-2 text-label-caps font-label-caps">
+<!-- Tab 1: Active -->
+<button class="border-b-2 border-primary-container text-primary font-semibold pb-1 flex items-center space-x-1.5">
+<span>Evidence & Assertions</span>
+<span class="bg-error/20 text-error px-1.5 py-0.2 rounded text-[9px] font-bold border border-error/30">1 FAIL, 4 PASS</span>
+</button>
+<!-- Tab 2 -->
+<button class="text-on-surface-variant hover:text-on-surface pb-1 flex items-center space-x-1.5 transition-colors">
+<span>Request & Response</span>
+<span class="bg-surface-container text-outline px-1.5 py-0.2 rounded text-[9px] border border-outline-variant">400</span>
+</button>
+<!-- Tab 3 -->
+<button class="text-on-surface-variant hover:text-on-surface pb-1 flex items-center space-x-1.5 transition-colors">
+<span>Captures & Provenance</span>
+<span class="bg-surface-container text-primary px-1.5 py-0.2 rounded text-[9px] border border-outline-variant">2 vars, 5 downstream</span>
+</button>
+<!-- Tab 4 -->
+<button class="text-on-surface-variant hover:text-on-surface pb-1 flex items-center space-x-1.5 transition-colors">
+<span>Diff Inspector</span>
+<span class="bg-surface-container text-tertiary px-1.5 py-0.2 rounded text-[9px] border border-outline-variant">JSON Delta</span>
+</button>
+<!-- Tab 5 -->
+<button class="text-on-surface-variant hover:text-on-surface pb-1 flex items-center space-x-1.5 transition-colors">
+<span>Diagnostics</span>
+<span class="bg-surface-container text-outline px-1.5 py-0.2 rounded text-[9px] border border-outline-variant">Har / Trace</span>
+</button>
+</div>
+</div>
+<!-- ACTIVE TAB CONTENT: EVIDENCE & ASSERTIONS -->
+<div class="p-space-lg space-y-4">
+<!-- 1. PROMINENT FAILURE CALLOUT BANNER -->
+<div class="rounded-DEFAULT border border-error/50 bg-error-container/15 p-3.5 space-y-2 relative overflow-hidden shadow-[0_0_16px_rgba(244,63,94,0.12)]">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start space-x-3">
+<span class="material-symbols-outlined text-error text-[22px] mt-0.5 shrink-0" data-icon="report">report</span>
+<div>
+<div class="flex items-center space-x-2">
+<span class="text-headline-sm font-headline-sm font-bold text-error">Assertion Failed at line 146</span>
+<span class="bg-error text-surface-container-lowest px-1.5 py-0.2 rounded text-label-caps font-label-caps font-bold">CRITICAL_MISMATCH</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface mt-1">
+                    Target jsonpath <code class="font-code-md text-code-md text-primary bg-surface px-1 py-0.5 rounded border border-outline-variant">$.error.code</code> received unexpected value. Expected <span class="text-secondary font-mono font-semibold">"LOAN_EXCEEDS_LIMIT"</span>, but received <span class="text-error font-mono font-bold underline">"INVALID_ACCOUNT_STATE"</span>.
+                  </p>
+</div>
+</div>
+<!-- Stacktrace action -->
+<button class="shrink-0 px-2.5 py-1 text-code-sm font-code-sm bg-surface-container border border-outline-variant hover:border-error text-error rounded-DEFAULT flex items-center space-x-1 transition-all">
+<span class="material-symbols-outlined text-[14px]" data-icon="bug_report">bug_report</span>
+<span>Inspect Stacktrace</span>
+</button>
+</div>
+<!-- Technical Trace Note -->
+<div class="text-code-sm font-code-sm text-outline pl-8 flex items-center space-x-2">
+<span>Contract Rule: <code class="text-on-surface">lending-rules.rego:48</code></span>
+<span>•</span>
+<span>Engine Evaluation Duration: <code class="text-on-surface">1.4ms</code></span>
+</div>
+</div>
+<!-- 2. EXECUTED ASSERTIONS TABLE / LIST -->
+<div class="border border-outline-variant rounded-DEFAULT bg-surface overflow-hidden">
+<div class="bg-surface-container px-3 py-2 border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary text-[16px]" data-icon="checklist">checklist</span>
+<span class="text-headline-sm font-headline-sm text-on-surface font-semibold">Executed Assertions</span>
+<span class="text-label-caps font-label-caps text-outline bg-surface-container-lowest px-1.5 py-0.5 rounded border border-outline-variant">5 EVALUATED</span>
+</div>
+<span class="text-code-sm font-code-sm text-outline">Syntax: RFC-7396 / Hurl v4.1 Spec</span>
+</div>
+<!-- Assertions List Items -->
+<div class="divide-y divide-outline-variant text-code-sm font-code-sm">
+<!-- Line 144: Passed -->
+<div class="flex items-center justify-between px-3 py-2 hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center space-x-3">
+<span class="text-outline font-mono text-[11px] w-12 shrink-0">Line 144</span>
+<div class="flex items-center space-x-2">
+<span class="text-on-surface font-mono">status == 400</span>
+<span class="text-outline">→</span>
+<span class="text-outline">Actual: <span class="text-on-surface font-semibold">400</span></span>
+</div>
+</div>
+<div class="flex items-center space-x-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span>
+<span class="text-label-caps font-label-caps font-bold">PASSED</span>
+</div>
+</div>
+<!-- Line 145: Passed -->
+<div class="flex items-center justify-between px-3 py-2 hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center space-x-3">
+<span class="text-outline font-mono text-[11px] w-12 shrink-0">Line 145</span>
+<div class="flex items-center space-x-2">
+<span class="text-on-surface font-mono">header "Content-Type" contains "application/json"</span>
+<span class="text-outline">→</span>
+<span class="text-outline">Actual: <span class="text-on-surface font-semibold">application/json; charset=utf-8</span></span>
+</div>
+</div>
+<div class="flex items-center space-x-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span>
+<span class="text-label-caps font-label-caps font-bold">PASSED</span>
+</div>
+</div>
+<!-- Line 146: FAILED -->
+<div class="flex items-center justify-between px-3 py-2 bg-error-container/10 border-l-2 border-error">
+<div class="flex items-center space-x-3">
+<span class="text-error font-mono text-[11px] w-12 shrink-0 font-bold">Line 146</span>
+<div class="flex items-center space-x-2 flex-wrap">
+<span class="text-on-surface font-mono font-semibold">jsonpath "$.error.code" == "LOAN_EXCEEDS_LIMIT"</span>
+<span class="text-outline">→</span>
+<span class="text-error font-mono font-bold bg-error/20 px-1 py-0.5 rounded">Actual: "INVALID_ACCOUNT_STATE"</span>
+</div>
+</div>
+<div class="flex items-center space-x-1.5 text-error shrink-0">
+<span class="material-symbols-outlined text-[16px]" data-icon="cancel">cancel</span>
+<span class="text-label-caps font-label-caps font-bold">FAILED</span>
+</div>
+</div>
+<!-- Line 147: Passed -->
+<div class="flex items-center justify-between px-3 py-2 hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center space-x-3">
+<span class="text-outline font-mono text-[11px] w-12 shrink-0">Line 147</span>
+<div class="flex items-center space-x-2">
+<span class="text-on-surface font-mono">jsonpath "$.error.remediation" exists</span>
+<span class="text-outline">→</span>
+<span class="text-outline">Actual: <span class="text-on-surface font-semibold">"Account must be verified before lending"</span></span>
+</div>
+</div>
+<div class="flex items-center space-x-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span>
+<span class="text-label-caps font-label-caps font-bold">PASSED</span>
+</div>
+</div>
+<!-- Line 148: Passed -->
+<div class="flex items-center justify-between px-3 py-2 hover:bg-surface-container-high/40 transition-colors">
+<div class="flex items-center space-x-3">
+<span class="text-outline font-mono text-[11px] w-12 shrink-0">Line 148</span>
+<div class="flex items-center space-x-2">
+<span class="text-on-surface font-mono">duration < 500ms</span>
+<span class="text-outline">→</span>
+<span class="text-outline">Actual: <span class="text-on-surface font-semibold">148ms</span></span>
+</div>
+</div>
+<div class="flex items-center space-x-1.5 text-secondary">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span>
+<span class="text-label-caps font-label-caps font-bold">PASSED</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 3. CAPTURES & VARIABLE PROVENANCE PANEL -->
+<div class="border border-outline-variant rounded-DEFAULT bg-surface overflow-hidden">
+<div class="bg-surface-container px-3 py-2 border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-tertiary text-[16px]" data-icon="account_tree">account_tree</span>
+<span class="text-headline-sm font-headline-sm text-on-surface font-semibold">Captures & Variable Provenance</span>
+</div>
+<span class="text-label-caps font-label-caps text-outline">State Graph: In-Memory Runtime</span>
+</div>
+<!-- Table of Captures -->
+<div class="overflow-x-auto">
+<table class="w-full text-left text-code-sm font-code-sm">
+<thead class="bg-surface-container-lowest text-label-caps font-label-caps text-outline border-b border-outline-variant">
+<tr>
+<th class="px-3 py-2">Extracted Variable</th>
+<th class="px-3 py-2">Captured Value</th>
+<th class="px-3 py-2">Extraction Status</th>
+<th class="px-3 py-2">Downstream Dependent Steps</th>
+<th class="px-3 py-2 text-right">Cascade Effect</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container/50">
+<td class="px-3 py-2 text-primary font-mono font-medium">account_number</td>
+<td class="px-3 py-2 text-on-surface font-mono">"acc_9921_fe89"</td>
+<td class="px-3 py-2">
+<span class="bg-secondary/10 text-secondary px-1.5 py-0.5 rounded text-label-caps font-label-caps font-semibold border border-secondary/30">OK RESOLVED</span>
+</td>
+<td class="px-3 py-2 text-on-surface-variant font-mono">#15, #16, #18</td>
+<td class="px-3 py-2 text-right text-outline">Bound to headers</td>
+</tr>
+<tr class="bg-error-container/5 hover:bg-error-container/10">
+<td class="px-3 py-2 text-primary font-mono font-medium">loan_id</td>
+<td class="px-3 py-2 text-error font-mono">null (capture failed)</td>
+<td class="px-3 py-2">
+<span class="bg-error/20 text-error px-1.5 py-0.5 rounded text-label-caps font-label-caps font-semibold border border-error/40">FAILED_CAPTURE</span>
+</td>
+<td class="px-3 py-2 text-error font-mono font-semibold">#15 (Rollback Verification), #19 (Audit)</td>
+<td class="px-3 py-2 text-right text-error font-medium">Step #15 cascade aborted</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- 4. STRUCTURED PAYLOAD DELTA INSPECTOR (Side-by-Side Unified Contract vs Wire Payload) -->
+<div class="border border-outline-variant rounded-DEFAULT bg-surface overflow-hidden">
+<div class="bg-surface-container px-3 py-2 border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-primary-container text-[16px]" data-icon="difference">difference</span>
+<span class="text-headline-sm font-headline-sm text-on-surface font-semibold">Structured Payload Delta Inspector</span>
+<span class="text-label-caps font-label-caps text-outline bg-surface-container-lowest px-1 rounded border border-outline-variant">application/json</span>
+</div>
+<div class="flex items-center space-x-2 text-label-caps font-label-caps">
+<span class="flex items-center space-x-1 text-secondary"><span class="w-2 h-2 rounded-full bg-secondary"></span><span>Expected Contract</span></span>
+<span class="flex items-center space-x-1 text-error"><span class="w-2 h-2 rounded-full bg-error"></span><span>Wire Received</span></span>
+</div>
+</div>
+<!-- Code Diff Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-outline-variant font-code-sm text-code-sm bg-surface-container-lowest">
+<!-- Expected Side -->
+<div class="p-3">
+<div class="flex items-center justify-between pb-2 mb-2 border-b border-outline-variant text-label-caps font-label-caps text-secondary font-semibold">
+<span>EXPECTED CONTRACT (JSON Schema / Assertion Target)</span>
+<span>status: 400</span>
+</div>
+<pre class="text-on-surface-variant font-mono text-[11.5px] leading-relaxed"><span class="text-outline">1</span>  {
+<span class="text-outline">2</span>    "error": {
+<span class="text-outline">3</span>      "status": 400,
+<span class="text-outline">4</span>      "category": "LENDING_POLICY_VIOLATION",
+<span class="text-outline">5</span>  <span class="bg-secondary/15 text-secondary block w-full px-1 rounded-sm border-l-2 border-secondary font-bold">    "code": "LOAN_EXCEEDS_LIMIT",</span>
+<span class="text-outline">6</span>      "remediation": "Account must be verified before lending",
+<span class="text-outline">7</span>  <span class="bg-secondary/15 text-secondary block w-full px-1 rounded-sm border-l-2 border-secondary font-bold">    "requested_amount_cents": 25000000,</span>
+<span class="text-outline">8</span>  <span class="bg-secondary/15 text-secondary block w-full px-1 rounded-sm border-l-2 border-secondary font-bold">    "tier_max_allowed_cents": 10000000</span>
+<span class="text-outline">9</span>    },
+<span class="text-outline">10</span>   "timestamp": 1716042129
+<span class="text-outline">11</span> }</pre>
+</div>
+<!-- Actual Received Side -->
+<div class="p-3">
+<div class="flex items-center justify-between pb-2 mb-2 border-b border-outline-variant text-label-caps font-label-caps text-error font-semibold">
+<span>ACTUAL RECEIVED WIRE PAYLOAD (Edge Response)</span>
+<span>status: 400</span>
+</div>
+<pre class="text-on-surface-variant font-mono text-[11.5px] leading-relaxed"><span class="text-outline">1</span>  {
+<span class="text-outline">2</span>    "error": {
+<span class="text-outline">3</span>      "status": 400,
+<span class="text-outline">4</span>      "category": "LENDING_POLICY_VIOLATION",
+<span class="text-outline">5</span>  <span class="bg-error/20 text-error block w-full px-1 rounded-sm border-l-2 border-error font-bold">    "code": "INVALID_ACCOUNT_STATE",</span>
+<span class="text-outline">6</span>      "remediation": "Account must be verified before lending",
+<span class="text-outline">7</span>  <span class="bg-error/20 text-error block w-full px-1 rounded-sm border-l-2 border-error font-bold">    "current_state": "FROZEN_PENDING_KYC",</span>
+<span class="text-outline">8</span>  <span class="bg-error/20 text-error block w-full px-1 rounded-sm border-l-2 border-error font-bold">    "required_flag": "ACCOUNT_AML_CLEARED"</span>
+<span class="text-outline">9</span>    },
+<span class="text-outline">10</span>   "timestamp": 1716042129
+<span class="text-outline">11</span> }</pre>
+</div>
+</div>
+<!-- Diff Inspector Diagnostics bar -->
+<div class="px-3 py-1.5 bg-surface-container border-t border-outline-variant text-code-sm font-code-sm text-outline flex items-center justify-between">
+<span>3 lines mutated · 1 key mismatched · 2 payload attributes displaced</span>
+<button class="text-primary hover:underline text-label-caps font-label-caps">Copy Patch JSON</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- ================= BOTTOM ACTION BAR / STATUS STRIP ================= -->
+<footer class="fixed bottom-0 left-0 right-0 h-10 bg-surface border-t border-outline-variant z-50 flex items-center justify-between px-space-lg text-code-sm font-code-sm shadow-lg">
+<!-- Left telemetry status -->
+<div class="flex items-center space-x-3">
+<div class="flex items-center space-x-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="text-label-caps font-label-caps text-on-surface font-semibold">LIVE ENGINE SOCKET</span>
+<span class="text-outline font-mono text-[11px]">(tls://cluster-gateway.internal:9443)</span>
+</div>
+<div class="h-3 w-[1px] bg-outline-variant hidden sm:block"></div>
+<div class="hidden sm:flex items-center space-x-1 text-outline">
+<span class="text-label-caps font-label-caps">TRACE_ID:</span>
+<code class="text-primary font-mono">84f0b299e1a87e21:a190b201f92e</code>
+</div>
+</div>
+<!-- Right Quick Actions -->
+<div class="flex items-center space-x-2">
+<button class="hidden md:flex items-center space-x-1 px-2.5 py-1 rounded bg-surface-container border border-outline-variant hover:border-primary text-on-surface transition-all text-code-sm font-code-sm" title="Copy raw test command">
+<span class="material-symbols-outlined text-[14px]" data-icon="terminal">terminal</span>
+<span>Copy Repro Hurl Command</span>
+</button>
+<button class="hidden sm:flex items-center space-x-1 px-2.5 py-1 rounded bg-surface-container border border-outline-variant hover:border-primary text-on-surface transition-all text-code-sm font-code-sm" title="Export HTTP Archive">
+<span class="material-symbols-outlined text-[14px]" data-icon="archive">archive</span>
+<span>Download HAR</span>
+</button>
+<button class="hidden lg:flex items-center space-x-1 px-2.5 py-1 rounded bg-surface-container border border-outline-variant hover:border-primary text-on-surface transition-all text-code-sm font-code-sm" title="Open Distributed Trace in Jaeger/Tempo">
+<span class="material-symbols-outlined text-primary text-[14px]" data-icon="hub">hub</span>
+<span>View OpenTelemetry Trace</span>
+</button>
+<button class="flex items-center space-x-1 px-3 py-1 rounded bg-primary-container text-surface-container-lowest font-semibold hover:bg-surface-tint active:scale-95 transition-all text-code-sm font-code-sm shadow">
+<span class="material-symbols-outlined text-[15px]" data-icon="play_circle">play_circle</span>
+<span>Re-run Scenario in Isolation</span>
+</button>
+</div>
+</footer>
+</body></html>
