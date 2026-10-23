@@ -51,7 +51,10 @@ const requiredElementIds = [
   'entry-cluster-banner',
   'cluster-cards-container',
   'btn-export-har',
-  'footer-export-har'
+  'footer-export-har',
+  'entry-retry-container',
+  'retry-total-badge',
+  'retry-attempts-steps'
 ];
 
 console.log('\n✓ 2. Verifying DOM Elements & ID Hooks:');

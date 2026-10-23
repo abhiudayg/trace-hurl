@@ -129,6 +129,16 @@ pub struct DiffItem {
     pub origin: ProvenanceOrigin,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+pub struct RetryAttempt {
+    pub attempt_number: usize,
+    pub status_code: u16,
+    pub duration_ms: u64,
+    pub outcome: EntryOutcome,
+    pub error_message: Option<String>,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Entry {
@@ -151,6 +161,8 @@ pub struct Entry {
     pub curl_cmd: Option<String>,
     #[serde(default)]
     pub cluster_id: Option<String>,
+    #[serde(default)]
+    pub retry_attempts: Vec<RetryAttempt>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]

@@ -142,7 +142,8 @@
           "capturesUsed": [],
           "diffs": [],
           "curlCmd": null,
-          "clusterId": null
+          "clusterId": null,
+          "retryAttempts": []
         },
         {
           "id": "scenario-1-entry-2",
@@ -290,7 +291,8 @@
             }
           ],
           "curlCmd": null,
-          "clusterId": "cluster-1"
+          "clusterId": "cluster-1",
+          "retryAttempts": []
         },
         {
           "id": "scenario-1-entry-3",
@@ -360,7 +362,8 @@
           "capturesUsed": [],
           "diffs": [],
           "curlCmd": null,
-          "clusterId": null
+          "clusterId": null,
+          "retryAttempts": []
         },
         {
           "id": "scenario-1-entry-4",
@@ -406,7 +409,8 @@
           "capturesUsed": [],
           "diffs": [],
           "curlCmd": null,
-          "clusterId": null
+          "clusterId": null,
+          "retryAttempts": []
         }
       ],
       "summary": {

@@ -426,7 +426,7 @@ fn process_scenario_entries(
             }
         }
 
-        let call = raw_entry.and_then(|r| r.calls.first());
+        let call = raw_entry.and_then(|r| r.calls.last().or_else(|| r.calls.first()));
         let request = if let Some(c) = call {
             let mut headers = Vec::new();
             for h in &c.request.headers {
@@ -594,6 +594,50 @@ fn process_scenario_entries(
             .and_then(|r| r.curl_cmd.as_ref())
             .map(|cmd| ctx.redactor.redact_curl_cmd(cmd));
 
+        let retry_attempts: Vec<crate::model::RetryAttempt> = raw_entry
+            .map(|r| {
+                if r.calls.len() > 1 {
+                    r.calls
+                        .iter()
+                        .enumerate()
+                        .map(|(attempt_idx, c)| {
+                            let call_status =
+                                c.response.as_ref().map(|res| res.status).unwrap_or(0);
+                            let call_duration = c
+                                .timings
+                                .as_ref()
+                                .and_then(|t| t.total)
+                                .map(|us| us / 1000)
+                                .unwrap_or(0);
+                            let call_outcome = if (200..400).contains(&call_status) {
+                                EntryOutcome::Passed
+                            } else {
+                                EntryOutcome::Failed
+                            };
+                            let err = if call_status >= 400 {
+                                Some(format!(
+                                    "HTTP status {} on attempt #{}",
+                                    call_status,
+                                    attempt_idx + 1
+                                ))
+                            } else {
+                                None
+                            };
+                            crate::model::RetryAttempt {
+                                attempt_number: attempt_idx + 1,
+                                status_code: call_status,
+                                duration_ms: call_duration,
+                                outcome: call_outcome,
+                                error_message: err,
+                            }
+                        })
+                        .collect()
+                } else {
+                    Vec::new()
+                }
+            })
+            .unwrap_or_default();
+
         entries.push(Entry {
             id: entry_id,
             index: current_index,
@@ -613,6 +657,7 @@ fn process_scenario_entries(
             diffs,
             curl_cmd,
             cluster_id: None,
+            retry_attempts,
         });
     }
 

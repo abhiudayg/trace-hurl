@@ -410,6 +410,20 @@
             <span id="detail-outcome-text" class="text-secondary font-semibold font-mono uppercase">PASSED</span>
           </div>
         </div>
+
+        <!-- Retry Progression Visualizer Strip -->
+        <div id="entry-retry-container" class="hidden mt-3 pt-3 border-t border-outline-variant/60">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="flex items-center gap-1.5 text-amber-300 font-semibold text-code-sm">
+              <span class="material-symbols-outlined text-[15px]" data-icon="replay">replay</span>
+              Retry Progression Timeline:
+            </span>
+            <span id="retry-total-badge" class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold text-label-caps border border-amber-500/30">0 ATTEMPTS</span>
+          </div>
+          <div id="retry-attempts-steps" class="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none">
+            <!-- Attempts dynamically populated -->
+          </div>
+        </div>
       </section>
 
       <!-- TAB NAVIGATION BAR (Scrollable on small screens) -->
@@ -990,6 +1004,9 @@ loan_id: jsonpath "$.id"</pre>
           const failAssert = entry.assertions.find(a => !a.passed);
           const hintText = failAssert ? `assert ${failAssert.comparisonTarget}` : `${entry.assertions.length} assertions`;
           const hintColor = isFail ? 'text-error font-semibold' : 'text-outline';
+          const retryBadge = (entry.retryAttempts && entry.retryAttempts.length > 1)
+            ? `<span class="px-1.5 py-0.2 rounded bg-amber-500/15 text-amber-300 text-[10px] font-bold border border-amber-500/30 flex items-center gap-0.5" title="${entry.retryAttempts.length} Retry Attempts"><span class="material-symbols-outlined text-[11px]" data-icon="replay">replay</span>${entry.retryAttempts.length}x</span>`
+            : '';
 
           card.innerHTML = `
             <div class="flex items-start justify-between gap-2">
@@ -999,6 +1016,7 @@ loan_id: jsonpath "$.id"</pre>
                 <span class="px-1.5 py-0.5 rounded border text-label-caps font-label-caps font-bold ${statusBadge}">${entry.statusCode || '-'}</span>
               </div>
               <div class="flex items-center gap-1.5">
+                ${retryBadge}
                 <span class="text-code-sm font-code-sm text-outline">${entry.durationMs}ms</span>
                 ${statusIcon}
               </div>
@@ -1074,6 +1092,37 @@ loan_id: jsonpath "$.id"</pre>
         const isFail = entry.outcome === 'failed';
         document.getElementById('detail-status-badge').className = `px-2 py-0.5 rounded font-bold text-label-caps border ${isFail ? 'bg-error-container/30 border-error/50 text-error' : 'bg-secondary/15 border-secondary/30 text-secondary'}`;
         document.getElementById('detail-outcome-text').className = `font-semibold font-mono uppercase ${isFail ? 'text-error' : 'text-secondary'}`;
+
+        // Retry Progression Visualizer
+        const retryContainer = document.getElementById('entry-retry-container');
+        const attempts = entry.retryAttempts || [];
+        if (attempts.length > 1) {
+          retryContainer.classList.remove('hidden');
+          document.getElementById('retry-total-badge').textContent = `${attempts.length} ATTEMPTS`;
+          const stepsContainer = document.getElementById('retry-attempts-steps');
+          stepsContainer.innerHTML = '';
+          attempts.forEach((att, idx) => {
+            if (idx > 0) {
+              const arrow = document.createElement('span');
+              arrow.className = 'text-outline text-code-sm font-bold';
+              arrow.textContent = '➔';
+              stepsContainer.appendChild(arrow);
+            }
+            const pill = document.createElement('div');
+            const isPass = att.outcome === 'passed';
+            const badgeBg = isPass ? 'bg-secondary/15 border-secondary/40 text-secondary' : 'bg-error-container/30 border-error/50 text-error';
+            pill.className = `flex items-center gap-2 px-2.5 py-1 rounded border ${badgeBg} text-code-sm font-code-sm font-semibold shrink-0`;
+            pill.innerHTML = `
+              <span>Attempt #${att.attemptNumber}</span>
+              <span class="font-bold">${att.statusCode || '-'}</span>
+              <span class="text-outline text-[11px]">(${att.durationMs}ms)</span>
+              <span class="text-[10px] uppercase font-bold px-1 rounded bg-black/20">${isPass ? 'PASS' : 'FAIL'}</span>
+            `;
+            stepsContainer.appendChild(pill);
+          });
+        } else {
+          retryContainer.classList.add('hidden');
+        }
 
         // Tab Badges
         const failedAsserts = entry.assertions.filter(a => !a.passed);

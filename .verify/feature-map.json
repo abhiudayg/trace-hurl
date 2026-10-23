@@ -190,6 +190,24 @@
         "Flags steps with >50% duration increase as latency regressions.",
         "Outputs both machine-readable comparison.json and dark-themed comparison index.html."
       ]
+    },
+    {
+      "id": "FEAT-011",
+      "key": "retry_progression_visualizer",
+      "name": "Flaky Test & Retry Progression Visualizer",
+      "description": "Visualizes multi-attempt retry progressions (--retry) directly from Hurl call traces, exposing transient failures and self-healing requests.",
+      "status": "verified",
+      "testSuites": [
+        "unit::hurl_json",
+        "functional::verify_report_functional",
+        "isolated::test_isolated_run"
+      ],
+      "acceptanceCriteria": [
+        "Ingests all intermediate retry attempts from entry.calls instead of collapsing.",
+        "Renders retry timeline pills in report header with per-attempt status and latency.",
+        "Badges retried and flaky entries in the Scenario Explorer sidebar.",
+        "Preserves the final evaluated attempt for contract diff inspection."
+      ]
     }
   ],
   "suites": [

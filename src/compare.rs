@@ -419,6 +419,7 @@ mod tests {
             diffs: vec![],
             curl_cmd: None,
             cluster_id: None,
+            retry_attempts: vec![],
         }
     }
 
