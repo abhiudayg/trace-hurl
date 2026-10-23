@@ -171,6 +171,25 @@
         "Provides 1-click in-browser download of HAR archive in report header and footer.",
         "Preserves universal credential redaction across all exported HAR headers and bodies."
       ]
+    },
+    {
+      "id": "FEAT-010",
+      "key": "cross_run_compare",
+      "name": "Cross-Run Comparison & Regression Diff Engine",
+      "description": "Compares base and current runs to isolate fixed entries, new regressions, and latency regressions with HTML and JSON reports.",
+      "status": "verified",
+      "testSuites": [
+        "unit::compare::test_compare_detects_fixed_entry",
+        "unit::compare::test_compare_detects_regression_entry",
+        "unit::compare::test_compare_detects_latency_regression_over_50_pct",
+        "cli::tracehurl_compare"
+      ],
+      "acceptanceCriteria": [
+        "Identifies regressions when previously passing steps fail in the current run.",
+        "Identifies fixed entries when previously failing steps pass in the current run.",
+        "Flags steps with >50% duration increase as latency regressions.",
+        "Outputs both machine-readable comparison.json and dark-themed comparison index.html."
+      ]
     }
   ],
   "suites": [

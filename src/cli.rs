@@ -54,6 +54,19 @@ pub enum Commands {
         output: Option<PathBuf>,
     },
 
+    /// Compare two verification runs to detect regressions, fixes, and latency deltas
+    Compare {
+        /// Base run directory (e.g. prior baseline or main branch)
+        run_a: PathBuf,
+
+        /// Current run directory (e.g. current branch or fix attempt)
+        run_b: PathBuf,
+
+        /// Output directory for comparison delta report (default: <run-b>/comparison)
+        #[arg(short, long)]
+        output: Option<PathBuf>,
+    },
+
     /// Generate the report and immediately view it in the default browser
     View {
         /// Path to the verification run directory

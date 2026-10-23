@@ -30,6 +30,11 @@ fn run_app(cli: Cli) -> Result<()> {
         Commands::Inspect { run_dir, verbose } => execute_inspect(&run_dir, verbose),
         Commands::Validate { run_dir } => execute_validate(&run_dir),
         Commands::ExportHar { run_dir, output } => execute_export_har(&run_dir, output.as_deref()),
+        Commands::Compare {
+            run_a,
+            run_b,
+            output,
+        } => execute_compare(&run_a, &run_b, output.as_deref()),
     }
 }
 
@@ -220,6 +225,52 @@ fn execute_export_har(run_dir: &Path, output: Option<&Path>) -> Result<()> {
     println!("  Run ID:    {}", run.run_id);
     println!("  Entries:   {}", har.log.entries.len());
     println!("  HAR path:  {}", target_path.display());
+
+    Ok(())
+}
+
+fn execute_compare(run_a_dir: &Path, run_b_dir: &Path, output: Option<&Path>) -> Result<()> {
+    let run_a = ingest_run_directory(run_a_dir)?;
+    let run_b = ingest_run_directory(run_b_dir)?;
+
+    let report = tracehurl::compare::compare_runs(&run_a, &run_b);
+
+    let target_dir: PathBuf = match output {
+        Some(out) => out.to_path_buf(),
+        None => run_b_dir.join("comparison"),
+    };
+
+    std::fs::create_dir_all(&target_dir)?;
+
+    let json_path = target_dir.join("comparison.json");
+    let json_data = serde_json::to_string_pretty(&report)?;
+    std::fs::write(&json_path, json_data)?;
+
+    let html_path = target_dir.join("index.html");
+    let html_content = tracehurl::compare::render_comparison_html(&report);
+    std::fs::write(&html_path, html_content)?;
+
+    println!("TraceHurl Cross-Run Comparison Generated:");
+    println!(
+        "  Base Run:     {} ({})",
+        report.base_run_id, report.summary.base_status
+    );
+    println!(
+        "  Current Run:  {} ({})",
+        report.current_run_id, report.summary.current_status
+    );
+    println!("  Health Delta: {}", report.summary.net_health_delta);
+    println!("  Fixed:        {} entries", report.summary.fixed_count);
+    println!(
+        "  Regressions:  {} entries",
+        report.summary.regressions_count
+    );
+    println!(
+        "  Latency Dips: {} entries",
+        report.summary.latency_regressions_count
+    );
+    println!("  HTML view:    {}", html_path.display());
+    println!("  JSON data:    {}", json_path.display());
 
     Ok(())
 }
