@@ -182,8 +182,12 @@
           <span class="hidden lg:inline">First Failure</span>
         </button>
         <button id="btn-export-json" class="px-2 md:px-2.5 py-1 rounded bg-surface-container border border-outline-variant hover:border-primary-container text-on-surface hover:text-primary text-body-sm font-medium flex items-center gap-1 transition-colors" title="Export Model JSON">
-          <span class="material-symbols-outlined text-[14px]" data-icon="download">download</span>
-          <span class="hidden lg:inline">Export</span>
+          <span class="material-symbols-outlined text-[14px]" data-icon="data_object">data_object</span>
+          <span class="hidden lg:inline">JSON</span>
+        </button>
+        <button id="btn-export-har" class="px-2 md:px-2.5 py-1 rounded bg-surface-container border border-outline-variant hover:border-primary-container text-on-surface hover:text-primary text-body-sm font-medium flex items-center gap-1 transition-colors" title="Export HTTP Archive (HAR 1.2)">
+          <span class="material-symbols-outlined text-[14px] text-primary" data-icon="download">download</span>
+          <span class="hidden lg:inline">HAR</span>
         </button>
       </div>
     </div>
@@ -815,6 +819,10 @@ loan_id: jsonpath "$.id"</pre>
           <button id="footer-export-json" class="px-2.5 py-1 rounded bg-surface-container border border-outline-variant hover:border-primary-container text-on-surface text-code-sm font-code-sm flex items-center gap-1.5 transition-colors">
             <span class="material-symbols-outlined text-[14px] text-outline" data-icon="sim_card_download">sim_card_download</span>
             <span>Export Machine Model</span>
+          </button>
+          <button id="footer-export-har" class="px-2.5 py-1 rounded bg-surface-container border border-outline-variant hover:border-primary-container text-on-surface text-code-sm font-code-sm flex items-center gap-1.5 transition-colors">
+            <span class="material-symbols-outlined text-[14px] text-primary" data-icon="download">download</span>
+            <span>Export HAR Archive</span>
           </button>
         </div>
         <div class="flex items-center gap-2">
@@ -1564,6 +1572,81 @@ loan_id: jsonpath "$.id"</pre>
       }
       document.getElementById('btn-export-json').onclick = exportJson;
       document.getElementById('footer-export-json').onclick = exportJson;
+
+      // Export HAR (HTTP Archive 1.2)
+      function exportHar() {
+        const harEntries = allEntries.map(e => {
+          const reqHeaders = (e.request.headers || []).map(h => ({ name: h.name, value: h.value }));
+          const reqQuery = (e.request.queryString || []).map(q => ({ name: q.name, value: q.value }));
+          const reqBody = e.request.bodySnippet;
+          const reqPostData = reqBody ? {
+            mimeType: (reqHeaders.find(h => h.name.toLowerCase() === 'content-type') || {}).value || 'application/json',
+            text: reqBody
+          } : undefined;
+
+          const respHeaders = ((e.response && e.response.headers) || []).map(h => ({ name: h.name, value: h.value }));
+          const respBody = e.response ? e.response.bodySnippet : null;
+          const respBodySize = respBody ? respBody.length : 0;
+          const respMime = (respHeaders.find(h => h.name.toLowerCase() === 'content-type') || {}).value || 'application/json';
+
+          return {
+            startedDateTime: runData.startedAt || new Date().toISOString(),
+            time: e.durationMs || 0,
+            request: {
+              method: e.method,
+              url: e.url,
+              httpVersion: 'HTTP/1.1',
+              cookies: [],
+              headers: reqHeaders,
+              queryString: reqQuery,
+              postData: reqPostData,
+              headersSize: -1,
+              bodySize: reqBody ? reqBody.length : 0
+            },
+            response: {
+              status: e.statusCode || 0,
+              statusText: e.statusCode >= 400 ? 'Error' : 'OK',
+              httpVersion: (e.response && e.response.httpVersion) || 'HTTP/1.1',
+              cookies: [],
+              headers: respHeaders,
+              content: {
+                size: respBodySize,
+                mimeType: respMime,
+                text: respBody
+              },
+              redirectURL: '',
+              headersSize: -1,
+              bodySize: respBodySize
+            },
+            cache: {},
+            timings: {
+              send: 0,
+              wait: e.durationMs || 0,
+              receive: 0
+            }
+          };
+        });
+
+        const har = {
+          log: {
+            version: '1.2',
+            creator: {
+              name: 'TraceHurl',
+              version: '0.1.0'
+            },
+            entries: harEntries
+          }
+        };
+
+        const blob = new Blob([JSON.stringify(har, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `tracehurl-${runData.runId}.har`;
+        a.click();
+      }
+      document.getElementById('btn-export-har').onclick = exportHar;
+      document.getElementById('footer-export-har').onclick = exportHar;
 
       function escapeHtml(str) {
         if (!str) return '';

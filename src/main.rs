@@ -29,6 +29,7 @@ fn run_app(cli: Cli) -> Result<()> {
         Commands::View { run_dir, output } => execute_report(&run_dir, output.as_deref(), true),
         Commands::Inspect { run_dir, verbose } => execute_inspect(&run_dir, verbose),
         Commands::Validate { run_dir } => execute_validate(&run_dir),
+        Commands::ExportHar { run_dir, output } => execute_export_har(&run_dir, output.as_deref()),
     }
 }
 
@@ -56,6 +57,11 @@ fn execute_report(run_dir: &Path, output: Option<&Path>, open: bool) -> Result<(
     let json_data = serde_json::to_string_pretty(&run)?;
     std::fs::write(&json_tmp_path, json_data)?;
 
+    let har = tracehurl::har::run_to_har(&run);
+    let har_tmp_path = tmp_dir.join("trace.har");
+    let har_data = serde_json::to_string_pretty(&har)?;
+    std::fs::write(&har_tmp_path, har_data)?;
+
     if target_dir.exists() {
         std::fs::remove_dir_all(&target_dir)?;
     }
@@ -70,6 +76,7 @@ fn execute_report(run_dir: &Path, output: Option<&Path>, open: bool) -> Result<(
 
     let final_html = target_dir.join("index.html");
     let final_json = target_dir.join("report.json");
+    let final_har = target_dir.join("trace.har");
 
     println!("TraceHurl Report Generated Successfully:");
     println!("  Run ID:    {}", run.run_id);
@@ -84,6 +91,7 @@ fn execute_report(run_dir: &Path, output: Option<&Path>, open: bool) -> Result<(
     );
     println!("  HTML view: {}", final_html.display());
     println!("  JSON data: {}", final_json.display());
+    println!("  HAR trace: {}", final_har.display());
 
     if open {
         println!("Opening report in default browser...");
@@ -190,6 +198,29 @@ fn execute_validate(run_dir: &Path) -> Result<()> {
         "✓ Validation PASSED: all {} artifacts exist and match SHA-256 hashes.",
         manifest.artifacts.len()
     );
+    Ok(())
+}
+
+fn execute_export_har(run_dir: &Path, output: Option<&Path>) -> Result<()> {
+    let run = ingest_run_directory(run_dir)?;
+    let har = tracehurl::har::run_to_har(&run);
+    let target_path: PathBuf = match output {
+        Some(out) => out.to_path_buf(),
+        None => run_dir.join("report").join("trace.har"),
+    };
+
+    if let Some(parent) = target_path.parent() {
+        std::fs::create_dir_all(parent)?;
+    }
+
+    let har_data = serde_json::to_string_pretty(&har)?;
+    std::fs::write(&target_path, har_data)?;
+
+    println!("TraceHurl HAR Exported Successfully:");
+    println!("  Run ID:    {}", run.run_id);
+    println!("  Entries:   {}", har.log.entries.len());
+    println!("  HAR path:  {}", target_path.display());
+
     Ok(())
 }
 

@@ -151,6 +151,26 @@
         "Provides suggested remediations for status mismatches, missing contract attributes, and type mismatches.",
         "Enables 1-click cluster filtering in Scenario Explorer and dedicated Root Causes tab."
       ]
+    },
+    {
+      "id": "FEAT-009",
+      "key": "har_export",
+      "name": "1-Click HTTP Archive (HAR 1.2) Export",
+      "description": "Exports entire test run wire requests, responses, timings, and headers as a standard HAR 1.2 file via CLI and interactive 1-click UI download.",
+      "status": "verified",
+      "testSuites": [
+        "unit::har::test_run_to_har_generates_valid_version_and_creator",
+        "unit::har::test_run_to_har_maps_request_and_response_fields",
+        "cli::tracehurl_export_har",
+        "functional::verify_report_functional"
+      ],
+      "acceptanceCriteria": [
+        "Adheres strictly to the W3C / HTTP Archive (HAR) 1.2 specification.",
+        "Generates trace.har alongside index.html and report.json.",
+        "Supports standalone CLI export via `tracehurl export-har <RUN_DIR>`.",
+        "Provides 1-click in-browser download of HAR archive in report header and footer.",
+        "Preserves universal credential redaction across all exported HAR headers and bodies."
+      ]
     }
   ],
   "suites": [

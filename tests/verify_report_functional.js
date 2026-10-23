@@ -49,7 +49,9 @@ const requiredElementIds = [
   'btn-tab-clusters',
   'tab-clusters',
   'entry-cluster-banner',
-  'cluster-cards-container'
+  'cluster-cards-container',
+  'btn-export-har',
+  'footer-export-har'
 ];
 
 console.log('\n✓ 2. Verifying DOM Elements & ID Hooks:');
@@ -118,6 +120,18 @@ console.log(`       * [${cluster1.id}] ${cluster1.title} (${cluster1.entryCount}
 console.log(`       * Root Cause Category: ${cluster1.rootCauseCategory}`);
 console.log(`       * Remediation: ${cluster1.suggestedRemediation || 'None'}`);
 
+// 6. Verify HAR (HTTP Archive 1.2) Export
+console.log('\n✓ 6. Verifying HAR (HTTP Archive 1.2) Export:');
+const harPath = reportPath.replace('index.html', 'trace.har');
+assert(fs.existsSync(harPath), 'trace.har must be generated alongside index.html');
+const harJson = JSON.parse(fs.readFileSync(harPath, 'utf8'));
+assert.strictEqual(harJson.log.version, '1.2', 'HAR version must be 1.2');
+assert.strictEqual(harJson.log.creator.name, 'TraceHurl', 'Creator name must be TraceHurl');
+assert.strictEqual(harJson.log.entries.length, runData.summary.totalEntries, 'HAR entries count must match total entries');
+console.log(`     - Generated HAR file verified: ${harPath}`);
+console.log(`     - HAR Spec: Version 1.2, Creator: ${harJson.log.creator.name} v${harJson.log.creator.version}`);
+console.log(`     - Total Archive HTTP Transactions: ${harJson.log.entries.length}`);
+
 console.log('\n======================================================');
-console.log('✓ ALL 5 VERIFICATION STAGES PASSED FUNCTIONALLY');
+console.log('✓ ALL 6 VERIFICATION STAGES PASSED FUNCTIONALLY');
 console.log('======================================================\n');

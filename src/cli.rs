@@ -44,6 +44,16 @@ pub enum Commands {
         run_dir: PathBuf,
     },
 
+    /// Export all executed HTTP requests and responses as a standard HTTP Archive (HAR 1.2) file
+    ExportHar {
+        /// Path to the verification run directory
+        run_dir: PathBuf,
+
+        /// Output path for the .har file (default: <run-dir>/report/trace.har)
+        #[arg(short, long)]
+        output: Option<PathBuf>,
+    },
+
     /// Generate the report and immediately view it in the default browser
     View {
         /// Path to the verification run directory

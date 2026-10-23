@@ -3,6 +3,7 @@ pub mod clustering;
 pub mod diagnostics;
 pub mod diff;
 pub mod error;
+pub mod har;
 pub mod hurl_json;
 pub mod hurl_source;
 pub mod ingest;

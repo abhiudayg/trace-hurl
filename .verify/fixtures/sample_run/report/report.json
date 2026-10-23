@@ -476,8 +476,8 @@
     }
   ],
   "variables": {
-    "base_url": "http://localhost:8080",
-    "env": "staging"
+    "env": "staging",
+    "base_url": "http://localhost:8080"
   },
   "diagnostics": [
     {
