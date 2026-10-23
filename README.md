@@ -33,7 +33,12 @@ It also performs automated test-quality analysis to flag weak assertions (e.g. `
 ## Key Features
 
 - **Evidence-First Inspection**: Every finding links directly to the raw evidence (HTTP method, URL, headers, wire body, line numbers).
+- **Automated Failure Clustering & Root Cause Analysis**: Clusters dozens of failed test entries into normalized contractual error patterns (e.g. missing JSONPath fields, 5xx server deadlocks, route 404s), cutting triage time from minutes to seconds.
 - **Structured Payload Delta Engine**: Key-order-independent JSON Pointer diff engine (`Added`, `Removed`, `Changed`, `TypeMismatch`) highlighting contractual divergences between expected and actual response payloads.
+- **1-Click HTTP Archive (HAR 1.2) Export**: Automatically converts executed requests, wire responses, headers, and timings into standard `.har` archives via CLI and 1-click in-browser download for import into Postman, Insomnia, or Proxyman.
+- **Cross-Run Regression & Latency Diff (`tracehurl compare`)**: Compares base vs current test runs, automatically identifying newly introduced regressions, resolved fixes, and steps with >50% latency spikes.
+- **Flaky Test & Retry Progression Visualizer**: Traces multi-attempt retry progressions (`--retry`), exposing transient network failures and self-healing requests directly in the timeline.
+- **Interactive cURL Replay Runner Sidecar (`tracehurl serve`)**: Local embedded server enabling 1-click request execution against live backends and side-by-side comparison with recorded traces.
 - **Variable Provenance DAG**: Tracks runtime variable extractions across entries, visualizes downstream dependencies, and marks failed or unresolved variables.
 - **Phased Pipeline Visibility**: Explicitly models execution phases (`passed`, `failed`, `blocked`, `skipped`, `not-run`), tool versions (Hurl, Maven, Java), and exit codes.
 - **Automated Test-Quality Diagnostics**:
@@ -122,6 +127,27 @@ Validates that all artifacts listed in `manifest.json` exist, are securely conta
 
 ```bash
 tracehurl validate <RUN_DIR>
+```
+
+### 5. `export-har` — HTTP Archive 1.2 Export
+Exports all executed HTTP requests, responses, headers, and timings as a standard W3C HAR 1.2 archive for immediate import into Postman, Insomnia, Charles, or Proxyman:
+
+```bash
+tracehurl export-har <RUN_DIR> [--output <OUTPUT_PATH>]
+```
+
+### 6. `compare` — Cross-Run Comparison & Regression Diff
+Compares a baseline run against a current run to automatically detect fixed entries, new regressions, and latency regressions (>50% duration increase):
+
+```bash
+tracehurl compare <BASE_RUN_DIR> <CURRENT_RUN_DIR> [--output <OUTPUT_DIR>]
+```
+
+### 7. `serve` — Live Request Replay Sidecar
+Launches a local embedded sidecar server enabling interactive in-browser cURL request replays and live vs recorded response diffing:
+
+```bash
+tracehurl serve <RUN_DIR> [--port 9090] [--open]
 ```
 
 ---
