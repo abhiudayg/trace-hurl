@@ -1,0 +1,61 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  lint-and-test:
+    name: Lint, Test & Validate
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check code formatting
+        run: cargo fmt -- --check
+
+      - name: Run Clippy lints
+        run: cargo clippy -- -D warnings
+
+      - name: Run Cargo test suite
+        run: cargo test --verbose
+
+      - name: Build release binary
+        run: cargo build --release
+
+      - name: Verify functional report test
+        run: node tests/verify_report_functional.js
+
+      - name: Verify isolated environment runs
+        run: |
+          node tests/test_isolated_run.js
+
+      - name: Validate manifest checksums
+        run: |
+          ./target/release/tracehurl validate .verify/fixtures/sample_run
+
+      - name: Upload compiled binary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tracehurl-${{ matrix.os }}
+          path: target/release/tracehurl
