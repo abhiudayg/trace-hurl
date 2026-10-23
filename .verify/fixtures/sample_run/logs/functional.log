@@ -1,0 +1,6 @@
+Executing scenario: user-service.hurl
+  Entry 1: POST /api/v1/users [201 Created] (110ms) -> OK
+  Entry 2: GET /api/v1/users/usr_998124a [200 OK] (45ms) -> FAIL (Missing $.authCode)
+  Entry 3: GET /api/v1/users/usr_nonexistent [404 Not Found] (25ms) -> OK (Expected Rejection)
+  Entry 4: GET /api/v1/health [200 OK] (50ms) -> OK (Weak assertion)
+Failures: 1

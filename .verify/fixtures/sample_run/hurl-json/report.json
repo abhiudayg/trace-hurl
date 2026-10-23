@@ -1,0 +1,139 @@
+{
+  "filename": "user-service.hurl",
+  "success": false,
+  "time": 230,
+  "cookies": [],
+  "entries": [
+    {
+      "index": 1,
+      "line": 5,
+      "time": 110,
+      "calls": [
+        {
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:8080/api/v1/users",
+            "headers": [
+              {"name": "Content-Type", "value": "application/json"},
+              {"name": "Authorization", "value": "Bearer secret-admin-token"}
+            ],
+            "queryString": []
+          },
+          "response": {
+            "status": 201,
+            "httpVersion": "HTTP/1.1",
+            "headers": [
+              {"name": "Content-Type", "value": "application/json"}
+            ],
+            "body": "{\"status\":\"created\",\"user\":{\"id\":\"usr_998124a\",\"email\":\"jane.doe@example.com\"}}"
+          }
+        }
+      ],
+      "asserts": [
+        {"line": 13, "success": true, "message": "status == 201"},
+        {"line": 14, "success": true, "message": "header \"Content-Type\" contains \"application/json\""},
+        {"line": 15, "success": true, "message": "jsonpath \"$.status\" == \"created\""},
+        {"line": 16, "success": true, "message": "jsonpath \"$.user.id\" matches \"^usr_[a-zA-Z0-9]+$\""},
+        {"line": 17, "success": true, "message": "jsonpath \"$.user.email\" == \"jane.doe@example.com\""}
+      ],
+      "captures": [
+        {"name": "user_id", "value": "usr_998124a"}
+      ],
+      "curlCmd": "curl -X POST 'http://localhost:8080/api/v1/users' -H 'Authorization: Bearer secret-admin-token' -d '{\"name\":\"Jane Doe\"}'"
+    },
+    {
+      "index": 2,
+      "line": 23,
+      "time": 45,
+      "calls": [
+        {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/users/usr_998124a",
+            "headers": [
+              {"name": "Accept", "value": "application/json"},
+              {"name": "Authorization", "value": "Bearer secret-admin-token"}
+            ],
+            "queryString": []
+          },
+          "response": {
+            "status": 200,
+            "httpVersion": "HTTP/1.1",
+            "headers": [
+              {"name": "Content-Type", "value": "application/json"}
+            ],
+            "body": "{\"id\":\"usr_998124a\",\"name\":\"Jane Doe\",\"email\":\"jane.doe@example.com\",\"role\":\"developer\"}"
+          }
+        }
+      ],
+      "asserts": [
+        {"line": 28, "success": true, "message": "status == 200"},
+        {"line": 29, "success": true, "message": "jsonpath \"$.id\" == \"usr_998124a\""},
+        {"line": 30, "success": true, "message": "jsonpath \"$.name\" == \"Jane Doe\""},
+        {"line": 31, "success": true, "message": "jsonpath \"$.email\" == \"jane.doe@example.com\""},
+        {"line": 32, "success": true, "message": "jsonpath \"$.role\" == \"developer\""},
+        {"line": 33, "success": false, "message": "assert jsonpath \"$.authCode\" != null\n  --> user-service.hurl:33:1\n   |\n33 | jsonpath \"$.authCode\" != null\n   |   actual:   null\n   |   expected: not null\n   |"}
+      ],
+      "captures": [],
+      "curlCmd": "curl 'http://localhost:8080/api/v1/users/usr_998124a' -H 'Authorization: Bearer secret-admin-token'"
+    },
+    {
+      "index": 3,
+      "line": 35,
+      "time": 25,
+      "calls": [
+        {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/users/usr_nonexistent",
+            "headers": [
+              {"name": "Accept", "value": "application/json"},
+              {"name": "Authorization", "value": "Bearer secret-admin-token"}
+            ],
+            "queryString": []
+          },
+          "response": {
+            "status": 404,
+            "httpVersion": "HTTP/1.1",
+            "headers": [
+              {"name": "Content-Type", "value": "application/json"}
+            ],
+            "body": "{\"error\":\"UserNotFound\"}"
+          }
+        }
+      ],
+      "asserts": [
+        {"line": 40, "success": true, "message": "status == 404"},
+        {"line": 41, "success": true, "message": "jsonpath \"$.error\" == \"UserNotFound\""}
+      ],
+      "captures": [],
+      "curlCmd": "curl 'http://localhost:8080/api/v1/users/usr_nonexistent' -H 'Authorization: Bearer secret-admin-token'"
+    },
+    {
+      "index": 4,
+      "line": 43,
+      "time": 50,
+      "calls": [
+        {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/health",
+            "headers": [],
+            "queryString": []
+          },
+          "response": {
+            "status": 200,
+            "httpVersion": "HTTP/1.1",
+            "headers": [],
+            "body": "{\"status\":\"UP\"}"
+          }
+        }
+      ],
+      "asserts": [
+        {"line": 46, "success": true, "message": "status >= 200"}
+      ],
+      "captures": [],
+      "curlCmd": "curl 'http://localhost:8080/api/v1/health'"
+    }
+  ]
+}

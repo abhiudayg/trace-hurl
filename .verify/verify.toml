@@ -1,0 +1,13 @@
+[verify]
+commands = [
+  "cargo test --verbose",
+  "cargo clippy -- -D warnings",
+  "cargo fmt -- --check",
+  "node tests/verify_report_functional.js",
+  "node tests/test_isolated_run.js",
+]
+
+[verify.default]
+command = [".verify/run.sh"]
+timeout_secs = 300
+hook = true

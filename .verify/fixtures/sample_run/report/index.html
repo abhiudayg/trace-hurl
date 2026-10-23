@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+  <title>TraceHurl: TRACEHURL_SAMPLE_001 Evidence-First Verification Report</title>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <!-- Tailwind CSS with Forms and Container Queries -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Tailwind Configuration verbatim from Stitch Design System -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface": "#0f131c",
+            "on-secondary": "#003824",
+            "on-secondary-fixed": "#002113",
+            "on-tertiary-fixed-variant": "#5516be",
+            "secondary": "#4edea3",
+            "background": "#0f131c",
+            "on-primary-container": "#004965",
+            "surface-tint": "#7bd0ff",
+            "inverse-on-surface": "#2c3039",
+            "inverse-primary": "#00668a",
+            "surface-bright": "#353942",
+            "surface-container-high": "#262a33",
+            "on-tertiary": "#3c0091",
+            "secondary-fixed": "#6ffbbe",
+            "tertiary-fixed-dim": "#d0bcff",
+            "on-error": "#690005",
+            "on-primary-fixed-variant": "#004c69",
+            "surface-container-lowest": "#0a0e16",
+            "on-background": "#dfe2ee",
+            "on-primary-fixed": "#001e2c",
+            "primary-fixed-dim": "#7bd0ff",
+            "error": "#ffb4ab",
+            "on-tertiary-fixed": "#23005c",
+            "outline-variant": "#3e484f",
+            "on-primary": "#00354a",
+            "primary-container": "#38bdf8",
+            "secondary-fixed-dim": "#4edea3",
+            "on-error-container": "#ffdad6",
+            "on-surface": "#dfe2ee",
+            "on-tertiary-container": "#520fbb",
+            "surface-dim": "#0f131c",
+            "inverse-surface": "#dfe2ee",
+            "primary-fixed": "#c4e7ff",
+            "primary": "#8ed5ff",
+            "surface-container-highest": "#31353e",
+            "surface-variant": "#31353e",
+            "error-container": "#93000a",
+            "on-surface-variant": "#bdc8d1",
+            "outline": "#87929a",
+            "tertiary-fixed": "#e9ddff",
+            "on-secondary-fixed-variant": "#005236",
+            "tertiary-container": "#bda2ff",
+            "secondary-container": "#00a572",
+            "surface-container": "#1c2028",
+            "tertiary": "#d5c3ff",
+            "surface-container-low": "#181c24",
+            "on-secondary-container": "#00311f"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-xl": "1.5rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1rem",
+            "margin": "1rem",
+            "gutter-compact": "0.5rem",
+            "gutter": "0.75rem",
+            "margin-mobile": "0.75rem",
+            "space-md": "0.75rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "headline-xl-mobile": ["Inter", "sans-serif"],
+            "code-lg": ["JetBrains Mono", "monospace"],
+            "body-sm": ["Inter", "sans-serif"],
+            "label-caps": ["JetBrains Mono", "monospace"],
+            "headline-sm": ["Inter", "sans-serif"],
+            "headline-xl": ["Inter", "sans-serif"],
+            "code-md": ["JetBrains Mono", "monospace"],
+            "code-sm": ["JetBrains Mono", "monospace"]
+          },
+          "fontSize": {
+            "headline-lg": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "headline-xl-mobile": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "code-lg": ["13px", { "lineHeight": "20px", "fontWeight": "500" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+            "label-caps": ["10px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-sm": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+            "headline-xl": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "code-md": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "code-sm": ["11px", { "lineHeight": "16px", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0e16; }
+    ::-webkit-scrollbar-thumb { background: #262a33; border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3e484f; }
+    .material-symbols-outlined { font-size: 16px; line-height: 1; display: inline-block; vertical-align: middle; }
+    .glow-rose { box-shadow: 0 0 12px -2px rgba(244, 63, 94, 0.35); }
+    .glow-cyan { box-shadow: 0 0 14px -2px rgba(56, 189, 248, 0.25); }
+    .glow-green { box-shadow: 0 0 12px -2px rgba(78, 222, 163, 0.35); }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-md text-body-md h-screen overflow-hidden flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+  <script id="tracehurl-data" type="application/json">{"schemaVersion":1,"runId":"TRACEHURL_SAMPLE_001","startedAt":"2026-10-23T10:00:00Z","finishedAt":"2026-10-23T10:00:05Z","tools":{"tracehurl":"0.1.0","hurl":"8.0.1"},"phases":[{"name":"static-analysis","status":"passed","exitCode":0,"startTime":"2026-10-23T10:00:00Z","endTime":"2026-10-23T10:00:01Z","durationMs":null,"logPath":"logs/static.log"},{"name":"functional-hurl","status":"failed","exitCode":1,"startTime":"2026-10-23T10:00:01Z","endTime":"2026-10-23T10:00:05Z","durationMs":null,"logPath":"logs/functional.log"}],"scenarios":[{"id":"scenario-1","sourceFile":"User Management Suite","name":"User Management & Authentication Verification Suite","description":"Scenario: User Management & Authentication Verification Suite Verifies user creation, profile retrieval with contract assertions, error handling for missing resources, and health checks.","entries":[{"id":"scenario-1-entry-1","index":1,"scenarioId":"scenario-1","sourceFile":"User Management Suite","sourceLine":5,"method":"POST","url":"http://localhost:8080/api/v1/users","statusCode":201,"outcome":"passed","durationMs":110,"request":{"method":"POST","url":"http://localhost:8080/api/v1/users","headers":[{"name":"Content-Type","value":"application/json"},{"name":"Authorization","value":"Bearer [REDACTED]"}],"queryString":[],"bodySnippet":null,"bodyPath":null},"response":{"status":201,"headers":[{"name":"Content-Type","value":"application/json"}],"httpVersion":null,"bodySnippet":"{\"status\":\"created\",\"user\":{\"id\":\"usr_998124a\",\"email\":\"jane.doe@example.com\"}}","bodyPath":null,"isDerived":false,"expectedBodySnippet":null},"assertions":[{"line":13,"expression":"assert on line 13","comparisonTarget":"assertion","expected":null,"actual":null,"passed":true,"message":"status == 201","origin":"recorded"},{"line":14,"expression":"assert on line 14","comparisonTarget":"assertion","expected":null,"actual":null,"passed":true,"message":"header \"Content-Type\" contains \"application/json\"","origin":"recorded"},{"line":15,"expression":"status == 201","comparisonTarget":"status","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.status\" == \"created\"","origin":"recorded"},{"line":16,"expression":"header \"Content-Type\" contains \"application/json\"","comparisonTarget":"assertion","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.user.id\" matches \"^usr_[a-zA-Z0-9]+$\"","origin":"recorded"},{"line":17,"expression":"jsonpath \"$.status\" == \"created\"","comparisonTarget":"$.status","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.user.email\" == \"jane.doe@example.com\"","origin":"recorded"}],"capturesSet":[{"name":"user_id","sourceEntryIndex":1,"value":"usr_998124a","status":"ok","dependentEntries":[2]}],"capturesUsed":[],"diffs":[],"curlCmd":null},{"id":"scenario-1-entry-2","index":2,"scenarioId":"scenario-1","sourceFile":"User Management Suite","sourceLine":23,"method":"GET","url":"http://localhost:8080/api/v1/users/usr_998124a","statusCode":200,"outcome":"failed","durationMs":45,"request":{"method":"GET","url":"http://localhost:8080/api/v1/users/usr_998124a","headers":[{"name":"Accept","value":"application/json"},{"name":"Authorization","value":"Bearer [REDACTED]"}],"queryString":[],"bodySnippet":null,"bodyPath":null},"response":{"status":200,"headers":[{"name":"Content-Type","value":"application/json"}],"httpVersion":null,"bodySnippet":"{\"id\":\"usr_998124a\",\"name\":\"Jane Doe\",\"email\":\"jane.doe@example.com\",\"role\":\"developer\"}","bodyPath":null,"isDerived":false,"expectedBodySnippet":"{\n  \"authCode\": \"not null\"\n}"},"assertions":[{"line":28,"expression":"status == 200","comparisonTarget":"status","expected":null,"actual":null,"passed":true,"message":"status == 200","origin":"recorded"},{"line":29,"expression":"jsonpath \"$.id\" == \"{{user_id}}\"","comparisonTarget":"$.id","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.id\" == \"usr_998124a\"","origin":"recorded"},{"line":30,"expression":"jsonpath \"$.name\" == \"Jane Doe\"","comparisonTarget":"$.name","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.name\" == \"Jane Doe\"","origin":"recorded"},{"line":31,"expression":"jsonpath \"$.email\" == \"jane.doe@example.com\"","comparisonTarget":"$.email","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.email\" == \"jane.doe@example.com\"","origin":"recorded"},{"line":32,"expression":"jsonpath \"$.role\" == \"developer\"","comparisonTarget":"$.role","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.role\" == \"developer\"","origin":"recorded"},{"line":33,"expression":"jsonpath \"$.authCode\" != null","comparisonTarget":"$.authCode","expected":"not null","actual":"null","passed":false,"message":"assert jsonpath \"$.authCode\" != null\n  --> user-service.hurl:33:1\n   |\n33 | jsonpath \"$.authCode\" != null\n   |   actual:   null\n   |   expected: not null\n   |","origin":"recorded"}],"capturesSet":[],"capturesUsed":["user_id"],"diffs":[{"path":"/authCode","diffType":"Removed","expected":"\"not null\"","actual":null,"origin":"derived"},{"path":"/email","diffType":"Added","expected":null,"actual":"\"jane.doe@example.com\"","origin":"derived"},{"path":"/id","diffType":"Added","expected":null,"actual":"\"usr_998124a\"","origin":"derived"},{"path":"/name","diffType":"Added","expected":null,"actual":"\"Jane Doe\"","origin":"derived"},{"path":"/role","diffType":"Added","expected":null,"actual":"\"developer\"","origin":"derived"}],"curlCmd":null},{"id":"scenario-1-entry-3","index":3,"scenarioId":"scenario-1","sourceFile":"User Management Suite","sourceLine":35,"method":"GET","url":"http://localhost:8080/api/v1/users/usr_nonexistent","statusCode":404,"outcome":"expected-rejection","durationMs":25,"request":{"method":"GET","url":"http://localhost:8080/api/v1/users/usr_nonexistent","headers":[{"name":"Accept","value":"application/json"},{"name":"Authorization","value":"Bearer [REDACTED]"}],"queryString":[],"bodySnippet":null,"bodyPath":null},"response":{"status":404,"headers":[{"name":"Content-Type","value":"application/json"}],"httpVersion":null,"bodySnippet":"{\"error\":\"UserNotFound\"}","bodyPath":null,"isDerived":false,"expectedBodySnippet":null},"assertions":[{"line":40,"expression":"status == 404","comparisonTarget":"status","expected":null,"actual":null,"passed":true,"message":"status == 404","origin":"recorded"},{"line":41,"expression":"jsonpath \"$.error\" == \"UserNotFound\"","comparisonTarget":"$.error","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.error\" == \"UserNotFound\"","origin":"recorded"}],"capturesSet":[],"capturesUsed":[],"diffs":[],"curlCmd":null},{"id":"scenario-1-entry-4","index":4,"scenarioId":"scenario-1","sourceFile":"User Management Suite","sourceLine":43,"method":"GET","url":"http://localhost:8080/api/v1/health","statusCode":200,"outcome":"passed","durationMs":50,"request":{"method":"GET","url":"http://localhost:8080/api/v1/health","headers":[],"queryString":[],"bodySnippet":null,"bodyPath":null},"response":{"status":200,"headers":[],"httpVersion":null,"bodySnippet":"{\"status\":\"UP\"}","bodyPath":null,"isDerived":false,"expectedBodySnippet":null},"assertions":[{"line":46,"expression":"status >= 200","comparisonTarget":"status","expected":null,"actual":null,"passed":true,"message":"status >= 200","origin":"recorded"}],"capturesSet":[],"capturesUsed":[],"diffs":[],"curlCmd":null}],"summary":{"totalEntries":4,"passed":2,"failed":1,"expectedRejections":1,"blocked":0,"skipped":0,"weak":0},"allCaptures":[{"name":"user_id","sourceEntryIndex":1,"value":"usr_998124a","status":"ok","dependentEntries":[2]}]}],"artifacts":[{"path":"phases.tsv","artifactType":"text","sizeBytes":203,"sha256":"d01da7eb7eede140d3a903a35a5c996dce700ad08dcb1c6bde093333f4b30e0a","sensitivity":"internal"},{"path":"requests.curl","artifactType":"text","sizeBytes":368,"sha256":"a7d5f606f82adcb020537f3bcfb60cee61dbe15ac5c5098d74b557c82bad814c","sensitivity":"internal"},{"path":"user-service.hurl","artifactType":"hurl","sizeBytes":1236,"sha256":"9fc310f1c0f3abecc3582a09745c43fa529d8010ae35d314190e00252baed462","sensitivity":"internal"},{"path":"hurl-json/report.json","artifactType":"json-report","sizeBytes":4940,"sha256":"59bbfc044565e1c7bdfa2e286e4ff2c1436b182143051185642d4f04e5c151b0","sensitivity":"internal"},{"path":"logs/functional.log","artifactType":"log","sizeBytes":358,"sha256":"64cc22aa28da9cefb36d05a8297019898aef46410acf8b52c433a639f2a8ffe4","sensitivity":"internal"},{"path":"logs/static.log","artifactType":"log","sizeBytes":106,"sha256":"511d0712f8c79c5398f4190fd7ad2c1bb759488818a8d903535b6c420f09fcfd","sensitivity":"internal"}],"variables":{"base_url":"http://localhost:8080","env":"staging"},"diagnostics":[{"code":"TQ004_UNDEFINED_VARIABLE","severity":"warning","message":"Variable 'user_id' referenced at line 23 is not in run variables","targetEntity":"scenario-1-entry-2"}],"summary":{"totalScenarios":1,"totalEntries":4,"passedEntries":2,"failedEntries":1,"expectedRejections":1,"blockedEntries":0,"skippedEntries":0,"weakEntries":0,"totalDiagnostics":1,"overallStatus":"FAILED","durationMs":null}}</script>
+
+  <!-- 1. TOP GLOBAL TELEMETRY HEADER -->
+  <header class="flex justify-between items-center w-full px-3 md:px-space-lg h-14 bg-surface border-b border-outline-variant z-50 sticky top-0 shrink-0">
+    <div class="flex items-center gap-2 md:gap-space-lg">
+      <!-- Mobile sidebar toggle -->
+      <button id="btn-toggle-sidebar" class="md:hidden p-1.5 rounded bg-surface-container border border-outline-variant text-on-surface flex items-center justify-center hover:bg-surface-container-high" title="Toggle Scenarios">
+        <span class="material-symbols-outlined text-[18px]" data-icon="menu">menu</span>
+      </button>
+
+      <div class="flex items-center gap-space-sm">
+        <span class="w-8 h-8 rounded bg-surface-container-high border border-outline-variant flex items-center justify-center text-primary shrink-0">
+          <span class="material-symbols-outlined text-primary" data-icon="terminal">terminal</span>
+        </span>
+        <div class="flex items-baseline gap-space-xs">
+          <span class="text-headline-sm font-headline-sm font-semibold text-primary tracking-tight">TraceHurl</span>
+          <span class="hidden sm:inline px-1.5 py-0.5 rounded bg-surface-container-high border border-outline-variant text-label-caps font-label-caps text-on-surface-variant">v0.1.0</span>
+        </div>
+      </div>
+
+      <div class="h-5 w-[1px] bg-outline-variant hidden lg:block"></div>
+
+      <!-- Quick Search Bar -->
+      <div class="relative hidden xl:block w-72">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-outline">
+          <span class="material-symbols-outlined" data-icon="search">search</span>
+        </span>
+        <input id="global-search-input" class="w-full bg-surface-container-lowest border border-outline-variant rounded pl-8 pr-8 py-1 font-code-sm text-code-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container placeholder:text-outline-variant transition-colors" placeholder="Search traces, suites, endpoints..." type="text"/>
+        <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+          <kbd class="px-1 py-0.5 text-[9px] font-label-caps bg-surface-container text-outline rounded border border-outline-variant">⌘K</kbd>
+        </span>
+      </div>
+    </div>
+
+    <!-- Right Global Telemetry Badges & Trailing Actions -->
+    <div class="flex items-center gap-1.5 md:gap-space-md">
+      <button id="btn-copy-run-id" class="flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container-lowest border border-outline-variant hover:border-outline text-on-surface-variant hover:text-on-surface transition-colors group">
+        <span class="text-label-caps font-label-caps text-outline group-hover:text-primary hidden sm:inline">RUN_ID:</span>
+        <span class="text-code-sm font-code-sm text-on-surface font-semibold">TRACEHURL_SAMPLE_001</span>
+        <span class="material-symbols-outlined text-[13px] text-outline group-hover:text-primary" data-icon="content_copy">content_copy</span>
+      </button>
+
+      <!-- Overall Status Badge -->
+      <div id="overall-status-badge" class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container/20 border border-error/50 text-error glow-rose shrink-0">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-error"></span>
+        </span>
+        <span class="text-label-caps font-label-caps font-bold tracking-wide">FAILED</span>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-1 pl-1 md:pl-2 border-l border-outline-variant">
+        <button id="btn-first-failure" class="px-2 md:px-2.5 py-1 rounded bg-error-container/30 border border-error/40 text-error hover:bg-error-container/50 text-body-sm font-medium flex items-center gap-1 transition-colors" title="Jump to First Failure">
+          <span class="material-symbols-outlined text-[14px]" data-icon="arrow_downward">arrow_downward</span>
+          <span class="hidden lg:inline">First Failure</span>
+        </button>
+        <button id="btn-export-json" class="px-2 md:px-2.5 py-1 rounded bg-surface-container border border-outline-variant hover:border-primary-container text-on-surface hover:text-primary text-body-sm font-medium flex items-center gap-1 transition-colors" title="Export Model JSON">
+          <span class="material-symbols-outlined text-[14px]" data-icon="download">download</span>
+          <span class="hidden lg:inline">Export</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. HIGH-DENSITY METRICS & SUMMARY KPI STRIP -->
+  <section class="w-full bg-surface-container-low border-b border-outline-variant px-3 md:px-space-lg py-2">
+    <div class="flex flex-wrap items-center justify-between gap-y-2 gap-x-4">
+      <div class="flex items-center flex-wrap gap-2 text-code-sm font-code-sm">
+        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container border border-outline-variant">
+          <span class="text-outline text-label-caps">TOTAL:</span>
+          <span id="kpi-total" class="text-on-surface font-semibold">- entries</span>
+        </div>
+        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-secondary/10 border border-secondary/30 text-secondary">
+          <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          <span class="text-label-caps font-semibold">PASSED</span>
+          <span id="kpi-passed" class="font-bold">0</span>
+        </div>
+        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-error-container/20 border border-error/40 text-error">
+          <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+          <span class="text-label-caps font-semibold">FAILED</span>
+          <span id="kpi-failed" class="font-bold">0</span>
+        </div>
+        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-tertiary-container/20 border border-tertiary/40 text-tertiary">
+          <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+          <span class="text-label-caps font-semibold">EXPECTED REJECT</span>
+          <span id="kpi-rejections" class="font-bold">0</span>
+        </div>
+        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container-high border border-outline-variant text-outline">
+          <span class="text-label-caps font-semibold">BLOCKED</span>
+          <span id="kpi-blocked" class="font-bold">0</span>
+        </div>
+        <div class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300">
+          <span class="material-symbols-outlined text-[13px]" data-icon="warning">warning</span>
+          <span class="text-label-caps font-semibold">WEAK ASSERTIONS</span>
+          <span id="kpi-weak" class="font-bold">0</span>
+        </div>
+      </div>
+      <!-- Duration and Latency Trend Breakdown -->
+      <div class="flex items-center gap-4 text-code-sm font-code-sm">
+        <div class="flex items-center gap-2">
+          <span class="text-outline text-label-caps">EXECUTION TIME:</span>
+          <span id="kpi-duration" class="text-primary font-bold">-</span>
+          <div id="sparkline-bars" class="flex items-center gap-1 pl-1">
+            <!-- Sparkline bars populated dynamically -->
+          </div>
+        </div>
+        <div class="hidden md:flex items-center gap-1 text-on-surface-variant">
+          <span class="material-symbols-outlined text-[14px] text-secondary" data-icon="memory">memory</span>
+          <span id="kpi-scenarios-hint">Scenarios: -</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. VERIFICATION PHASE STATUS PIPELINE BAR -->
+  <section class="w-full bg-surface-container-lowest border-b border-outline-variant px-3 md:px-space-lg py-2.5">
+    <div class="flex items-center justify-between overflow-x-auto text-body-sm scrollbar-none">
+      <div id="phase-pipeline" class="flex items-center w-full min-w-[720px] gap-2">
+        <!-- Stages populated dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Backdrop for mobile drawer -->
+  <div id="sidebar-backdrop" class="fixed inset-0 bg-black/70 z-40 hidden md:hidden transition-opacity"></div>
+
+  <!-- 4. MAIN WORKSPACE: RESPONSIVE TWO-COLUMN MASTER-DETAIL LAYOUT -->
+  <div class="flex-1 min-h-0 flex overflow-hidden relative">
+    <!-- LEFT COLUMN: Scenario Explorer Sidebar (Responsive Drawer on mobile/tablet) -->
+    <aside id="scenario-sidebar" class="fixed inset-y-0 left-0 z-40 transform -translate-x-full md:relative md:translate-x-0 md:z-auto transition-transform duration-200 ease-in-out w-full max-w-[340px] md:max-w-none md:w-[380px] lg:w-[400px] bg-surface-container-lowest border-r border-outline-variant flex flex-col shrink-0 shadow-2xl md:shadow-none h-full overflow-hidden">
+      <!-- Explorer Header & Filter Toolbar -->
+      <div class="p-3 border-b border-outline-variant space-y-2.5 bg-surface">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[18px]" data-icon="schema">schema</span>
+            <span class="text-headline-sm font-headline-sm font-semibold text-on-surface">Scenario Explorer</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="sidebar-item-count" class="text-label-caps font-label-caps text-outline bg-surface-container px-2 py-0.5 rounded border border-outline-variant">- ITEMS</span>
+            <button id="btn-close-sidebar" class="md:hidden p-1 text-outline hover:text-on-surface" title="Close">
+              <span class="material-symbols-outlined" data-icon="close">close</span>
+            </button>
+          </div>
+        </div>
+        <!-- Search Input -->
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-outline">
+            <span class="material-symbols-outlined text-[15px]" data-icon="search">search</span>
+          </span>
+          <input id="sidebar-search-input" class="w-full bg-surface-container-low border border-outline-variant rounded pl-8 pr-7 py-1 text-code-sm font-code-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container placeholder:text-outline" placeholder="Filter scenarios, endpoints, paths..." type="text"/>
+          <button id="btn-clear-search" class="absolute inset-y-0 right-0 pr-2 flex items-center text-outline hover:text-on-surface">
+            <span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+          </button>
+        </div>
+        <!-- Filter Chips with counts -->
+        <div class="flex items-center gap-1.5 overflow-x-auto text-code-sm font-code-sm pb-0.5 scrollbar-none">
+          <button data-filter="all" class="filter-chip px-2.5 py-0.5 rounded bg-primary/20 border border-primary text-primary font-bold text-[11px] ring-1 ring-primary transition-all shrink-0">
+            All <span id="chip-count-all" class="opacity-80">0</span>
+          </button>
+          <button data-filter="failed" class="filter-chip px-2.5 py-0.5 rounded bg-surface-container border border-outline-variant text-error font-medium text-[11px] flex items-center gap-1 hover:border-error/50 transition-all shrink-0">
+            <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+            Failed <span id="chip-count-failed" class="font-bold">0</span>
+          </button>
+          <button data-filter="expected-rejection" class="filter-chip px-2.5 py-0.5 rounded bg-surface-container border border-outline-variant text-tertiary font-medium hover:border-tertiary/50 transition-all text-[11px] shrink-0">
+            Rejections <span id="chip-count-rejections" class="opacity-80">0</span>
+          </button>
+          <button data-filter="weak" class="filter-chip px-2.5 py-0.5 rounded bg-surface-container border border-outline-variant text-amber-300 font-medium hover:border-amber-400/50 transition-all text-[11px] shrink-0">
+            Weak <span id="chip-count-weak" class="opacity-80">0</span>
+          </button>
+        </div>
+        <!-- Stepper Helper Toolbar -->
+        <div class="flex items-center justify-between pt-1 border-t border-outline-variant/50 text-body-sm">
+          <div class="flex items-center gap-1 text-code-sm text-outline">
+            <span class="material-symbols-outlined text-[14px] text-error" data-icon="flag">flag</span>
+            <span>Failure Navigator:</span>
+            <span id="failure-nav-counter" class="text-error font-bold ml-1">0 of 0</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <button id="btn-prev-failure-sidebar" class="p-1 rounded bg-surface-container border border-outline-variant hover:border-primary-container text-on-surface-variant hover:text-on-surface" title="Previous Failure">
+              <span class="material-symbols-outlined text-[14px]" data-icon="arrow_upward">arrow_upward</span>
+            </button>
+            <button id="btn-next-failure-sidebar" class="p-1 rounded bg-surface-container border border-outline-variant hover:border-primary-container text-on-surface-variant hover:text-on-surface" title="Next Failure">
+              <span class="material-symbols-outlined text-[14px]" data-icon="arrow_downward">arrow_downward</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Scenarios List View -->
+      <div id="scenarios-list" class="flex-1 min-h-0 overflow-y-auto divide-y divide-outline-variant/40">
+        <!-- Populated dynamically -->
+      </div>
+      <!-- Left Sidebar Footer Status -->
+      <div class="p-2.5 bg-surface-container-low border-t border-outline-variant flex items-center justify-between text-code-sm font-code-sm text-outline shrink-0">
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-secondary"></span>
+          <span>TraceHurl Engine</span>
+        </div>
+        <span id="sidebar-filter-status" class="text-[10px]">Filter: None</span>
+      </div>
+    </aside>
+
+    <!-- RIGHT COLUMN: Selected Entry Detail Panel -->
+    <main class="flex-1 min-h-0 flex flex-col bg-surface overflow-y-auto w-full">
+      <!-- Entry Detail Header -->
+      <section class="p-3 md:p-space-lg border-b border-outline-variant bg-surface-container-low/60 shrink-0">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <!-- Method & Endpoint URL row -->
+          <div class="flex items-center flex-wrap gap-2.5">
+            <span id="detail-method-badge" class="px-2.5 py-1 rounded bg-primary-container text-on-primary-container text-label-caps font-label-caps font-extrabold tracking-wider">
+              POST
+            </span>
+            <span id="detail-url" class="font-code-lg text-code-lg text-on-surface font-semibold tracking-tight break-all">
+              /
+            </span>
+            <div class="flex items-center gap-1">
+              <button id="btn-copy-curl" class="px-2 py-0.5 rounded bg-surface-container border border-outline-variant hover:border-primary-container text-on-surface-variant hover:text-on-surface text-code-sm font-code-sm flex items-center gap-1 transition-colors" title="Copy full cURL command">
+                <span class="material-symbols-outlined text-[13px]" data-icon="terminal">terminal</span>
+                <span>Copy cURL</span>
+              </button>
+              <button id="btn-copy-url" class="p-1 rounded bg-surface-container border border-outline-variant hover:border-primary-container text-on-surface-variant hover:text-on-surface transition-colors" title="Copy Endpoint Path">
+                <span class="material-symbols-outlined text-[14px]" data-icon="link">link</span>
+              </button>
+            </div>
+          </div>
+          <!-- Quick Secondary Actions -->
+          <div class="flex items-center gap-2">
+            <button id="btn-copy-repro" class="px-2.5 py-1 rounded bg-surface-container-high border border-outline-variant hover:border-outline text-on-surface text-body-sm font-medium flex items-center gap-1.5 transition-colors">
+              <span class="material-symbols-outlined text-[15px] text-primary" data-icon="terminal">terminal</span>
+              <span>Repro Command</span>
+            </button>
+            <button id="btn-copy-entry-json" class="px-2.5 py-1 rounded bg-surface-container-high border border-outline-variant hover:border-outline text-on-surface text-body-sm font-medium flex items-center gap-1.5 transition-colors">
+              <span class="material-symbols-outlined text-[15px] text-outline" data-icon="code">code</span>
+              <span>Entry JSON</span>
+            </button>
+          </div>
+        </div>
+        <!-- Meta Telemetry Attributes Row -->
+        <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-code-sm font-code-sm">
+          <div class="flex items-center gap-1.5">
+            <span id="detail-status-badge" class="px-2 py-0.5 rounded bg-error-container/30 border border-error/50 text-error font-bold text-label-caps">
+              200 OK
+            </span>
+          </div>
+          <div class="flex items-center gap-1 text-on-surface-variant">
+            <span class="text-outline">Index:</span>
+            <span id="detail-index" class="text-on-surface font-semibold">Entry #1</span>
+          </div>
+          <div class="flex items-center gap-1 text-on-surface-variant">
+            <span class="material-symbols-outlined text-[14px] text-outline" data-icon="timer">timer</span>
+            <span class="text-outline">Latency:</span>
+            <span id="detail-latency" class="text-primary font-semibold">0ms</span>
+          </div>
+          <div class="flex items-center gap-1 text-on-surface-variant">
+            <span class="material-symbols-outlined text-[14px] text-outline" data-icon="description">description</span>
+            <span class="text-outline">Source:</span>
+            <span id="detail-source" class="text-on-surface font-medium hover:underline cursor-pointer">scenario.hurl:1</span>
+          </div>
+          <div class="flex items-center gap-1 text-on-surface-variant">
+            <span class="material-symbols-outlined text-[14px] text-outline" data-icon="verified_user">verified_user</span>
+            <span class="text-outline">Outcome:</span>
+            <span id="detail-outcome-text" class="text-secondary font-semibold font-mono uppercase">PASSED</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB NAVIGATION BAR (Scrollable on small screens) -->
+      <nav class="flex items-center px-3 md:px-space-lg bg-surface-container-lowest border-b border-outline-variant gap-4 md:gap-6 overflow-x-auto scrollbar-none shrink-0">
+        <button data-tab="tab-evidence" class="tab-button flex items-center gap-2 py-3 border-b-2 border-primary text-primary font-headline-sm text-headline-sm font-semibold transition-colors shrink-0">
+          <span>Evidence &amp; Assertions</span>
+          <span id="tab-badge-assertions" class="px-1.5 py-0.2 rounded-full bg-error-container/40 text-error text-[10px] font-label-caps font-bold">0</span>
+        </button>
+        <button data-tab="tab-request-response" class="tab-button flex items-center gap-2 py-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm font-medium transition-colors shrink-0">
+          <span>Request &amp; Response</span>
+          <span id="tab-badge-status" class="px-1.5 py-0.2 rounded bg-surface-container text-outline text-[10px] font-label-caps">200</span>
+        </button>
+        <button data-tab="tab-captures" class="tab-button flex items-center gap-2 py-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm font-medium transition-colors shrink-0">
+          <span>Captures &amp; DAG</span>
+          <span id="tab-badge-captures" class="px-1.5 py-0.2 rounded bg-surface-container text-outline text-[10px] font-label-caps">0 vars</span>
+        </button>
+        <button data-tab="tab-diff" class="tab-button flex items-center gap-2 py-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm font-medium transition-colors shrink-0">
+          <span>Diff Inspector</span>
+          <span id="tab-badge-diff" class="px-1.5 py-0.2 rounded bg-surface-container text-outline text-[10px] font-label-caps">0 Delta</span>
+        </button>
+        <button data-tab="tab-diagnostics" class="tab-button flex items-center gap-2 py-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm font-medium transition-colors shrink-0">
+          <span>Diagnostics</span>
+          <span id="tab-badge-diagnostics" class="px-1.5 py-0.2 rounded bg-surface-container text-outline text-[10px] font-label-caps">0</span>
+        </button>
+        <button data-tab="tab-manifest" class="tab-button flex items-center gap-2 py-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm font-medium transition-colors shrink-0">
+          <span>Phases &amp; Manifest</span>
+          <span id="tab-badge-manifest" class="px-1.5 py-0.2 rounded bg-surface-container text-outline text-[10px] font-label-caps">0 phases</span>
+        </button>
+      </nav>
+
+      <!-- TAB CONTENT AREA -->
+      <div class="p-3 md:p-space-lg space-y-space-lg flex-1">
+        <!-- 1. SCREEN TAB: EVIDENCE & ASSERTIONS -->
+        <div id="tab-evidence" class="tab-section space-y-space-lg">
+          <!-- Discrepancy Alert Banner (shown when failure exists) -->
+          <div id="discrepancy-banner" class="hidden p-3.5 rounded bg-error-container/15 border border-error/50 flex flex-col sm:flex-row items-start justify-between gap-3 glow-rose">
+            <div class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-error text-[22px] mt-0.5 shrink-0" data-icon="error">error</span>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h3 id="discrepancy-title" class="text-headline-sm font-headline-sm font-bold text-error">
+                    Assertion Failed
+                  </h3>
+                  <span class="px-1.5 py-0.2 rounded bg-error/20 text-error text-code-sm font-code-sm font-bold">CRITICAL_MISMATCH</span>
+                </div>
+                <p id="discrepancy-desc" class="mt-1 text-body-md font-body-md text-on-surface break-words">
+                  Assertion failure detected.
+                </p>
+              </div>
+            </div>
+            <button id="btn-jump-diff" class="px-2.5 py-1 rounded bg-error/20 hover:bg-error/30 text-error text-code-sm font-code-sm font-semibold border border-error/40 transition-colors whitespace-nowrap self-start sm:self-auto">
+              Inspect Diff
+            </button>
+          </div>
+
+          <!-- Detailed Assertions Table -->
+          <div class="rounded border border-outline-variant bg-surface-container-lowest overflow-hidden">
+            <div class="px-space-md py-2.5 bg-surface-container-low border-b border-outline-variant flex items-center justify-between flex-wrap gap-2">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[16px]" data-icon="fact_check">fact_check</span>
+                <span class="text-headline-sm font-headline-sm font-semibold text-on-surface">Executed Assertions</span>
+                <span id="assertions-count-label" class="text-code-sm font-code-sm text-outline">(0 verification clauses)</span>
+              </div>
+              <div class="flex items-center gap-2 text-code-sm font-code-sm">
+                <span id="assertions-passed-count" class="text-secondary font-medium">0 Passed</span>
+                <span class="text-outline">·</span>
+                <span id="assertions-failed-count" class="text-error font-medium">0 Failed</span>
+              </div>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left font-code-sm text-code-sm border-collapse min-w-[600px]">
+                <thead>
+                  <tr class="border-b border-outline-variant bg-surface text-outline text-label-caps font-label-caps">
+                    <th class="py-2 px-3 w-16">Line</th>
+                    <th class="py-2 px-3 w-64">Target / Expression</th>
+                    <th class="py-2 px-3">Expected Value</th>
+                    <th class="py-2 px-3">Actual Evaluated Value</th>
+                    <th class="py-2 px-3 text-right w-24">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="assertions-table-body" class="divide-y divide-outline-variant/40">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. SCREEN TAB: REQUEST & RESPONSE (WIRE DATA) -->
+        <div id="tab-request-response" class="tab-section hidden space-y-space-lg">
+          <!-- cURL Command Box -->
+          <div class="rounded border border-outline-variant bg-surface-container-lowest overflow-hidden">
+            <div class="px-space-md py-2 bg-surface-container-low border-b border-outline-variant flex items-center justify-between">
+              <span class="text-label-caps font-label-caps text-outline font-bold">REPRODUCIBLE CURL COMMAND</span>
+              <button id="btn-copy-curl-tab" class="text-code-sm font-code-sm text-primary hover:underline flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px]" data-icon="content_copy">content_copy</span>
+                <span>Copy</span>
+              </button>
+            </div>
+            <pre id="tab-curl-pre" class="p-3 font-code-md text-code-md bg-surface-container-lowest overflow-x-auto whitespace-pre-wrap text-on-surface-variant max-h-48"></pre>
+          </div>
+
+          <!-- Split Request / Response -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <!-- Request Panel -->
+            <div class="rounded border border-outline-variant bg-surface-container-lowest overflow-hidden flex flex-col">
+              <div class="px-space-md py-2 bg-surface-container-low border-b border-outline-variant flex items-center justify-between">
+                <span class="text-label-caps font-label-caps text-primary font-bold">REQUEST DETAILS</span>
+                <span id="tab-request-method-url" class="text-code-sm text-outline truncate max-w-xs"></span>
+              </div>
+              <div class="p-3 space-y-3">
+                <div>
+                  <div class="text-[11px] font-label-caps text-outline mb-1">HEADERS</div>
+                  <div id="tab-request-headers" class="border border-outline-variant/50 rounded bg-surface divide-y divide-outline-variant/30 text-code-sm font-mono overflow-x-auto"></div>
+                </div>
+                <div id="tab-request-body-wrap" class="hidden">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="text-[11px] font-label-caps text-outline">PAYLOAD BODY (<span id="tab-request-body-path">payload</span>)</span>
+                    <button id="btn-copy-req-body" class="text-code-sm text-primary hover:underline">Copy</button>
+                  </div>
+                  <pre id="tab-request-body" class="p-2.5 rounded bg-surface border border-outline-variant/50 text-code-sm font-mono overflow-x-auto max-h-72 whitespace-pre-wrap text-on-surface"></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Response Panel -->
+            <div class="rounded border border-outline-variant bg-surface-container-lowest overflow-hidden flex flex-col">
+              <div class="px-space-md py-2 bg-surface-container-low border-b border-outline-variant flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="text-label-caps font-label-caps text-secondary font-bold">RESPONSE DETAILS</span>
+                  <span id="tab-response-provenance-badge" class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-secondary/20 text-secondary border border-secondary/30">RECORDED WIRE</span>
+                </div>
+                <span id="tab-response-status-badge" class="px-1.5 py-0.2 rounded text-[11px] font-mono font-bold bg-secondary/20 text-secondary"></span>
+              </div>
+              <div class="p-3 space-y-3 flex-1 flex flex-col">
+                <div>
+                  <div class="text-[11px] font-label-caps text-outline mb-1">HEADERS</div>
+                  <div id="tab-response-headers" class="border border-outline-variant/50 rounded bg-surface divide-y divide-outline-variant/30 text-code-sm font-mono overflow-x-auto max-h-48"></div>
+                </div>
+                <div id="tab-response-body-wrap" class="flex-1 flex flex-col">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="text-[11px] font-label-caps text-outline">RESPONSE BODY (PAYLOAD)</span>
+                    <button id="btn-copy-res-body" class="text-code-sm text-primary hover:underline">Copy</button>
+                  </div>
+                  <pre id="tab-response-body" class="p-2.5 rounded bg-surface border border-outline-variant/50 text-code-sm font-mono overflow-x-auto max-h-80 whitespace-pre-wrap text-on-surface flex-1"></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. SCREEN TAB: CAPTURES & DAG PROVENANCE -->
+        <div id="tab-captures" class="tab-section hidden space-y-space-lg">
+          <!-- Active Step Scope Callout -->
+          <div class="p-3 rounded border border-outline-variant bg-surface-container-lowest">
+            <div class="text-label-caps font-label-caps text-primary font-bold mb-2 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[15px]" data-icon="data_object">data_object</span>
+              <span>VARIABLES REFERENCED IN THIS STEP (IN-SCOPE)</span>
+            </div>
+            <div id="captures-used-container" class="flex items-center gap-2 flex-wrap">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Scenario DAG Table -->
+          <div class="rounded border border-outline-variant bg-surface-container-lowest overflow-hidden">
+            <div class="px-space-md py-2.5 bg-surface-container-low border-b border-outline-variant flex items-center justify-between flex-wrap gap-2">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[16px]" data-icon="account_tree">account_tree</span>
+                <span class="text-headline-sm font-headline-sm font-semibold text-on-surface">Scenario Variable Provenance DAG</span>
+              </div>
+              <span id="captures-dag-badge" class="text-label-caps font-label-caps text-outline">0 CAPTURED VARIABLES</span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left font-code-sm text-code-sm border-collapse min-w-[650px]">
+                <thead>
+                  <tr class="border-b border-outline-variant bg-surface text-outline text-label-caps font-label-caps">
+                    <th class="py-2 px-3">Variable Name</th>
+                    <th class="py-2 px-3">Source Origin</th>
+                    <th class="py-2 px-3">Captured Value</th>
+                    <th class="py-2 px-3">Status</th>
+                    <th class="py-2 px-3">Downstream Consumers</th>
+                  </tr>
+                </thead>
+                <tbody id="captures-dag-table-body" class="divide-y divide-outline-variant/40">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Integration Help Card -->
+          <div class="p-3.5 rounded border border-outline-variant/80 bg-surface-container-low/40 flex items-start gap-3 text-code-sm">
+            <span class="material-symbols-outlined text-primary text-[20px] mt-0.5 shrink-0" data-icon="info">info</span>
+            <div class="space-y-1">
+              <div class="font-bold text-on-surface">How to capture variables in Hurl:</div>
+              <p class="text-on-surface-variant text-xs">
+                In your <code class="text-primary font-mono">.hurl</code> files, declare a <code class="text-primary font-mono">[Captures]</code> section under any request to bind response data to runtime variables:
+              </p>
+              <pre class="p-2 rounded bg-surface font-mono text-[11px] text-on-surface border border-outline-variant/50">POST https://api.example.com/loans
+HTTP 202
+[Captures]
+account_number: jsonpath "$.accountNumber"
+loan_id: jsonpath "$.id"</pre>
+              <p class="text-outline text-[11px]">When Hurl runs with <code class="text-primary font-mono">--report-json &lt;DIR&gt;</code>, all variable bindings are captured into the report and traced across dependent steps.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. SCREEN TAB: STRUCTURED DIFF INSPECTOR -->
+        <div id="tab-diff" class="tab-section hidden space-y-space-lg">
+          <div class="rounded border border-outline-variant bg-surface-container-lowest overflow-hidden">
+            <div class="px-space-md py-2.5 bg-surface-container-low border-b border-outline-variant flex items-center justify-between flex-wrap gap-2">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[16px]" data-icon="difference">difference</span>
+                <span class="text-headline-sm font-headline-sm font-semibold text-on-surface">Structured Payload Delta Inspector</span>
+                <span id="diff-modifications-badge" class="px-1.5 py-0.2 rounded bg-primary-container/20 text-primary-container text-[10px] font-label-caps font-bold">0 MODIFICATIONS</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button id="btn-diff-mode-superimposed" class="diff-view-btn px-2.5 py-1 rounded text-code-sm font-semibold bg-primary text-surface transition-all">Superimposed Wire View</button>
+                <button id="btn-diff-mode-split" class="diff-view-btn px-2.5 py-1 rounded text-code-sm font-medium bg-surface-container text-on-surface-variant hover:text-on-surface transition-all">Side-by-Side Split</button>
+              </div>
+            </div>
+
+            <!-- 1. Superimposed View (Default): Actual Wire Response with Contract Expectations Superimposed -->
+            <div id="diff-superimposed-container" class="p-3 bg-surface-container-lowest">
+              <div class="mb-2 flex items-center justify-between text-xs text-outline pb-1.5 border-b border-outline-variant/40">
+                <div class="flex items-center gap-3">
+                  <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-secondary/30 border border-secondary"></span> <span class="text-secondary font-medium">+ Contract Expectation</span></span>
+                  <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-error/30 border border-error"></span> <span class="text-error font-medium">- Actual Received Wire Payload</span></span>
+                </div>
+                <span class="text-[11px] font-mono">Payload Contract Superimposition</span>
+              </div>
+              <div id="diff-superimposed-code" class="p-3 font-code-md text-code-md space-y-1 overflow-x-auto text-on-surface max-h-[500px] border border-outline-variant/40 rounded bg-surface"></div>
+            </div>
+
+            <!-- 2. Split Delta Panels (Side-by-Side) -->
+            <div id="diff-split-container" class="hidden grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-outline-variant font-code-sm text-code-sm">
+              <!-- Left: Expected Contract -->
+              <div class="flex flex-col bg-surface-container-lowest">
+                <div class="px-3 py-1.5 bg-surface-container/70 border-b border-outline-variant flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                    <span class="text-label-caps font-label-caps text-secondary font-bold">EXPECTED RESPONSE CONTRACT</span>
+                  </div>
+                </div>
+                <div id="diff-expected-code" class="p-3 font-code-md text-code-md space-y-1 overflow-x-auto text-on-surface-variant max-h-96"></div>
+              </div>
+              <!-- Right: Actual Received -->
+              <div class="flex flex-col bg-surface-container-lowest">
+                <div class="px-3 py-1.5 bg-surface-container/70 border-b border-outline-variant flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-error"></span>
+                    <span class="text-label-caps font-label-caps text-error font-bold">ACTUAL RECEIVED WIRE PAYLOAD</span>
+                  </div>
+                </div>
+                <div id="diff-actual-code" class="p-3 font-code-md text-code-md space-y-1 overflow-x-auto text-on-surface-variant max-h-96"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. SCREEN TAB: DIAGNOSTICS & ADVISORIES -->
+        <div id="tab-diagnostics" class="tab-section hidden space-y-space-lg">
+          <div class="rounded border border-outline-variant bg-surface-container-lowest overflow-hidden flex flex-col">
+            <div class="px-space-md py-2.5 bg-surface-container-low border-b border-outline-variant flex items-center justify-between flex-wrap gap-2 shrink-0">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-amber-400 text-[16px]" data-icon="policy">policy</span>
+                <span class="text-headline-sm font-headline-sm font-semibold text-on-surface">Test-Quality &amp; Execution Diagnostics</span>
+              </div>
+              <span id="diagnostics-count-badge" class="text-label-caps font-label-caps text-outline">0 ADVISORIES</span>
+            </div>
+            <div id="diagnostics-list-container" class="p-3 space-y-2 overflow-y-auto max-h-[calc(100vh-280px)] min-h-0"></div>
+          </div>
+        </div>
+
+        <!-- 6. SCREEN TAB: PHASES & RUN MANIFEST -->
+        <div id="tab-manifest" class="tab-section hidden space-y-space-lg">
+          <!-- Phased Pipeline Execution Table -->
+          <div class="rounded border border-outline-variant bg-surface-container-lowest overflow-hidden">
+            <div class="px-space-md py-2.5 bg-surface-container-low border-b border-outline-variant flex items-center justify-between flex-wrap gap-2">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[16px]" data-icon="schema">schema</span>
+                <span class="text-headline-sm font-headline-sm font-semibold text-on-surface">Execution Pipeline Phases</span>
+              </div>
+              <span id="manifest-phases-count" class="text-label-caps font-label-caps text-outline">0 PHASES</span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left font-code-sm text-code-sm border-collapse min-w-[600px]">
+                <thead>
+                  <tr class="border-b border-outline-variant bg-surface text-outline text-label-caps font-label-caps">
+                    <th class="py-2 px-3">Phase</th>
+                    <th class="py-2 px-3">Status</th>
+                    <th class="py-2 px-3">Exit Code</th>
+                    <th class="py-2 px-3">Timing</th>
+                    <th class="py-2 px-3">Log Artifact</th>
+                  </tr>
+                </thead>
+                <tbody id="manifest-phases-tbody" class="divide-y divide-outline-variant/40"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tools and Variables Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="rounded border border-outline-variant bg-surface-container-lowest overflow-hidden flex flex-col">
+              <div class="px-space-md py-2 bg-surface-container-low border-b border-outline-variant flex items-center justify-between">
+                <span class="text-label-caps font-label-caps text-primary font-bold">TOOL VERSIONS</span>
+                <span class="text-code-sm text-outline">manifest.tools</span>
+              </div>
+              <div id="manifest-tools-list" class="p-3 divide-y divide-outline-variant/30 font-mono text-code-sm flex-1"></div>
+            </div>
+
+            <div class="rounded border border-outline-variant bg-surface-container-lowest overflow-hidden flex flex-col">
+              <div class="px-space-md py-2 bg-surface-container-low border-b border-outline-variant flex items-center justify-between">
+                <span class="text-label-caps font-label-caps text-secondary font-bold">EFFECTIVE VARIABLES</span>
+                <span class="text-code-sm text-outline">manifest.variables</span>
+              </div>
+              <div id="manifest-vars-list" class="p-3 divide-y divide-outline-variant/30 font-mono text-code-sm max-h-60 overflow-y-auto flex-1"></div>
+            </div>
+          </div>
+
+          <!-- Supporting Artifacts Catalog -->
+          <div class="rounded border border-outline-variant bg-surface-container-lowest overflow-hidden">
+            <div class="px-space-md py-2.5 bg-surface-container-low border-b border-outline-variant flex items-center justify-between flex-wrap gap-2">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary text-[16px]" data-icon="inventory_2">inventory_2</span>
+                <span class="text-headline-sm font-headline-sm font-semibold text-on-surface">Supporting Artifacts Manifest</span>
+              </div>
+              <span id="manifest-artifacts-count" class="text-label-caps font-label-caps text-outline">0 ARTIFACTS</span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left font-code-sm text-code-sm border-collapse min-w-[700px]">
+                <thead>
+                  <tr class="border-b border-outline-variant bg-surface text-outline text-label-caps font-label-caps">
+                    <th class="py-2 px-3">Path</th>
+                    <th class="py-2 px-3">Type</th>
+                    <th class="py-2 px-3">Size</th>
+                    <th class="py-2 px-3">SHA-256 Checksum</th>
+                    <th class="py-2 px-3">Sensitivity</th>
+                  </tr>
+                </thead>
+                <tbody id="manifest-artifacts-tbody" class="divide-y divide-outline-variant/40"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. QUICK ACTION DOCK / BOTTOM FIXED BAR -->
+      <footer class="p-3 bg-surface-container-low border-t border-outline-variant flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-label-caps font-label-caps text-outline">QUICK INVESTIGATION:</span>
+          <button id="footer-copy-repro" class="px-2.5 py-1 rounded bg-surface-container border border-outline-variant hover:border-primary-container text-on-surface text-code-sm font-code-sm flex items-center gap-1.5 transition-colors">
+            <span class="material-symbols-outlined text-[14px] text-primary" data-icon="terminal">terminal</span>
+            <span>Copy Repro Hurl Command</span>
+          </button>
+          <button id="footer-export-json" class="px-2.5 py-1 rounded bg-surface-container border border-outline-variant hover:border-primary-container text-on-surface text-code-sm font-code-sm flex items-center gap-1.5 transition-colors">
+            <span class="material-symbols-outlined text-[14px] text-outline" data-icon="sim_card_download">sim_card_download</span>
+            <span>Export Machine Model</span>
+          </button>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="footer-first-failure" class="px-3 py-1 rounded bg-primary-container text-on-primary-container font-headline-sm text-headline-sm font-semibold hover:opacity-95 active:scale-95 transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]" data-icon="arrow_downward">arrow_downward</span>
+            <span>Jump to First Failure</span>
+          </button>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    (function() {
+      const runData = JSON.parse(document.getElementById('tracehurl-data').textContent);
+      let activeEntryId = null;
+      let activeFilter = 'all';
+      let activeTabId = 'tab-evidence';
+      let failureEntryIds = [];
+      let currentFailureStep = 0;
+
+      // Flatten entries across scenarios
+      const allEntries = [];
+      runData.scenarios.forEach(sc => {
+        sc.entries.forEach(e => {
+          allEntries.push(e);
+          if (e.outcome === 'failed') {
+            failureEntryIds.push(e.id);
+          }
+        });
+      });
+
+      // Mobile drawer toggle
+      const sidebarEl = document.getElementById('scenario-sidebar');
+      const backdropEl = document.getElementById('sidebar-backdrop');
+      const btnToggle = document.getElementById('btn-toggle-sidebar');
+      const btnClose = document.getElementById('btn-close-sidebar');
+
+      function openSidebar() {
+        sidebarEl.classList.remove('-translate-x-full');
+        backdropEl.classList.remove('hidden');
+      }
+      function closeSidebar() {
+        sidebarEl.classList.add('-translate-x-full');
+        backdropEl.classList.add('hidden');
+      }
+      btnToggle.onclick = openSidebar;
+      btnClose.onclick = closeSidebar;
+      backdropEl.onclick = closeSidebar;
+
+      // Populate Top Metrics KPI
+      document.getElementById('kpi-total').textContent = `${runData.summary.totalEntries} entries`;
+      document.getElementById('kpi-passed').textContent = runData.summary.passedEntries;
+      document.getElementById('kpi-failed').textContent = runData.summary.failedEntries;
+      document.getElementById('kpi-rejections').textContent = runData.summary.expectedRejections;
+      document.getElementById('kpi-blocked').textContent = runData.summary.blockedEntries;
+      document.getElementById('kpi-weak').textContent = runData.summary.weakEntries;
+
+      const durationSec = ((allEntries.reduce((acc, e) => acc + (e.durationMs || 0), 0)) / 1000).toFixed(2);
+      document.getElementById('kpi-duration').textContent = `${durationSec}s`;
+      document.getElementById('kpi-scenarios-hint').textContent = `Scenarios: ${runData.scenarios.length}`;
+
+      // Populate Sparkline bars
+      const sparklinesEl = document.getElementById('sparkline-bars');
+      runData.phases.forEach(p => {
+        const bar = document.createElement('span');
+        const isPass = p.status === 'passed';
+        const isBlocked = p.status === 'blocked';
+        bar.className = `h-4 w-2 rounded-sm ${isPass ? 'bg-secondary' : (isBlocked ? 'bg-amber-400' : 'bg-error glow-rose')}`;
+        bar.title = `${p.name} (${p.status})`;
+        sparklinesEl.appendChild(bar);
+      });
+
+      // Populate Phase Status Pipeline Bar
+      const pipelineEl = document.getElementById('phase-pipeline');
+      pipelineEl.innerHTML = '';
+      runData.phases.forEach((p, idx) => {
+        if (idx > 0) {
+          const sep = document.createElement('div');
+          sep.className = 'w-4 h-[1px] bg-outline-variant shrink-0';
+          pipelineEl.appendChild(sep);
+        }
+
+        const isPass = p.status === 'passed';
+        const isBlocked = p.status === 'blocked';
+        const box = document.createElement('div');
+        if (!isPass && !isBlocked) {
+          box.className = 'flex items-center gap-2 px-3 py-1.5 rounded bg-error-container/20 border border-error text-on-surface flex-1 ring-1 ring-error/50 shadow-sm relative shrink-0 min-w-[140px]';
+          box.innerHTML = `
+            <span class="absolute -top-1.5 -right-1.5 flex h-3 w-3">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-error text-[8px] text-surface font-bold items-center justify-center">!</span>
+            </span>
+            <span class="material-symbols-outlined text-error" data-icon="error">error</span>
+            <div class="flex flex-col">
+              <div class="flex items-center gap-1.5">
+                <span class="text-label-caps font-label-caps font-bold text-error uppercase">${escapeHtml(p.name)}</span>
+                <span class="px-1 py-0.2 rounded bg-error/20 text-[10px] text-error font-code-sm font-bold">FAILED</span>
+              </div>
+              <span class="text-code-sm font-code-sm text-on-surface-variant truncate max-w-[130px]">${p.logPath || 'runner error'}</span>
+            </div>
+          `;
+        } else {
+          box.className = 'flex items-center gap-2 px-3 py-1.5 rounded bg-surface-container border border-outline-variant/60 flex-1 shrink-0 min-w-[140px]';
+          box.innerHTML = `
+            <span class="material-symbols-outlined ${isPass ? 'text-secondary' : 'text-amber-400'}" data-icon="${isPass ? 'check_circle' : 'warning'}">${isPass ? 'check_circle' : 'warning'}</span>
+            <div class="flex flex-col">
+              <div class="flex items-center gap-1.5">
+                <span class="text-label-caps font-label-caps font-semibold text-on-surface uppercase">${escapeHtml(p.name)}</span>
+                <span class="text-[10px] ${isPass ? 'text-secondary' : 'text-amber-400'} font-code-sm uppercase">${p.status}</span>
+              </div>
+              <span class="text-code-sm font-code-sm text-outline truncate max-w-[130px]">${p.logPath ? escapeHtml(p.logPath) : 'completed'}</span>
+            </div>
+          `;
+        }
+        pipelineEl.appendChild(box);
+      });
+
+      // Filter Counts
+      document.getElementById('chip-count-all').textContent = allEntries.length;
+      document.getElementById('chip-count-failed').textContent = runData.summary.failedEntries;
+      document.getElementById('chip-count-rejections').textContent = runData.summary.expectedRejections;
+      document.getElementById('chip-count-weak').textContent = runData.summary.weakEntries;
+
+      // Render Sidebar Scenarios List
+      const scenariosListEl = document.getElementById('scenarios-list');
+      function renderSidebarList() {
+        scenariosListEl.innerHTML = '';
+        const searchVal = document.getElementById('sidebar-search-input').value.toLowerCase();
+
+        const filtered = allEntries.filter(e => {
+          if (activeFilter !== 'all' && e.outcome !== activeFilter) return false;
+          if (searchVal && !e.url.toLowerCase().includes(searchVal) && !e.method.toLowerCase().includes(searchVal) && !String(e.statusCode).includes(searchVal) && !e.sourceFile.toLowerCase().includes(searchVal)) {
+            return false;
+          }
+          return true;
+        });
+
+        document.getElementById('sidebar-item-count').textContent = `${filtered.length} ITEMS`;
+
+        filtered.forEach(entry => {
+          const isSelected = entry.id === activeEntryId;
+          const isPass = entry.outcome === 'passed';
+          const isFail = entry.outcome === 'failed';
+          const isReject = entry.outcome === 'expected-rejection';
+
+          const card = document.createElement('div');
+          const borderClass = isSelected
+            ? 'active-scenario-card bg-surface-container-high border-l-[4px] border-l-primary ring-1 ring-primary/40 shadow-md'
+            : (isFail ? 'border-l-[3px] border-l-error bg-surface-container-lowest hover:bg-surface-container/60' : 'border-l-[3px] border-l-transparent bg-surface-container-lowest hover:bg-surface-container/60');
+          card.className = `p-3 transition-colors cursor-pointer group ${borderClass}`;
+          card.dataset.entryId = entry.id;
+          card.onclick = () => {
+            selectEntry(entry.id);
+            if (window.innerWidth < 768) closeSidebar();
+          };
+
+          const methodColor = entry.method === 'POST' ? 'bg-primary-container/20 text-primary-container border-primary-container/30' : (entry.method === 'GET' ? 'bg-sky-500/15 text-sky-400 border-sky-500/30' : 'bg-amber-500/15 text-amber-400 border-amber-500/30');
+          const statusBadge = isFail ? 'bg-error-container/30 text-error border-error/40' : (isReject ? 'bg-tertiary-container/20 text-tertiary border-tertiary/40' : 'bg-secondary/10 text-secondary border-secondary/30');
+          const statusIcon = isFail ? '<span class="material-symbols-outlined text-error text-[16px]" data-icon="cancel">cancel</span>' : (isReject ? '<span class="material-symbols-outlined text-tertiary text-[16px]" data-icon="shield">shield</span>' : (entry.outcome === 'weak' ? '<span class="material-symbols-outlined text-amber-400 text-[16px]" data-icon="warning">warning</span>' : '<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="check_circle">check_circle</span>'));
+
+          const failAssert = entry.assertions.find(a => !a.passed);
+          const hintText = failAssert ? `assert ${failAssert.comparisonTarget}` : `${entry.assertions.length} assertions`;
+          const hintColor = isFail ? 'text-error font-semibold' : 'text-outline';
+
+          card.innerHTML = `
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex items-center gap-1.5">
+                <span class="text-code-sm font-code-sm text-outline font-semibold">#${entry.index}</span>
+                <span class="px-1.5 py-0.5 rounded border text-label-caps font-label-caps font-bold ${methodColor}">${entry.method}</span>
+                <span class="px-1.5 py-0.5 rounded border text-label-caps font-label-caps font-bold ${statusBadge}">${entry.statusCode || '-'}</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-code-sm font-code-sm text-outline">${entry.durationMs}ms</span>
+                ${statusIcon}
+              </div>
+            </div>
+            <h4 class="mt-1 text-headline-sm font-headline-sm font-medium text-on-surface truncate group-hover:text-primary transition-colors">
+              ${escapeHtml(entry.url)}
+            </h4>
+            <div class="mt-1 flex items-center justify-between text-code-sm font-code-sm text-outline">
+              <span class="truncate hover:underline">${escapeHtml(entry.sourceFile)}:${entry.sourceLine}</span>
+              <span class="text-[10px] ${hintColor}">${escapeHtml(hintText)}</span>
+            </div>
+          `;
+          scenariosListEl.appendChild(card);
+        });
+
+        updateFailureStepper();
+
+        setTimeout(() => {
+          const activeCard = scenariosListEl.querySelector('.active-scenario-card');
+          if (activeCard) {
+            activeCard.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+        }, 10);
+      }
+
+      function updateFailureStepper() {
+        if (!failureEntryIds.length) {
+          document.getElementById('failure-nav-counter').textContent = '0 of 0';
+          return;
+        }
+        const idx = failureEntryIds.indexOf(activeEntryId);
+        const currentNum = idx >= 0 ? idx + 1 : 1;
+        document.getElementById('failure-nav-counter').textContent = `${currentNum} of ${failureEntryIds.length}`;
+      }
+
+      // Switch screen tab
+      function switchTab(tabId) {
+        activeTabId = tabId;
+        document.querySelectorAll('.tab-button').forEach(b => {
+          if (b.dataset.tab === tabId) {
+            b.classList.add('border-primary', 'text-primary', 'font-semibold');
+            b.classList.remove('border-transparent', 'text-on-surface-variant', 'font-medium');
+          } else {
+            b.classList.remove('border-primary', 'text-primary', 'font-semibold');
+            b.classList.add('border-transparent', 'text-on-surface-variant', 'font-medium');
+          }
+        });
+
+        document.querySelectorAll('.tab-section').forEach(p => p.classList.add('hidden'));
+        const pane = document.getElementById(tabId);
+        if (pane) pane.classList.remove('hidden');
+
+        if (activeEntryId) {
+          window.location.hash = `${activeEntryId}/${tabId.replace('tab-', '')}`;
+        }
+      }
+
+      // Select Entry Details
+      function selectEntry(entryId) {
+        const entry = allEntries.find(e => e.id === entryId);
+        if (!entry) return;
+        activeEntryId = entryId;
+        window.location.hash = `${entryId}/${activeTabId.replace('tab-', '')}`;
+
+        document.getElementById('detail-method-badge').textContent = entry.method;
+        document.getElementById('detail-url').textContent = entry.url;
+        document.getElementById('detail-status-badge').textContent = `${entry.statusCode || 0} ${entry.statusCode >= 400 ? 'ERROR' : 'OK'}`;
+        document.getElementById('detail-index').textContent = `Entry #${entry.index}`;
+        document.getElementById('detail-latency').textContent = `${entry.durationMs}ms`;
+        document.getElementById('detail-source').textContent = `${entry.sourceFile}:${entry.sourceLine}`;
+        document.getElementById('detail-outcome-text').textContent = entry.outcome.toUpperCase();
+
+        const isFail = entry.outcome === 'failed';
+        document.getElementById('detail-status-badge').className = `px-2 py-0.5 rounded font-bold text-label-caps border ${isFail ? 'bg-error-container/30 border-error/50 text-error' : 'bg-secondary/15 border-secondary/30 text-secondary'}`;
+        document.getElementById('detail-outcome-text').className = `font-semibold font-mono uppercase ${isFail ? 'text-error' : 'text-secondary'}`;
+
+        // Tab Badges
+        const failedAsserts = entry.assertions.filter(a => !a.passed);
+        document.getElementById('tab-badge-assertions').textContent = `${failedAsserts.length} FAIL, ${entry.assertions.length - failedAsserts.length} PASS`;
+        document.getElementById('tab-badge-status').textContent = `${entry.statusCode || 0}`;
+        document.getElementById('tab-badge-captures').textContent = `${entry.capturesSet.length} vars`;
+        document.getElementById('tab-badge-diff').textContent = `${entry.diffs.length} Delta`;
+        document.getElementById('tab-badge-diagnostics').textContent = `${runData.diagnostics.length}`;
+        document.getElementById('tab-badge-manifest').textContent = `${runData.phases.length} phases`;
+
+        // Discrepancy Alert Banner
+        const bannerEl = document.getElementById('discrepancy-banner');
+        if (failedAsserts.length > 0) {
+          bannerEl.classList.remove('hidden');
+          const f0 = failedAsserts[0];
+          document.getElementById('discrepancy-title').textContent = `Assertion Failed at line ${f0.line}`;
+          document.getElementById('discrepancy-desc').innerHTML = `
+            Target <code class="px-1.5 py-0.5 rounded bg-surface-container-high text-primary font-code-sm">${escapeHtml(f0.comparisonTarget)}</code>:
+            Expected <code class="px-1.5 py-0.5 rounded bg-secondary/15 text-secondary font-code-sm font-semibold">${escapeHtml(f0.expected || 'specified')}</code>, but evaluated to <code class="px-1.5 py-0.5 rounded bg-error/25 text-error font-code-sm font-bold">${escapeHtml(f0.actual || 'none/mismatch')}</code>.
+          `;
+        } else {
+          bannerEl.classList.add('hidden');
+        }
+
+        // Detailed Assertions Table
+        const assertsTbody = document.getElementById('assertions-table-body');
+        assertsTbody.innerHTML = '';
+        document.getElementById('assertions-count-label').textContent = `(${entry.assertions.length} verification clauses)`;
+        document.getElementById('assertions-passed-count').textContent = `${entry.assertions.length - failedAsserts.length} Passed`;
+        document.getElementById('assertions-failed-count').textContent = `${failedAsserts.length} Failed`;
+
+        entry.assertions.forEach(a => {
+          const tr = document.createElement('tr');
+          if (!a.passed) {
+            tr.className = 'bg-error-container/20 border-l-2 border-l-error';
+            tr.innerHTML = `
+              <td class="py-2.5 px-3 text-error font-bold">${a.line}</td>
+              <td class="py-2.5 px-3 text-error font-semibold font-mono">${escapeHtml(a.expression)}</td>
+              <td class="py-2.5 px-3">
+                <span class="px-1.5 py-0.5 rounded bg-secondary/15 text-secondary border border-secondary/30 font-medium">${escapeHtml(a.expected || '-')}</span>
+              </td>
+              <td class="py-2.5 px-3">
+                <div class="flex items-center gap-1.5">
+                  <span class="px-1.5 py-0.5 rounded bg-error-container/40 text-error border border-error font-bold underline decoration-error">${escapeHtml(a.actual || 'none')}</span>
+                  <span class="material-symbols-outlined text-error text-[15px]" data-icon="warning">warning</span>
+                </div>
+              </td>
+              <td class="py-2.5 px-3 text-right">
+                <span class="px-2 py-0.5 rounded bg-error-container/50 border border-error text-error text-label-caps font-label-caps font-bold">FAILED</span>
+              </td>
+            `;
+          } else {
+            tr.className = 'hover:bg-surface-container/40 transition-colors';
+            tr.innerHTML = `
+              <td class="py-2 px-3 text-outline">${a.line}</td>
+              <td class="py-2 px-3 text-primary font-medium">${escapeHtml(a.expression)}</td>
+              <td class="py-2 px-3 text-on-surface">${escapeHtml(a.expected || '-')}</td>
+              <td class="py-2 px-3 text-on-surface">${escapeHtml(a.actual || a.expected || '-')}</td>
+              <td class="py-2 px-3 text-right">
+                <span class="px-2 py-0.5 rounded bg-secondary/10 border border-secondary/30 text-secondary text-label-caps font-label-caps">PASSED</span>
+              </td>
+            `;
+          }
+          assertsTbody.appendChild(tr);
+        });
+
+        // Request & Response Tab
+        document.getElementById('tab-curl-pre').textContent = entry.curlCmd || 'curl --header "Accept: application/json" ' + entry.url;
+        document.getElementById('tab-request-method-url').textContent = `${entry.method} ${entry.url}`;
+
+        const reqHeadersEl = document.getElementById('tab-request-headers');
+        reqHeadersEl.innerHTML = '';
+        entry.request.headers.forEach(h => {
+          const row = document.createElement('div');
+          row.className = 'px-3 py-1.5 flex justify-between';
+          row.innerHTML = `<span class="text-outline">${escapeHtml(h.name)}:</span><span class="text-on-surface">${escapeHtml(h.value)}</span>`;
+          reqHeadersEl.appendChild(row);
+        });
+
+        const reqBodyWrap = document.getElementById('tab-request-body-wrap');
+        if (entry.request.bodySnippet) {
+          reqBodyWrap.classList.remove('hidden');
+          document.getElementById('tab-request-body-path').textContent = entry.request.bodyPath || 'payload.json';
+          document.getElementById('tab-request-body').textContent = entry.request.bodySnippet;
+        } else {
+          reqBodyWrap.classList.add('hidden');
+        }
+
+        const resHeadersEl = document.getElementById('tab-response-headers');
+        resHeadersEl.innerHTML = '';
+        if (entry.response && entry.response.headers) {
+          entry.response.headers.forEach(h => {
+            const row = document.createElement('div');
+            row.className = 'px-3 py-1.5 flex justify-between';
+            row.innerHTML = `<span class="text-outline">${escapeHtml(h.name)}:</span><span class="text-on-surface">${escapeHtml(h.value)}</span>`;
+            resHeadersEl.appendChild(row);
+          });
+        }
+        document.getElementById('tab-response-status-badge').textContent = `${entry.statusCode || 0}`;
+
+        const resBodyWrap = document.getElementById('tab-response-body-wrap');
+        const resProvenanceEl = document.getElementById('tab-response-provenance-badge');
+        if (entry.response && entry.response.bodySnippet) {
+          resBodyWrap.classList.remove('hidden');
+          document.getElementById('tab-response-body').textContent = entry.response.bodySnippet;
+          if (resProvenanceEl) {
+            resProvenanceEl.textContent = entry.response.isDerived ? 'DERIVED FROM WIRE ASSERTIONS' : 'RECORDED WIRE BODY';
+            resProvenanceEl.className = entry.response.isDerived
+              ? 'px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30'
+              : 'px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-secondary/20 text-secondary border border-secondary/30';
+          }
+        } else {
+          resBodyWrap.classList.remove('hidden');
+          document.getElementById('tab-response-body').textContent = `HTTP ${entry.statusCode || 0} ${entry.statusCode >= 400 ? 'Error Response' : 'OK'} (No body payload returned)`;
+          if (resProvenanceEl) {
+            resProvenanceEl.textContent = 'NO BODY';
+            resProvenanceEl.className = 'px-2 py-0.5 rounded text-[10px] font-mono text-outline';
+          }
+        }
+
+        // Captures Tab
+        const currentScenario = runData.scenarios.find(s => s.id === entry.scenarioId) || runData.scenarios[0];
+        const allScenarioCaptures = (currentScenario && currentScenario.allCaptures) || [];
+        const dagBadge = document.getElementById('captures-dag-badge');
+        if (dagBadge) dagBadge.textContent = `${allScenarioCaptures.length} CAPTURED VARIABLES`;
+
+        const dagTbody = document.getElementById('captures-dag-table-body');
+        if (dagTbody) {
+          dagTbody.innerHTML = '';
+          if (allScenarioCaptures.length === 0) {
+            dagTbody.innerHTML = '<tr><td colspan="5" class="p-3 text-outline">No runtime variables registered in this scenario DAG.</td></tr>';
+          } else {
+            allScenarioCaptures.forEach(c => {
+              const isUsedByActive = (entry.capturesUsed || []).includes(c.name);
+              const isExtractedByActive = (entry.capturesSet || []).some(cs => cs.name === c.name);
+              const tr = document.createElement('tr');
+              const isOk = c.status === 'ok';
+              const depPills = c.dependentEntries && c.dependentEntries.length > 0
+                ? c.dependentEntries.map(idx => `<span class="px-1.5 py-0.2 rounded ${idx === entry.index ? 'bg-primary text-surface font-bold ring-1 ring-primary' : 'bg-surface-container text-on-surface border border-outline-variant'} font-mono text-[11px]">#${idx}</span>`).join(' ')
+                : '<span class="text-outline">None</span>';
+
+              const activeIndicator = isUsedByActive
+                ? `<span class="ml-2 px-1.5 py-0.2 rounded bg-primary/20 text-primary border border-primary/40 text-[9px] font-bold">USED IN THIS STEP</span>`
+                : (isExtractedByActive ? `<span class="ml-2 px-1.5 py-0.2 rounded bg-secondary/20 text-secondary border border-secondary/40 text-[9px] font-bold">EXTRACTED HERE</span>` : '');
+
+              tr.className = isUsedByActive ? 'bg-primary/10 border-l-2 border-primary' : (isOk ? 'hover:bg-surface-container/40 transition-colors' : 'bg-error-container/10');
+              tr.innerHTML = `
+                <td class="py-2.5 px-3">
+                  <div class="flex items-center">
+                    <span class="${isOk ? 'text-primary' : 'text-error'} font-semibold font-mono">${escapeHtml(c.name)}</span>
+                    ${activeIndicator}
+                  </div>
+                </td>
+                <td class="py-2.5 px-3 font-mono text-outline">${c.sourceEntryIndex === 0 ? 'Setup Phase' : `Entry #${c.sourceEntryIndex}`}</td>
+                <td class="py-2.5 px-3 text-on-surface font-mono font-medium">${escapeHtml(c.value || 'null')}</td>
+                <td class="py-2.5 px-3">
+                  <span class="px-2 py-0.5 rounded text-label-caps font-label-caps font-bold ${isOk ? 'bg-secondary/10 text-secondary border border-secondary/30' : 'bg-error-container/30 text-error border border-error/40'}">${c.status.toUpperCase()}</span>
+                </td>
+                <td class="py-2.5 px-3">
+                  <div class="flex items-center gap-1.5 flex-wrap">${depPills}</div>
+                </td>
+              `;
+              dagTbody.appendChild(tr);
+            });
+          }
+        }
+
+        const usedContainer = document.getElementById('captures-used-container');
+        if (usedContainer) {
+          usedContainer.innerHTML = '';
+          const usedVars = entry.capturesUsed || [];
+          if (usedVars.length === 0) {
+            usedContainer.innerHTML = '<span class="text-outline text-code-sm">This step does not reference any dynamic scenario variables.</span>';
+          } else {
+            usedVars.forEach(vName => {
+              const capObj = allScenarioCaptures.find(c => c.name === vName);
+              const pill = document.createElement('div');
+              pill.className = 'px-2.5 py-1 rounded bg-surface-container border border-outline-variant flex items-center gap-2 font-mono text-xs';
+              pill.innerHTML = `
+                <span class="text-primary font-bold">{{${escapeHtml(vName)}}}</span>
+                <span class="text-outline">→</span>
+                <span class="text-secondary font-semibold">${capObj ? escapeHtml(capObj.value || 'null') : 'in-scope'}</span>
+              `;
+              usedContainer.appendChild(pill);
+            });
+          }
+        }
+
+        // Diff Inspector
+        document.getElementById('diff-modifications-badge').textContent = `${entry.diffs.length} CONTRACT MODIFICATIONS`;
+        const superimposedDiffEl = document.getElementById('diff-superimposed-code');
+        const expectedDiffEl = document.getElementById('diff-expected-code');
+        const actualDiffEl = document.getElementById('diff-actual-code');
+        expectedDiffEl.innerHTML = '';
+        actualDiffEl.innerHTML = '';
+        if (superimposedDiffEl) superimposedDiffEl.innerHTML = '';
+
+        if (entry.diffs.length === 0) {
+          if (superimposedDiffEl) {
+            superimposedDiffEl.innerHTML = '<div class="text-secondary p-3 bg-secondary/10 rounded border border-secondary/30 font-mono text-sm">✓ Actual wire response matches expected contract. No divergence recorded.</div>';
+          }
+          expectedDiffEl.innerHTML = '<div class="text-outline p-2">No contractual divergence recorded.</div>';
+          actualDiffEl.innerHTML = '<div class="text-outline p-2">Actual matched expectation.</div>';
+        } else {
+          // 1. Superimposed Wire View
+          if (superimposedDiffEl) {
+            const actBody = (entry.response && entry.response.bodySnippet) || '';
+            const diffMap = new Map();
+            entry.diffs.forEach(d => {
+              const cleanKey = d.path.replace(/^\//, '').replace(/\//g, '.');
+              diffMap.set(cleanKey, d);
+              const lastPart = cleanKey.split('.').pop();
+              diffMap.set(lastPart, d);
+            });
+
+            const actLines = actBody.split('\n');
+            let superimposedHtml = '';
+            const matchedDiffKeys = new Set();
+
+            actLines.forEach((line) => {
+              let foundDiff = null;
+              for (const [k, d] of diffMap.entries()) {
+                if (line.includes(`"${k}"`)) {
+                  foundDiff = d;
+                  matchedDiffKeys.add(d.path);
+                  break;
+                }
+              }
+
+              if (foundDiff) {
+                superimposedHtml += `
+                  <div class="bg-error-container/20 border-l-4 border-error -mx-3 px-3 py-1 font-mono text-xs my-0.5">
+                    <div class="text-secondary font-semibold flex items-center gap-2">
+                      <span class="text-label-caps bg-secondary/20 px-1.5 py-0.2 rounded border border-secondary/40 text-secondary text-[10px]">CONTRACT EXPECTED</span>
+                      <span class="line-through opacity-80">+ "${escapeHtml(foundDiff.path)}": ${escapeHtml(foundDiff.expected || 'null')}</span>
+                    </div>
+                    <div class="text-error font-bold flex items-center gap-2 mt-0.5">
+                      <span class="text-label-caps bg-error-container/60 px-1.5 py-0.2 rounded border border-error/50 text-error text-[10px]">ACTUAL RECEIVED</span>
+                      <span>- ${escapeHtml(line.trim())}</span>
+                    </div>
+                  </div>
+                `;
+              } else {
+                superimposedHtml += `<div class="px-3 py-0.5 font-mono text-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container/30 transition-colors">${escapeHtml(line)}</div>`;
+              }
+            });
+
+            entry.diffs.forEach(d => {
+              if (!matchedDiffKeys.has(d.path)) {
+                superimposedHtml += `
+                  <div class="bg-error-container/15 border-l-4 border-error/80 -mx-3 px-3 py-1 font-mono text-xs mt-1">
+                    <div class="text-error font-bold flex items-center gap-2">
+                      <span class="text-label-caps bg-error-container/60 px-1.5 py-0.2 rounded border border-error/50 text-error text-[10px]">MISSING IN RESPONSE</span>
+                      <span>[-] Contract expected "${escapeHtml(d.path)}": ${escapeHtml(d.expected || 'specified')}</span>
+                    </div>
+                  </div>
+                `;
+              }
+            });
+
+            superimposedDiffEl.innerHTML = superimposedHtml;
+          }
+
+          // 2. Side-by-Side Split View
+          if (entry.response && entry.response.expectedBodySnippet) {
+            expectedDiffEl.innerHTML = `<pre class="text-secondary whitespace-pre-wrap font-mono text-xs">${escapeHtml(entry.response.expectedBodySnippet)}</pre>`;
+          } else {
+            entry.diffs.forEach((d, idx) => {
+              const expDiv = document.createElement('div');
+              expDiv.className = 'flex items-center gap-3 bg-secondary/10 -mx-3 px-3 border-l-2 border-secondary font-mono text-xs';
+              expDiv.innerHTML = `<span class="text-secondary w-6 select-none text-right">+${idx + 1}</span><span class="pl-2 text-secondary font-semibold">${escapeHtml(d.path)}: ${escapeHtml(d.expected || 'null')}</span>`;
+              expectedDiffEl.appendChild(expDiv);
+            });
+          }
+
+          if (entry.response && entry.response.bodySnippet) {
+            actualDiffEl.innerHTML = `<pre class="text-error whitespace-pre-wrap font-mono text-xs">${escapeHtml(entry.response.bodySnippet)}</pre>`;
+          } else {
+            entry.diffs.forEach((d, idx) => {
+              const actDiv = document.createElement('div');
+              actDiv.className = 'flex items-center gap-3 bg-error-container/20 -mx-3 px-3 border-l-2 border-error font-mono text-xs';
+              actDiv.innerHTML = `<span class="text-error w-6 select-none text-right">-${idx + 1}</span><span class="pl-2 text-error font-bold">${escapeHtml(d.path)}: ${escapeHtml(d.actual || 'null')}</span>`;
+              actualDiffEl.appendChild(actDiv);
+            });
+          }
+        }
+
+        // Diagnostics
+        const diagListEl = document.getElementById('diagnostics-list-container');
+        diagListEl.innerHTML = '';
+        document.getElementById('diagnostics-count-badge').textContent = `${runData.diagnostics.length} ADVISORIES`;
+        runData.diagnostics.forEach(diag => {
+          const card = document.createElement('div');
+          const isErr = diag.severity === 'error';
+          const isWarn = diag.severity === 'warning';
+          const badgeClass = isErr ? 'bg-error-container/30 text-error border-error/50' : (isWarn ? 'bg-amber-500/10 text-amber-300 border-amber-500/30' : 'bg-primary-container/20 text-primary border-primary/30');
+          card.className = `p-3 rounded bg-surface border border-outline-variant/60 flex flex-col gap-1`;
+          card.innerHTML = `
+            <div class="flex items-center gap-2">
+              <span class="px-1.5 py-0.5 rounded border text-label-caps font-label-caps font-bold ${badgeClass}">[${escapeHtml(diag.code)}]</span>
+              <span class="text-on-surface font-medium text-body-md">${escapeHtml(diag.message)}</span>
+            </div>
+            ${diag.targetEntity ? `<div class="text-[11px] text-outline font-mono">Entity Target: ${escapeHtml(diag.targetEntity)}</div>` : ''}
+          `;
+          diagListEl.appendChild(card);
+        });
+
+        renderSidebarList();
+      }
+
+      // Tab switching listeners
+      document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.onclick = () => switchTab(btn.dataset.tab);
+      });
+
+      function applyFilterChipStyles(filter) {
+        document.querySelectorAll('.filter-chip').forEach(btn => {
+          const f = btn.dataset.filter;
+          if (f === filter) {
+            if (f === 'all') {
+              btn.className = 'filter-chip px-2.5 py-0.5 rounded bg-primary/20 border border-primary text-primary font-bold text-[11px] ring-1 ring-primary transition-all shrink-0';
+            } else if (f === 'failed') {
+              btn.className = 'filter-chip px-2.5 py-0.5 rounded bg-error-container/40 border border-error text-error font-bold text-[11px] ring-1 ring-error flex items-center gap-1 transition-all shrink-0';
+            } else if (f === 'expected-rejection') {
+              btn.className = 'filter-chip px-2.5 py-0.5 rounded bg-tertiary-container/30 border border-tertiary text-tertiary font-bold text-[11px] ring-1 ring-tertiary transition-all shrink-0';
+            } else if (f === 'weak') {
+              btn.className = 'filter-chip px-2.5 py-0.5 rounded bg-amber-500/20 border border-amber-400 text-amber-300 font-bold text-[11px] ring-1 ring-amber-400 transition-all shrink-0';
+            }
+          } else {
+            if (f === 'all') {
+              btn.className = 'filter-chip px-2.5 py-0.5 rounded bg-surface-container border border-outline-variant text-on-surface-variant hover:text-on-surface hover:border-outline font-medium text-[11px] transition-all shrink-0';
+            } else if (f === 'failed') {
+              btn.className = 'filter-chip px-2.5 py-0.5 rounded bg-surface-container border border-outline-variant text-error/80 hover:text-error hover:border-error/40 font-medium text-[11px] flex items-center gap-1 transition-all shrink-0';
+            } else if (f === 'expected-rejection') {
+              btn.className = 'filter-chip px-2.5 py-0.5 rounded bg-surface-container border border-outline-variant text-tertiary/80 hover:text-tertiary hover:border-tertiary/40 font-medium text-[11px] transition-all shrink-0';
+            } else if (f === 'weak') {
+              btn.className = 'filter-chip px-2.5 py-0.5 rounded bg-surface-container border border-outline-variant text-amber-300/80 hover:text-amber-300 hover:border-amber-400/40 font-medium text-[11px] transition-all shrink-0';
+            }
+          }
+        });
+      }
+
+      // Filter chips
+      document.querySelectorAll('.filter-chip').forEach(btn => {
+        btn.onclick = () => {
+          activeFilter = btn.dataset.filter;
+          applyFilterChipStyles(activeFilter);
+          document.getElementById('sidebar-filter-status').textContent = `Filter: ${activeFilter}`;
+          renderSidebarList();
+        };
+      });
+
+      // Search listeners
+      const searchInput = document.getElementById('sidebar-search-input');
+      searchInput.addEventListener('input', renderSidebarList);
+      document.getElementById('btn-clear-search').onclick = () => {
+        searchInput.value = '';
+        renderSidebarList();
+      };
+
+      const globalSearch = document.getElementById('global-search-input');
+      globalSearch.addEventListener('input', (e) => {
+        searchInput.value = e.target.value;
+        renderSidebarList();
+      });
+
+      // Jump to first failure
+      function jumpToFirstFailure() {
+        if (failureEntryIds.length > 0) {
+          if (activeFilter !== 'all' && activeFilter !== 'failed') {
+            activeFilter = 'all';
+            applyFilterChipStyles('all');
+            document.getElementById('sidebar-filter-status').textContent = 'Filter: all';
+          }
+          currentFailureStep = 0;
+          selectEntry(failureEntryIds[0]);
+          if (window.innerWidth < 768) closeSidebar();
+        }
+      }
+      document.getElementById('btn-first-failure').onclick = jumpToFirstFailure;
+      document.getElementById('footer-first-failure').onclick = jumpToFirstFailure;
+      document.getElementById('btn-jump-diff').onclick = () => switchTab('tab-diff');
+
+      // Failure stepper navigation
+      function nextFailure() {
+        if (!failureEntryIds.length) return;
+        currentFailureStep = (currentFailureStep + 1) % failureEntryIds.length;
+        if (activeFilter !== 'all' && activeFilter !== 'failed') {
+          activeFilter = 'all';
+          applyFilterChipStyles('all');
+          document.getElementById('sidebar-filter-status').textContent = 'Filter: all';
+        }
+        selectEntry(failureEntryIds[currentFailureStep]);
+        if (window.innerWidth < 768) closeSidebar();
+      }
+      function prevFailure() {
+        if (!failureEntryIds.length) return;
+        currentFailureStep = (currentFailureStep - 1 + failureEntryIds.length) % failureEntryIds.length;
+        if (activeFilter !== 'all' && activeFilter !== 'failed') {
+          activeFilter = 'all';
+          applyFilterChipStyles('all');
+          document.getElementById('sidebar-filter-status').textContent = 'Filter: all';
+        }
+        selectEntry(failureEntryIds[currentFailureStep]);
+        if (window.innerWidth < 768) closeSidebar();
+      }
+      document.getElementById('btn-next-failure-sidebar').onclick = nextFailure;
+      document.getElementById('btn-prev-failure-sidebar').onclick = prevFailure;
+
+      // Diff View Mode toggle
+      const btnDiffSuper = document.getElementById('btn-diff-mode-superimposed');
+      const btnDiffSplit = document.getElementById('btn-diff-mode-split');
+      if (btnDiffSuper && btnDiffSplit) {
+        btnDiffSuper.onclick = () => {
+          document.getElementById('diff-superimposed-container').classList.remove('hidden');
+          document.getElementById('diff-split-container').classList.add('hidden');
+          btnDiffSuper.className = 'diff-view-btn px-2.5 py-1 rounded text-code-sm font-semibold bg-primary text-surface transition-all';
+          btnDiffSplit.className = 'diff-view-btn px-2.5 py-1 rounded text-code-sm font-medium bg-surface-container text-on-surface-variant hover:text-on-surface transition-all';
+        };
+        btnDiffSplit.onclick = () => {
+          document.getElementById('diff-superimposed-container').classList.add('hidden');
+          document.getElementById('diff-split-container').classList.remove('hidden');
+          btnDiffSplit.className = 'diff-view-btn px-2.5 py-1 rounded text-code-sm font-semibold bg-primary text-surface transition-all';
+          btnDiffSuper.className = 'diff-view-btn px-2.5 py-1 rounded text-code-sm font-medium bg-surface-container text-on-surface-variant hover:text-on-surface transition-all';
+        };
+      }
+
+      // Copy helpers
+      document.getElementById('btn-copy-run-id').onclick = () => {
+        navigator.clipboard.writeText(runData.runId);
+      };
+      document.getElementById('btn-copy-curl').onclick = () => {
+        const curl = document.getElementById('tab-curl-pre').textContent;
+        navigator.clipboard.writeText(curl);
+      };
+      document.getElementById('btn-copy-curl-tab').onclick = () => {
+        const curl = document.getElementById('tab-curl-pre').textContent;
+        navigator.clipboard.writeText(curl);
+      };
+      document.getElementById('btn-copy-url').onclick = () => {
+        navigator.clipboard.writeText(document.getElementById('detail-url').textContent);
+      };
+      document.getElementById('btn-copy-repro').onclick = () => {
+        const curl = document.getElementById('tab-curl-pre').textContent;
+        navigator.clipboard.writeText(curl);
+      };
+      document.getElementById('footer-copy-repro').onclick = () => {
+        const curl = document.getElementById('tab-curl-pre').textContent;
+        navigator.clipboard.writeText(curl);
+      };
+      document.getElementById('btn-copy-req-body').onclick = () => {
+        navigator.clipboard.writeText(document.getElementById('tab-request-body').textContent);
+      };
+      document.getElementById('btn-copy-res-body').onclick = () => {
+        navigator.clipboard.writeText(document.getElementById('tab-response-body').textContent);
+      };
+      document.getElementById('btn-copy-entry-json').onclick = () => {
+        const entry = allEntries.find(e => e.id === activeEntryId);
+        if (entry) navigator.clipboard.writeText(JSON.stringify(entry, null, 2));
+      };
+
+      // Export JSON
+      function exportJson() {
+        const blob = new Blob([JSON.stringify(runData, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `tracehurl-${runData.runId}.json`;
+        a.click();
+      }
+      document.getElementById('btn-export-json').onclick = exportJson;
+      document.getElementById('footer-export-json').onclick = exportJson;
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
+
+      function formatBytes(bytes) {
+        if (!bytes || bytes === 0) return '0 B';
+        const k = 1024;
+        const sizes = ['B', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+      }
+
+      // Populate Manifest & Phases Screen
+      function populateManifestScreen() {
+        const phasesTbody = document.getElementById('manifest-phases-tbody');
+        if (phasesTbody) {
+          phasesTbody.innerHTML = '';
+          document.getElementById('manifest-phases-count').textContent = `${runData.phases.length} PHASES`;
+          runData.phases.forEach(p => {
+            const isPass = p.status === 'passed';
+            const isFail = p.status === 'failed';
+            const badgeClass = isPass ? 'bg-secondary/15 text-secondary border-secondary/30' : (isFail ? 'bg-error-container/40 text-error border-error/50' : 'bg-amber-500/20 text-amber-300 border-amber-500/40');
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-surface-container/40 transition-colors';
+            tr.innerHTML = `
+              <td class="py-2.5 px-3 font-semibold text-on-surface font-mono">${escapeHtml(p.name)}</td>
+              <td class="py-2.5 px-3">
+                <span class="px-2 py-0.5 rounded text-label-caps font-label-caps font-bold border ${badgeClass}">${p.status.toUpperCase()}</span>
+              </td>
+              <td class="py-2.5 px-3 font-mono ${p.exitCode === 0 ? 'text-secondary' : 'text-error'} font-semibold">${p.exitCode !== undefined ? p.exitCode : '-'}</td>
+              <td class="py-2.5 px-3 text-outline font-mono text-xs">${escapeHtml(p.startedAt || '')} ${p.finishedAt ? '→ ' + escapeHtml(p.finishedAt) : ''}</td>
+              <td class="py-2.5 px-3 font-mono text-xs text-primary">${p.logPath ? escapeHtml(p.logPath) : '<span class="text-outline">none</span>'}</td>
+            `;
+            phasesTbody.appendChild(tr);
+          });
+        }
+
+        const toolsList = document.getElementById('manifest-tools-list');
+        if (toolsList) {
+          toolsList.innerHTML = '';
+          const toolsEntries = Object.entries(runData.tools || {});
+          if (toolsEntries.length === 0) {
+            toolsList.innerHTML = '<div class="text-outline py-1">No tool versions recorded</div>';
+          } else {
+            toolsEntries.forEach(([k, v]) => {
+              const row = document.createElement('div');
+              row.className = 'flex justify-between py-1.5';
+              row.innerHTML = `<span class="text-outline">${escapeHtml(k)}:</span><span class="text-on-surface font-mono font-semibold">${escapeHtml(v)}</span>`;
+              toolsList.appendChild(row);
+            });
+          }
+        }
+
+        const varsList = document.getElementById('manifest-vars-list');
+        if (varsList) {
+          varsList.innerHTML = '';
+          const varEntries = Object.entries(runData.variables || {});
+          if (varEntries.length === 0) {
+            varsList.innerHTML = '<div class="text-outline py-1">No run variables registered</div>';
+          } else {
+            varEntries.forEach(([k, v]) => {
+              const row = document.createElement('div');
+              row.className = 'flex justify-between py-1.5';
+              row.innerHTML = `<span class="text-outline">${escapeHtml(k)}:</span><span class="text-secondary font-mono">${escapeHtml(v)}</span>`;
+              varsList.appendChild(row);
+            });
+          }
+        }
+
+        const artTbody = document.getElementById('manifest-artifacts-tbody');
+        if (artTbody) {
+          artTbody.innerHTML = '';
+          document.getElementById('manifest-artifacts-count').textContent = `${runData.artifacts.length} ARTIFACTS`;
+          if (runData.artifacts.length === 0) {
+            artTbody.innerHTML = '<tr><td colspan="5" class="p-3 text-outline">No supporting artifacts registered in manifest.</td></tr>';
+          } else {
+            runData.artifacts.forEach(a => {
+              const tr = document.createElement('tr');
+              tr.className = 'hover:bg-surface-container/40 transition-colors font-mono text-xs';
+              const sensClass = a.sensitivity === 'sensitive' ? 'bg-error-container/30 text-error border-error/40' : (a.sensitivity === 'internal' ? 'bg-amber-500/15 text-amber-300 border-amber-500/30' : 'bg-surface-container text-outline border-outline-variant');
+              tr.innerHTML = `
+                <td class="py-2 px-3 text-primary font-semibold">${escapeHtml(a.path)}</td>
+                <td class="py-2 px-3 text-on-surface-variant">${escapeHtml(a.artifactType)}</td>
+                <td class="py-2 px-3 text-outline">${formatBytes(a.sizeBytes)}</td>
+                <td class="py-2 px-3 text-outline" title="${escapeHtml(a.sha256)}">${escapeHtml(a.sha256.substring(0, 16))}...</td>
+                <td class="py-2 px-3"><span class="px-1.5 py-0.2 rounded border text-[10px] font-bold ${sensClass}">${escapeHtml(a.sensitivity)}</span></td>
+              `;
+              artTbody.appendChild(tr);
+            });
+          }
+        }
+      }
+
+      populateManifestScreen();
+
+      // Initial entry & tab selection from URL hash
+      const rawHash = window.location.hash.replace('#', '');
+      const [hashEntryId, hashTab] = rawHash.split('/');
+
+      if (hashTab) {
+        const mappedTab = `tab-${hashTab}`;
+        if (document.getElementById(mappedTab)) {
+          switchTab(mappedTab);
+        }
+      }
+
+      if (hashEntryId && allEntries.find(e => e.id === hashEntryId)) {
+        selectEntry(hashEntryId);
+      } else if (failureEntryIds.length > 0) {
+        selectEntry(failureEntryIds[0]);
+      } else if (allEntries.length > 0) {
+        selectEntry(allEntries[0].id);
+      }
+
+      applyFilterChipStyles(activeFilter);
+      renderSidebarList();
+    })();
+  </script>
+</body>
+</html>

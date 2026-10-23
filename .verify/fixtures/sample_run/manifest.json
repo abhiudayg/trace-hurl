@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "runId": "TRACEHURL_SAMPLE_001",
+  "startedAt": "2026-10-23T10:00:00Z",
+  "finishedAt": "2026-10-23T10:00:05Z",
+  "tools": {
+    "tracehurl": "0.1.0",
+    "hurl": "8.0.1"
+  },
+  "phases": [
+    {
+      "name": "static-analysis",
+      "exitCode": 0,
+      "startTime": "2026-10-23T10:00:00Z",
+      "endTime": "2026-10-23T10:00:01Z",
+      "logPath": "logs/static.log"
+    },
+    {
+      "name": "functional-hurl",
+      "exitCode": 1,
+      "startTime": "2026-10-23T10:00:01Z",
+      "endTime": "2026-10-23T10:00:05Z",
+      "logPath": "logs/functional.log"
+    }
+  ],
+  "scenarios": [
+    {
+      "file": "user-service.hurl",
+      "name": "User Management Suite",
+      "entryCount": 4
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "phases.tsv",
+      "type": "text",
+      "sizeBytes": 203,
+      "sha256": "d01da7eb7eede140d3a903a35a5c996dce700ad08dcb1c6bde093333f4b30e0a",
+      "sensitivity": "internal"
+    },
+    {
+      "path": "requests.curl",
+      "type": "text",
+      "sizeBytes": 368,
+      "sha256": "a7d5f606f82adcb020537f3bcfb60cee61dbe15ac5c5098d74b557c82bad814c",
+      "sensitivity": "internal"
+    },
+    {
+      "path": "user-service.hurl",
+      "type": "hurl",
+      "sizeBytes": 1236,
+      "sha256": "9fc310f1c0f3abecc3582a09745c43fa529d8010ae35d314190e00252baed462",
+      "sensitivity": "internal"
+    },
+    {
+      "path": "hurl-json/report.json",
+      "type": "json-report",
+      "sizeBytes": 4940,
+      "sha256": "59bbfc044565e1c7bdfa2e286e4ff2c1436b182143051185642d4f04e5c151b0",
+      "sensitivity": "internal"
+    },
+    {
+      "path": "logs/functional.log",
+      "type": "log",
+      "sizeBytes": 358,
+      "sha256": "64cc22aa28da9cefb36d05a8297019898aef46410acf8b52c433a639f2a8ffe4",
+      "sensitivity": "internal"
+    },
+    {
+      "path": "logs/static.log",
+      "type": "log",
+      "sizeBytes": 106,
+      "sha256": "511d0712f8c79c5398f4190fd7ad2c1bb759488818a8d903535b6c420f09fcfd",
+      "sensitivity": "internal"
+    }
+  ],
+  "variables": {
+    "base_url": "http://localhost:8080",
+    "env": "staging"
+  },
+  "redaction": {
+    "headers": [
+      "authorization",
+      "x-api-key"
+    ],
+    "jsonPaths": [
+      "$.token"
+    ],
+    "textPatterns": []
+  },
+  "live": null
+}

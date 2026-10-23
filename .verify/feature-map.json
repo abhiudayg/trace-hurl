@@ -1,0 +1,146 @@
+{
+  "$schema": "https://agstack.dev/schemas/feature-map.v1.json",
+  "project": "TraceHurl",
+  "version": "0.1.0",
+  "generatedAt": "2026-10-23T11:40:00Z",
+  "description": "TraceHurl Feature Map and Verification Test Suite Specifications",
+  "features": [
+    {
+      "id": "FEAT-001",
+      "key": "ingestion_normalization",
+      "name": "Evidence-First Ingestion & Normalization",
+      "description": "Ingests Hurl native JSON reports, Schema v1 manifests, phase TSVs, wire request/response payloads, and correlates entries by line and index.",
+      "status": "verified",
+      "testSuites": [
+        "unit::hurl_json",
+        "unit::hurl_source",
+        "integration::test_ingest_and_render_real_artifacts",
+        "isolated::test_isolated_run"
+      ],
+      "acceptanceCriteria": [
+        "Correlates entries strictly by index and line number, not requestID.",
+        "Derives wire response payloads from assertion actuals when raw response files are omitted.",
+        "Reconstructs execution phases from exit codes and timestamps without guessing."
+      ]
+    },
+    {
+      "id": "FEAT-002",
+      "key": "superimposed_diff_engine",
+      "name": "Superimposed Payload Contract Delta Engine",
+      "description": "Computes key-order-independent JSON Pointer diffs between expected contracts and actual responses with superimposed and side-by-side split views.",
+      "status": "verified",
+      "testSuites": [
+        "unit::diff::test_json_diff_key_order_independence",
+        "unit::diff::test_json_diff_added_and_removed",
+        "unit::diff::test_json_diff_type_mismatch",
+        "integration::test_json_diff_deep_nested_and_keys",
+        "functional::verify_report_functional"
+      ],
+      "acceptanceCriteria": [
+        "Detects Added, Removed, Changed, and TypeMismatch delta kinds.",
+        "Diffs remain invariant under JSON key ordering differences.",
+        "Superimposes contract additions and removals with color-coded callouts."
+      ]
+    },
+    {
+      "id": "FEAT-003",
+      "key": "variable_provenance_dag",
+      "name": "Variable Provenance DAG",
+      "description": "Tracks variable extractions, scenario setup accounts, variable lifecycle status (ok, failed, unresolved), and downstream step consumers.",
+      "status": "verified",
+      "testSuites": [
+        "integration::test_response_body_and_dag_captures",
+        "isolated::test_isolated_run",
+        "functional::verify_report_functional"
+      ],
+      "acceptanceCriteria": [
+        "Ingests setup accounts from created-accounts.json into scenario variable catalog.",
+        "Maps every downstream entry that references a captured variable.",
+        "Flags unresolved variables used before definition."
+      ]
+    },
+    {
+      "id": "FEAT-004",
+      "key": "test_quality_diagnostics",
+      "name": "Automated Test-Quality Diagnostics",
+      "description": "Statically analyzes test quality to flag entries with no assertions, weak status ranges, weak type checks, and unasserted retries.",
+      "status": "verified",
+      "testSuites": [
+        "integration::test_ingest_and_render_real_artifacts",
+        "isolated::test_isolated_run",
+        "functional::verify_report_functional"
+      ],
+      "acceptanceCriteria": [
+        "Flags TQ001 for entries missing assertions.",
+        "Flags TQ002 for broad negative assertions like status >= 400.",
+        "Flags TQ003 for type-only checks without value assertions.",
+        "Flags TQ004 for undefined variable references.",
+        "Flags TQ005 for retried requests missing state assertions."
+      ]
+    },
+    {
+      "id": "FEAT-005",
+      "key": "cryptographic_integrity",
+      "name": "Cryptographic Artifact Integrity & Path Traversal Defense",
+      "description": "Validates SHA-256 hashes of all referenced artifacts against manifest.json and rejects path traversal directory escape attempts.",
+      "status": "verified",
+      "testSuites": [
+        "integration::test_manifest_validation_and_integrity",
+        "integration::test_path_traversal_detection",
+        "cli::tracehurl_validate"
+      ],
+      "acceptanceCriteria": [
+        "Rejects artifact paths containing '..' or leading '/'.",
+        "Fails validation if SHA-256 checksum does not match manifest.",
+        "Passes validation only when all artifacts exist and match exactly."
+      ]
+    },
+    {
+      "id": "FEAT-006",
+      "key": "stitch_telemetry_viewer",
+      "name": "Responsive Stitch Telemetry Viewer",
+      "description": "Interactive single-file HTML report built with Google Stitch design system tokens, vertical independent scrolling, and synchronized failure navigation.",
+      "status": "verified",
+      "testSuites": [
+        "functional::verify_report_functional",
+        "isolated::test_isolated_run"
+      ],
+      "acceptanceCriteria": [
+        "Maintains responsive desktop, tablet, and mobile drawer views.",
+        "Scenario Explorer and Diagnostics list scroll independently within viewport height.",
+        "Jump to First Failure stepper automatically scrolls failed cards into view with active rings.",
+        "Default filter chip 'All' is highlighted on initial page load."
+      ]
+    },
+    {
+      "id": "FEAT-007",
+      "key": "universal_redaction",
+      "name": "Universal Credential Redaction",
+      "description": "Universal masking of Bearer tokens, JWT patterns, cookies, and sensitive query parameters across all rendered views and models.",
+      "status": "verified",
+      "testSuites": [
+        "unit::redaction::test_redact_bearer_token",
+        "unit::redaction::test_redact_url_query_params",
+        "unit::redaction::test_redact_curl_command",
+        "integration::test_redaction_strictness",
+        "isolated::test_isolated_run"
+      ],
+      "acceptanceCriteria": [
+        "Replaces Bearer tokens with 'Bearer [REDACTED]'.",
+        "Masks sensitive query parameters (token, secret, auth, password).",
+        "Ensures zero raw JWT strings exist in generated HTML."
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "SUITE-01",
+      "name": "User Management & Auth Verification Suite",
+      "path": ".verify/fixtures/sample_run/user-service.hurl",
+      "entryCount": 4,
+      "modes": ["static", "live", "all"],
+      "artifactsDir": ".verify/fixtures/sample_run",
+      "harness": ".verify/run.sh"
+    }
+  ]
+}
