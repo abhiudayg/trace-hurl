@@ -1,4 +1,5 @@
 pub mod cli;
+pub mod clustering;
 pub mod diagnostics;
 pub mod diff;
 pub mod error;

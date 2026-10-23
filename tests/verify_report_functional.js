@@ -41,7 +41,15 @@ const requiredElementIds = [
   'diagnostics-list-container',
   'btn-first-failure',
   'footer-first-failure',
-  'failure-nav-counter'
+  'failure-nav-counter',
+  'kpi-clusters-container',
+  'kpi-clusters',
+  'cluster-filter-container',
+  'cluster-select',
+  'btn-tab-clusters',
+  'tab-clusters',
+  'entry-cluster-banner',
+  'cluster-cards-container'
 ];
 
 console.log('\n✓ 2. Verifying DOM Elements & ID Hooks:');
@@ -94,6 +102,22 @@ const firstFailId = failureIds[0];
 assert.strictEqual(firstFailId, entry2.id, 'First failure ID must correspond to Entry #2');
 console.log(`     - Jump to First Failure target: ${firstFailId}`);
 
+// 5. Verify Failure Clustering & Root-Cause Grouping
+console.log('\n✓ 5. Verifying Failure Clustering & Root-Cause Grouping:');
+assert(Array.isArray(runData.failureClusters), 'runData.failureClusters must be an array');
+assert(runData.failureClusters.length > 0, 'At least 1 failure cluster must be identified');
+const cluster1 = runData.failureClusters[0];
+assert(cluster1.id, 'Cluster must have an id');
+assert(cluster1.title, 'Cluster must have a title');
+assert(cluster1.rootCauseCategory, 'Cluster must have a rootCauseCategory');
+assert(cluster1.entryCount >= 1, 'Cluster entryCount must be >= 1');
+assert(cluster1.entryIds.includes(entry2.id), 'Cluster entryIds must contain entry #2');
+assert.strictEqual(entry2.clusterId, cluster1.id, 'Entry #2 clusterId must link to cluster1');
+console.log(`     - Identified ${runData.failureClusters.length} failure cluster(s):`);
+console.log(`       * [${cluster1.id}] ${cluster1.title} (${cluster1.entryCount} entries)`);
+console.log(`       * Root Cause Category: ${cluster1.rootCauseCategory}`);
+console.log(`       * Remediation: ${cluster1.suggestedRemediation || 'None'}`);
+
 console.log('\n======================================================');
-console.log('✓ ALL 4 VERIFICATION STAGES PASSED FUNCTIONALLY');
+console.log('✓ ALL 5 VERIFICATION STAGES PASSED FUNCTIONALLY');
 console.log('======================================================\n');

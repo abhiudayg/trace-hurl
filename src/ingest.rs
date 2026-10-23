@@ -80,8 +80,11 @@ pub fn ingest_run_directory(run_dir: &Path) -> Result<Run> {
 
     all_diagnostics.extend(quality_analyzer.check_replayed_requests(&request_map));
 
+    let (scenarios, failure_clusters) = crate::clustering::analyze_and_cluster_failures(&scenarios);
+
     let phases = process_phases(&manifest);
-    let run_summary = compute_run_summary(&scenarios, &phases, all_diagnostics.len());
+    let mut run_summary = compute_run_summary(&scenarios, &phases, all_diagnostics.len());
+    run_summary.total_failure_clusters = failure_clusters.len();
 
     let artifacts: Vec<Artifact> = manifest
         .artifacts
@@ -107,6 +110,7 @@ pub fn ingest_run_directory(run_dir: &Path) -> Result<Run> {
         variables: manifest.variables,
         diagnostics: all_diagnostics,
         summary: run_summary,
+        failure_clusters,
     })
 }
 
@@ -608,6 +612,7 @@ fn process_scenario_entries(
             captures_used,
             diffs,
             curl_cmd,
+            cluster_id: None,
         });
     }
 

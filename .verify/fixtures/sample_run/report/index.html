@@ -124,7 +124,7 @@
   </style>
 </head>
 <body class="bg-background text-on-surface antialiased font-body-md text-body-md h-screen overflow-hidden flex flex-col selection:bg-primary-container selection:text-on-primary-container">
-  <script id="tracehurl-data" type="application/json">{"schemaVersion":1,"runId":"TRACEHURL_SAMPLE_001","startedAt":"2026-10-23T10:00:00Z","finishedAt":"2026-10-23T10:00:05Z","tools":{"tracehurl":"0.1.0","hurl":"8.0.1"},"phases":[{"name":"static-analysis","status":"passed","exitCode":0,"startTime":"2026-10-23T10:00:00Z","endTime":"2026-10-23T10:00:01Z","durationMs":null,"logPath":"logs/static.log"},{"name":"functional-hurl","status":"failed","exitCode":1,"startTime":"2026-10-23T10:00:01Z","endTime":"2026-10-23T10:00:05Z","durationMs":null,"logPath":"logs/functional.log"}],"scenarios":[{"id":"scenario-1","sourceFile":"User Management Suite","name":"User Management & Authentication Verification Suite","description":"Scenario: User Management & Authentication Verification Suite Verifies user creation, profile retrieval with contract assertions, error handling for missing resources, and health checks.","entries":[{"id":"scenario-1-entry-1","index":1,"scenarioId":"scenario-1","sourceFile":"User Management Suite","sourceLine":5,"method":"POST","url":"http://localhost:8080/api/v1/users","statusCode":201,"outcome":"passed","durationMs":110,"request":{"method":"POST","url":"http://localhost:8080/api/v1/users","headers":[{"name":"Content-Type","value":"application/json"},{"name":"Authorization","value":"Bearer [REDACTED]"}],"queryString":[],"bodySnippet":null,"bodyPath":null},"response":{"status":201,"headers":[{"name":"Content-Type","value":"application/json"}],"httpVersion":null,"bodySnippet":"{\"status\":\"created\",\"user\":{\"id\":\"usr_998124a\",\"email\":\"jane.doe@example.com\"}}","bodyPath":null,"isDerived":false,"expectedBodySnippet":null},"assertions":[{"line":13,"expression":"assert on line 13","comparisonTarget":"assertion","expected":null,"actual":null,"passed":true,"message":"status == 201","origin":"recorded"},{"line":14,"expression":"assert on line 14","comparisonTarget":"assertion","expected":null,"actual":null,"passed":true,"message":"header \"Content-Type\" contains \"application/json\"","origin":"recorded"},{"line":15,"expression":"status == 201","comparisonTarget":"status","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.status\" == \"created\"","origin":"recorded"},{"line":16,"expression":"header \"Content-Type\" contains \"application/json\"","comparisonTarget":"assertion","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.user.id\" matches \"^usr_[a-zA-Z0-9]+$\"","origin":"recorded"},{"line":17,"expression":"jsonpath \"$.status\" == \"created\"","comparisonTarget":"$.status","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.user.email\" == \"jane.doe@example.com\"","origin":"recorded"}],"capturesSet":[{"name":"user_id","sourceEntryIndex":1,"value":"usr_998124a","status":"ok","dependentEntries":[2]}],"capturesUsed":[],"diffs":[],"curlCmd":null},{"id":"scenario-1-entry-2","index":2,"scenarioId":"scenario-1","sourceFile":"User Management Suite","sourceLine":23,"method":"GET","url":"http://localhost:8080/api/v1/users/usr_998124a","statusCode":200,"outcome":"failed","durationMs":45,"request":{"method":"GET","url":"http://localhost:8080/api/v1/users/usr_998124a","headers":[{"name":"Accept","value":"application/json"},{"name":"Authorization","value":"Bearer [REDACTED]"}],"queryString":[],"bodySnippet":null,"bodyPath":null},"response":{"status":200,"headers":[{"name":"Content-Type","value":"application/json"}],"httpVersion":null,"bodySnippet":"{\"id\":\"usr_998124a\",\"name\":\"Jane Doe\",\"email\":\"jane.doe@example.com\",\"role\":\"developer\"}","bodyPath":null,"isDerived":false,"expectedBodySnippet":"{\n  \"authCode\": \"not null\"\n}"},"assertions":[{"line":28,"expression":"status == 200","comparisonTarget":"status","expected":null,"actual":null,"passed":true,"message":"status == 200","origin":"recorded"},{"line":29,"expression":"jsonpath \"$.id\" == \"{{user_id}}\"","comparisonTarget":"$.id","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.id\" == \"usr_998124a\"","origin":"recorded"},{"line":30,"expression":"jsonpath \"$.name\" == \"Jane Doe\"","comparisonTarget":"$.name","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.name\" == \"Jane Doe\"","origin":"recorded"},{"line":31,"expression":"jsonpath \"$.email\" == \"jane.doe@example.com\"","comparisonTarget":"$.email","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.email\" == \"jane.doe@example.com\"","origin":"recorded"},{"line":32,"expression":"jsonpath \"$.role\" == \"developer\"","comparisonTarget":"$.role","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.role\" == \"developer\"","origin":"recorded"},{"line":33,"expression":"jsonpath \"$.authCode\" != null","comparisonTarget":"$.authCode","expected":"not null","actual":"null","passed":false,"message":"assert jsonpath \"$.authCode\" != null\n  --> user-service.hurl:33:1\n   |\n33 | jsonpath \"$.authCode\" != null\n   |   actual:   null\n   |   expected: not null\n   |","origin":"recorded"}],"capturesSet":[],"capturesUsed":["user_id"],"diffs":[{"path":"/authCode","diffType":"Removed","expected":"\"not null\"","actual":null,"origin":"derived"},{"path":"/email","diffType":"Added","expected":null,"actual":"\"jane.doe@example.com\"","origin":"derived"},{"path":"/id","diffType":"Added","expected":null,"actual":"\"usr_998124a\"","origin":"derived"},{"path":"/name","diffType":"Added","expected":null,"actual":"\"Jane Doe\"","origin":"derived"},{"path":"/role","diffType":"Added","expected":null,"actual":"\"developer\"","origin":"derived"}],"curlCmd":null},{"id":"scenario-1-entry-3","index":3,"scenarioId":"scenario-1","sourceFile":"User Management Suite","sourceLine":35,"method":"GET","url":"http://localhost:8080/api/v1/users/usr_nonexistent","statusCode":404,"outcome":"expected-rejection","durationMs":25,"request":{"method":"GET","url":"http://localhost:8080/api/v1/users/usr_nonexistent","headers":[{"name":"Accept","value":"application/json"},{"name":"Authorization","value":"Bearer [REDACTED]"}],"queryString":[],"bodySnippet":null,"bodyPath":null},"response":{"status":404,"headers":[{"name":"Content-Type","value":"application/json"}],"httpVersion":null,"bodySnippet":"{\"error\":\"UserNotFound\"}","bodyPath":null,"isDerived":false,"expectedBodySnippet":null},"assertions":[{"line":40,"expression":"status == 404","comparisonTarget":"status","expected":null,"actual":null,"passed":true,"message":"status == 404","origin":"recorded"},{"line":41,"expression":"jsonpath \"$.error\" == \"UserNotFound\"","comparisonTarget":"$.error","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.error\" == \"UserNotFound\"","origin":"recorded"}],"capturesSet":[],"capturesUsed":[],"diffs":[],"curlCmd":null},{"id":"scenario-1-entry-4","index":4,"scenarioId":"scenario-1","sourceFile":"User Management Suite","sourceLine":43,"method":"GET","url":"http://localhost:8080/api/v1/health","statusCode":200,"outcome":"passed","durationMs":50,"request":{"method":"GET","url":"http://localhost:8080/api/v1/health","headers":[],"queryString":[],"bodySnippet":null,"bodyPath":null},"response":{"status":200,"headers":[],"httpVersion":null,"bodySnippet":"{\"status\":\"UP\"}","bodyPath":null,"isDerived":false,"expectedBodySnippet":null},"assertions":[{"line":46,"expression":"status >= 200","comparisonTarget":"status","expected":null,"actual":null,"passed":true,"message":"status >= 200","origin":"recorded"}],"capturesSet":[],"capturesUsed":[],"diffs":[],"curlCmd":null}],"summary":{"totalEntries":4,"passed":2,"failed":1,"expectedRejections":1,"blocked":0,"skipped":0,"weak":0},"allCaptures":[{"name":"user_id","sourceEntryIndex":1,"value":"usr_998124a","status":"ok","dependentEntries":[2]}]}],"artifacts":[{"path":"phases.tsv","artifactType":"text","sizeBytes":203,"sha256":"d01da7eb7eede140d3a903a35a5c996dce700ad08dcb1c6bde093333f4b30e0a","sensitivity":"internal"},{"path":"requests.curl","artifactType":"text","sizeBytes":368,"sha256":"a7d5f606f82adcb020537f3bcfb60cee61dbe15ac5c5098d74b557c82bad814c","sensitivity":"internal"},{"path":"user-service.hurl","artifactType":"hurl","sizeBytes":1236,"sha256":"9fc310f1c0f3abecc3582a09745c43fa529d8010ae35d314190e00252baed462","sensitivity":"internal"},{"path":"hurl-json/report.json","artifactType":"json-report","sizeBytes":4940,"sha256":"59bbfc044565e1c7bdfa2e286e4ff2c1436b182143051185642d4f04e5c151b0","sensitivity":"internal"},{"path":"logs/functional.log","artifactType":"log","sizeBytes":358,"sha256":"64cc22aa28da9cefb36d05a8297019898aef46410acf8b52c433a639f2a8ffe4","sensitivity":"internal"},{"path":"logs/static.log","artifactType":"log","sizeBytes":106,"sha256":"511d0712f8c79c5398f4190fd7ad2c1bb759488818a8d903535b6c420f09fcfd","sensitivity":"internal"}],"variables":{"base_url":"http://localhost:8080","env":"staging"},"diagnostics":[{"code":"TQ004_UNDEFINED_VARIABLE","severity":"warning","message":"Variable 'user_id' referenced at line 23 is not in run variables","targetEntity":"scenario-1-entry-2"}],"summary":{"totalScenarios":1,"totalEntries":4,"passedEntries":2,"failedEntries":1,"expectedRejections":1,"blockedEntries":0,"skippedEntries":0,"weakEntries":0,"totalDiagnostics":1,"overallStatus":"FAILED","durationMs":null}}</script>
+  <script id="tracehurl-data" type="application/json">{"schemaVersion":1,"runId":"TRACEHURL_SAMPLE_001","startedAt":"2026-10-23T10:00:00Z","finishedAt":"2026-10-23T10:00:05Z","tools":{"hurl":"8.0.1","tracehurl":"0.1.0"},"phases":[{"name":"static-analysis","status":"passed","exitCode":0,"startTime":"2026-10-23T10:00:00Z","endTime":"2026-10-23T10:00:01Z","durationMs":null,"logPath":"logs/static.log"},{"name":"functional-hurl","status":"failed","exitCode":1,"startTime":"2026-10-23T10:00:01Z","endTime":"2026-10-23T10:00:05Z","durationMs":null,"logPath":"logs/functional.log"}],"scenarios":[{"id":"scenario-1","sourceFile":"User Management Suite","name":"User Management & Authentication Verification Suite","description":"Scenario: User Management & Authentication Verification Suite Verifies user creation, profile retrieval with contract assertions, error handling for missing resources, and health checks.","entries":[{"id":"scenario-1-entry-1","index":1,"scenarioId":"scenario-1","sourceFile":"User Management Suite","sourceLine":5,"method":"POST","url":"http://localhost:8080/api/v1/users","statusCode":201,"outcome":"passed","durationMs":110,"request":{"method":"POST","url":"http://localhost:8080/api/v1/users","headers":[{"name":"Content-Type","value":"application/json"},{"name":"Authorization","value":"Bearer [REDACTED]"}],"queryString":[],"bodySnippet":null,"bodyPath":null},"response":{"status":201,"headers":[{"name":"Content-Type","value":"application/json"}],"httpVersion":null,"bodySnippet":"{\"status\":\"created\",\"user\":{\"id\":\"usr_998124a\",\"email\":\"jane.doe@example.com\"}}","bodyPath":null,"isDerived":false,"expectedBodySnippet":null},"assertions":[{"line":13,"expression":"assert on line 13","comparisonTarget":"assertion","expected":null,"actual":null,"passed":true,"message":"status == 201","origin":"recorded"},{"line":14,"expression":"assert on line 14","comparisonTarget":"assertion","expected":null,"actual":null,"passed":true,"message":"header \"Content-Type\" contains \"application/json\"","origin":"recorded"},{"line":15,"expression":"status == 201","comparisonTarget":"status","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.status\" == \"created\"","origin":"recorded"},{"line":16,"expression":"header \"Content-Type\" contains \"application/json\"","comparisonTarget":"assertion","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.user.id\" matches \"^usr_[a-zA-Z0-9]+$\"","origin":"recorded"},{"line":17,"expression":"jsonpath \"$.status\" == \"created\"","comparisonTarget":"$.status","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.user.email\" == \"jane.doe@example.com\"","origin":"recorded"}],"capturesSet":[{"name":"user_id","sourceEntryIndex":1,"value":"usr_998124a","status":"ok","dependentEntries":[2]}],"capturesUsed":[],"diffs":[],"curlCmd":null,"clusterId":null},{"id":"scenario-1-entry-2","index":2,"scenarioId":"scenario-1","sourceFile":"User Management Suite","sourceLine":23,"method":"GET","url":"http://localhost:8080/api/v1/users/usr_998124a","statusCode":200,"outcome":"failed","durationMs":45,"request":{"method":"GET","url":"http://localhost:8080/api/v1/users/usr_998124a","headers":[{"name":"Accept","value":"application/json"},{"name":"Authorization","value":"Bearer [REDACTED]"}],"queryString":[],"bodySnippet":null,"bodyPath":null},"response":{"status":200,"headers":[{"name":"Content-Type","value":"application/json"}],"httpVersion":null,"bodySnippet":"{\"id\":\"usr_998124a\",\"name\":\"Jane Doe\",\"email\":\"jane.doe@example.com\",\"role\":\"developer\"}","bodyPath":null,"isDerived":false,"expectedBodySnippet":"{\n  \"authCode\": \"not null\"\n}"},"assertions":[{"line":28,"expression":"status == 200","comparisonTarget":"status","expected":null,"actual":null,"passed":true,"message":"status == 200","origin":"recorded"},{"line":29,"expression":"jsonpath \"$.id\" == \"{{user_id}}\"","comparisonTarget":"$.id","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.id\" == \"usr_998124a\"","origin":"recorded"},{"line":30,"expression":"jsonpath \"$.name\" == \"Jane Doe\"","comparisonTarget":"$.name","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.name\" == \"Jane Doe\"","origin":"recorded"},{"line":31,"expression":"jsonpath \"$.email\" == \"jane.doe@example.com\"","comparisonTarget":"$.email","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.email\" == \"jane.doe@example.com\"","origin":"recorded"},{"line":32,"expression":"jsonpath \"$.role\" == \"developer\"","comparisonTarget":"$.role","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.role\" == \"developer\"","origin":"recorded"},{"line":33,"expression":"jsonpath \"$.authCode\" != null","comparisonTarget":"$.authCode","expected":"not null","actual":"null","passed":false,"message":"assert jsonpath \"$.authCode\" != null\n  --> user-service.hurl:33:1\n   |\n33 | jsonpath \"$.authCode\" != null\n   |   actual:   null\n   |   expected: not null\n   |","origin":"recorded"}],"capturesSet":[],"capturesUsed":["user_id"],"diffs":[{"path":"/authCode","diffType":"Removed","expected":"\"not null\"","actual":null,"origin":"derived"},{"path":"/email","diffType":"Added","expected":null,"actual":"\"jane.doe@example.com\"","origin":"derived"},{"path":"/id","diffType":"Added","expected":null,"actual":"\"usr_998124a\"","origin":"derived"},{"path":"/name","diffType":"Added","expected":null,"actual":"\"Jane Doe\"","origin":"derived"},{"path":"/role","diffType":"Added","expected":null,"actual":"\"developer\"","origin":"derived"}],"curlCmd":null,"clusterId":"cluster-1"},{"id":"scenario-1-entry-3","index":3,"scenarioId":"scenario-1","sourceFile":"User Management Suite","sourceLine":35,"method":"GET","url":"http://localhost:8080/api/v1/users/usr_nonexistent","statusCode":404,"outcome":"expected-rejection","durationMs":25,"request":{"method":"GET","url":"http://localhost:8080/api/v1/users/usr_nonexistent","headers":[{"name":"Accept","value":"application/json"},{"name":"Authorization","value":"Bearer [REDACTED]"}],"queryString":[],"bodySnippet":null,"bodyPath":null},"response":{"status":404,"headers":[{"name":"Content-Type","value":"application/json"}],"httpVersion":null,"bodySnippet":"{\"error\":\"UserNotFound\"}","bodyPath":null,"isDerived":false,"expectedBodySnippet":null},"assertions":[{"line":40,"expression":"status == 404","comparisonTarget":"status","expected":null,"actual":null,"passed":true,"message":"status == 404","origin":"recorded"},{"line":41,"expression":"jsonpath \"$.error\" == \"UserNotFound\"","comparisonTarget":"$.error","expected":null,"actual":null,"passed":true,"message":"jsonpath \"$.error\" == \"UserNotFound\"","origin":"recorded"}],"capturesSet":[],"capturesUsed":[],"diffs":[],"curlCmd":null,"clusterId":null},{"id":"scenario-1-entry-4","index":4,"scenarioId":"scenario-1","sourceFile":"User Management Suite","sourceLine":43,"method":"GET","url":"http://localhost:8080/api/v1/health","statusCode":200,"outcome":"passed","durationMs":50,"request":{"method":"GET","url":"http://localhost:8080/api/v1/health","headers":[],"queryString":[],"bodySnippet":null,"bodyPath":null},"response":{"status":200,"headers":[],"httpVersion":null,"bodySnippet":"{\"status\":\"UP\"}","bodyPath":null,"isDerived":false,"expectedBodySnippet":null},"assertions":[{"line":46,"expression":"status >= 200","comparisonTarget":"status","expected":null,"actual":null,"passed":true,"message":"status >= 200","origin":"recorded"}],"capturesSet":[],"capturesUsed":[],"diffs":[],"curlCmd":null,"clusterId":null}],"summary":{"totalEntries":4,"passed":2,"failed":1,"expectedRejections":1,"blocked":0,"skipped":0,"weak":0},"allCaptures":[{"name":"user_id","sourceEntryIndex":1,"value":"usr_998124a","status":"ok","dependentEntries":[2]}]}],"artifacts":[{"path":"phases.tsv","artifactType":"text","sizeBytes":203,"sha256":"d01da7eb7eede140d3a903a35a5c996dce700ad08dcb1c6bde093333f4b30e0a","sensitivity":"internal"},{"path":"requests.curl","artifactType":"text","sizeBytes":368,"sha256":"a7d5f606f82adcb020537f3bcfb60cee61dbe15ac5c5098d74b557c82bad814c","sensitivity":"internal"},{"path":"user-service.hurl","artifactType":"hurl","sizeBytes":1236,"sha256":"9fc310f1c0f3abecc3582a09745c43fa529d8010ae35d314190e00252baed462","sensitivity":"internal"},{"path":"hurl-json/report.json","artifactType":"json-report","sizeBytes":4940,"sha256":"59bbfc044565e1c7bdfa2e286e4ff2c1436b182143051185642d4f04e5c151b0","sensitivity":"internal"},{"path":"logs/functional.log","artifactType":"log","sizeBytes":358,"sha256":"64cc22aa28da9cefb36d05a8297019898aef46410acf8b52c433a639f2a8ffe4","sensitivity":"internal"},{"path":"logs/static.log","artifactType":"log","sizeBytes":106,"sha256":"511d0712f8c79c5398f4190fd7ad2c1bb759488818a8d903535b6c420f09fcfd","sensitivity":"internal"}],"variables":{"base_url":"http://localhost:8080","env":"staging"},"diagnostics":[{"code":"TQ004_UNDEFINED_VARIABLE","severity":"warning","message":"Variable 'user_id' referenced at line 23 is not in run variables","targetEntity":"scenario-1-entry-2"}],"summary":{"totalScenarios":1,"totalEntries":4,"passedEntries":2,"failedEntries":1,"expectedRejections":1,"blockedEntries":0,"skippedEntries":0,"weakEntries":0,"totalDiagnostics":1,"overallStatus":"FAILED","durationMs":null,"totalFailureClusters":1},"failureClusters":[{"id":"cluster-1","title":"Schema Contract Mismatch: $.authCode","rootCauseCategory":"Contract Schema Mismatch","errorPattern":"Missing or invalid attribute: $.authCode","entryCount":1,"scenarioIds":["scenario-1"],"entryIds":["scenario-1-entry-2"],"sampleError":"assert jsonpath \"$.authCode\" != null\n  --> user-service.hurl:33:1\n   |\n33 | jsonpath \"$.authCode\" != null\n   |   actual:   null\n   |   expected: not null\n   |","suggestedRemediation":"Ensure backend API service populates all required schema attributes in response."}]}</script>
 
   <!-- 1. TOP GLOBAL TELEMETRY HEADER -->
   <header class="flex justify-between items-center w-full px-3 md:px-space-lg h-14 bg-surface border-b border-outline-variant z-50 sticky top-0 shrink-0">
@@ -221,6 +221,11 @@
           <span class="text-label-caps font-semibold">WEAK ASSERTIONS</span>
           <span id="kpi-weak" class="font-bold">0</span>
         </div>
+        <div id="kpi-clusters-container" class="hidden flex items-center gap-1.5 px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/30 text-purple-300 cursor-pointer hover:bg-purple-500/20 transition-colors" title="View Root Cause Clusters">
+          <span class="material-symbols-outlined text-[13px]" data-icon="hub">hub</span>
+          <span class="text-label-caps font-semibold">ROOT CAUSES</span>
+          <span id="kpi-clusters" class="font-bold">0</span>
+        </div>
       </div>
       <!-- Duration and Latency Trend Breakdown -->
       <div class="flex items-center gap-4 text-code-sm font-code-sm">
@@ -310,6 +315,19 @@
               <span class="material-symbols-outlined text-[14px]" data-icon="arrow_downward">arrow_downward</span>
             </button>
           </div>
+        </div>
+        <!-- Cluster Filter Bar (shown if failure clusters exist) -->
+        <div id="cluster-filter-container" class="hidden pt-1 border-t border-outline-variant/50 space-y-1">
+          <div class="flex items-center justify-between text-code-sm font-code-sm text-outline">
+            <span class="flex items-center gap-1 text-purple-300 font-semibold">
+              <span class="material-symbols-outlined text-[13px]" data-icon="hub">hub</span>
+              Root Cause Filter:
+            </span>
+            <button id="btn-clear-cluster-filter" class="text-[10px] text-outline hover:text-on-surface underline hidden">Clear filter</button>
+          </div>
+          <select id="cluster-select" class="w-full bg-surface-container-low border border-outline-variant rounded px-2 py-1 text-code-sm font-code-sm text-purple-300 focus:outline-none focus:border-purple-400">
+            <option value="all">All Failure Clusters</option>
+          </select>
         </div>
       </div>
       <!-- Scenarios List View -->
@@ -416,6 +434,13 @@
           <span>Phases &amp; Manifest</span>
           <span id="tab-badge-manifest" class="px-1.5 py-0.2 rounded bg-surface-container text-outline text-[10px] font-label-caps">0 phases</span>
         </button>
+        <button id="btn-tab-clusters" data-tab="tab-clusters" class="tab-button hidden flex items-center gap-2 py-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm font-medium transition-colors shrink-0">
+          <span class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[15px] text-purple-400" data-icon="hub">hub</span>
+            Root Causes
+          </span>
+          <span id="tab-badge-clusters" class="px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 text-[10px] font-label-caps font-bold">0</span>
+        </button>
       </nav>
 
       <!-- TAB CONTENT AREA -->
@@ -440,6 +465,29 @@
             </div>
             <button id="btn-jump-diff" class="px-2.5 py-1 rounded bg-error/20 hover:bg-error/30 text-error text-code-sm font-code-sm font-semibold border border-error/40 transition-colors whitespace-nowrap self-start sm:self-auto">
               Inspect Diff
+            </button>
+          </div>
+
+          <!-- Cluster Root Cause Banner for active entry -->
+          <div id="entry-cluster-banner" class="hidden rounded border border-purple-500/40 bg-purple-500/10 p-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div class="flex items-start gap-2.5">
+              <span class="material-symbols-outlined text-purple-400 text-[20px] shrink-0 mt-0.5" data-icon="hub">hub</span>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-label-caps font-bold text-purple-400">SHARED ROOT CAUSE</span>
+                  <span id="entry-cluster-badge" class="px-1.5 py-0.2 rounded bg-purple-500/20 text-purple-300 text-code-sm font-code-sm font-semibold">Cluster #1</span>
+                  <span id="entry-cluster-count" class="text-outline text-code-sm font-code-sm">(1 entry affected)</span>
+                </div>
+                <h4 id="entry-cluster-title" class="text-body-md font-semibold text-on-surface mt-0.5">...</h4>
+                <div id="entry-cluster-pattern" class="text-code-sm font-code-sm font-mono text-purple-300 mt-0.5">...</div>
+                <div id="entry-cluster-remediation-box" class="mt-2 text-code-sm text-secondary bg-secondary/10 border border-secondary/20 px-2 py-1.5 rounded flex items-start gap-1.5">
+                  <span class="material-symbols-outlined text-[14px] text-secondary shrink-0 mt-0.5" data-icon="tips_and_updates">tips_and_updates</span>
+                  <span id="entry-cluster-remediation">...</span>
+                </div>
+              </div>
+            </div>
+            <button id="btn-view-all-in-cluster" class="px-2.5 py-1 rounded bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 text-code-sm font-code-sm font-semibold border border-purple-500/40 transition-colors whitespace-nowrap self-start sm:self-auto">
+              View Cluster Entries
             </button>
           </div>
 
@@ -735,6 +783,25 @@ loan_id: jsonpath "$.id"</pre>
             </div>
           </div>
         </div>
+
+        <!-- 7. SCREEN TAB: ROOT CAUSES (FAILURE CLUSTERS) -->
+        <div id="tab-clusters" class="tab-section hidden space-y-space-lg">
+          <div class="rounded border border-outline-variant bg-surface-container-lowest p-space-md">
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-purple-400 text-[20px]" data-icon="hub">hub</span>
+                <span class="text-headline-sm font-headline-sm font-bold text-on-surface">Automated Root-Cause Clusters</span>
+                <span id="cluster-total-label" class="text-code-sm font-code-sm text-outline">(0 clusters identified)</span>
+              </div>
+              <p class="text-code-sm text-on-surface-variant">
+                Failures automatically grouped by contractual error pattern to accelerate triage.
+              </p>
+            </div>
+            <div id="cluster-cards-container" class="space-y-3">
+              <!-- Cluster cards rendered dynamically -->
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- 4. QUICK ACTION DOCK / BOTTOM FIXED BAR -->
@@ -766,6 +833,7 @@ loan_id: jsonpath "$.id"</pre>
       const runData = JSON.parse(document.getElementById('tracehurl-data').textContent);
       let activeEntryId = null;
       let activeFilter = 'all';
+      let activeClusterFilter = 'all';
       let activeTabId = 'tab-evidence';
       let failureEntryIds = [];
       let currentFailureStep = 0;
@@ -880,6 +948,7 @@ loan_id: jsonpath "$.id"</pre>
         const searchVal = document.getElementById('sidebar-search-input').value.toLowerCase();
 
         const filtered = allEntries.filter(e => {
+          if (activeClusterFilter !== 'all' && e.clusterId !== activeClusterFilter) return false;
           if (activeFilter !== 'all' && e.outcome !== activeFilter) return false;
           if (searchVal && !e.url.toLowerCase().includes(searchVal) && !e.method.toLowerCase().includes(searchVal) && !String(e.statusCode).includes(searchVal) && !e.sourceFile.toLowerCase().includes(searchVal)) {
             return false;
@@ -1019,6 +1088,32 @@ loan_id: jsonpath "$.id"</pre>
           `;
         } else {
           bannerEl.classList.add('hidden');
+        }
+
+        // Root Cause Cluster Banner for active entry
+        const clusterBanner = document.getElementById('entry-cluster-banner');
+        if (entry.clusterId && runData.failureClusters) {
+          const cluster = runData.failureClusters.find(c => c.id === entry.clusterId);
+          if (cluster) {
+            clusterBanner.classList.remove('hidden');
+            document.getElementById('entry-cluster-badge').textContent = cluster.id.toUpperCase();
+            document.getElementById('entry-cluster-count').textContent = `(${cluster.entryCount} ${cluster.entryCount === 1 ? 'entry' : 'entries'} affected)`;
+            document.getElementById('entry-cluster-title').textContent = cluster.title;
+            document.getElementById('entry-cluster-pattern').textContent = `Pattern: ${cluster.errorPattern}`;
+            if (cluster.suggestedRemediation) {
+              document.getElementById('entry-cluster-remediation-box').classList.remove('hidden');
+              document.getElementById('entry-cluster-remediation').textContent = cluster.suggestedRemediation;
+            } else {
+              document.getElementById('entry-cluster-remediation-box').classList.add('hidden');
+            }
+            document.getElementById('btn-view-all-in-cluster').onclick = () => {
+              filterByCluster(cluster.id);
+            };
+          } else {
+            clusterBanner.classList.add('hidden');
+          }
+        } else {
+          clusterBanner.classList.add('hidden');
         }
 
         // Detailed Assertions Table
@@ -1483,6 +1578,113 @@ loan_id: jsonpath "$.id"</pre>
         return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
       }
 
+      function filterByCluster(clusterId) {
+        activeClusterFilter = clusterId;
+        const clearBtn = document.getElementById('btn-clear-cluster-filter');
+        const select = document.getElementById('cluster-select');
+        if (select) select.value = clusterId;
+
+        if (clusterId !== 'all') {
+          if (clearBtn) clearBtn.classList.remove('hidden');
+          activeFilter = 'failed';
+          applyFilterChipStyles('failed');
+        } else {
+          if (clearBtn) clearBtn.classList.add('hidden');
+        }
+
+        renderSidebarList();
+
+        const matchingEntry = allEntries.find(e => clusterId === 'all' || e.clusterId === clusterId);
+        if (matchingEntry) {
+          selectEntry(matchingEntry.id);
+        }
+      }
+
+      function renderFailureClusters() {
+        const container = document.getElementById('cluster-cards-container');
+        if (!container) return;
+        container.innerHTML = '';
+
+        const clusters = runData.failureClusters || [];
+        const clusterBadge = document.getElementById('tab-badge-clusters');
+        if (clusterBadge) clusterBadge.textContent = `${clusters.length}`;
+        const totalLabel = document.getElementById('cluster-total-label');
+        if (totalLabel) totalLabel.textContent = `(${clusters.length} cluster${clusters.length === 1 ? '' : 's'} identified)`;
+
+        if (clusters.length === 0) {
+          container.innerHTML = `
+            <div class="p-8 text-center border border-outline-variant rounded bg-surface-container-low">
+              <span class="material-symbols-outlined text-secondary text-[36px]" data-icon="check_circle">check_circle</span>
+              <h4 class="mt-2 text-headline-sm font-semibold text-on-surface">Zero Failure Clusters</h4>
+              <p class="text-body-sm text-outline mt-1">All executed tests passed or matched expected rejection criteria. No failure patterns to cluster.</p>
+            </div>
+          `;
+          return;
+        }
+
+        clusters.forEach(cluster => {
+          const card = document.createElement('div');
+          card.className = 'p-4 rounded border border-purple-500/30 bg-surface-container-low hover:border-purple-500/50 transition-colors space-y-3';
+
+          const affectedEntries = allEntries.filter(e => e.clusterId === cluster.id);
+          const entriesListHtml = affectedEntries.map(e => `
+            <button class="px-2 py-1 rounded bg-surface border border-outline-variant hover:border-primary text-code-sm font-code-sm text-on-surface flex items-center gap-1.5 transition-colors" onclick="selectEntry('${e.id}'); switchTab('tab-evidence');">
+              <span class="font-bold text-outline">#${e.index}</span>
+              <span class="text-purple-300 font-semibold">${e.method}</span>
+              <span class="truncate max-w-[200px] text-on-surface-variant">${escapeHtml(e.url)}</span>
+            </button>
+          `).join('');
+
+          card.innerHTML = `
+            <div class="flex items-start justify-between gap-3 flex-wrap">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-300 font-bold text-label-caps border border-purple-500/40">${cluster.id.toUpperCase()}</span>
+                <span class="px-2 py-0.5 rounded bg-surface border border-outline-variant text-label-caps text-outline font-semibold">${escapeHtml(cluster.rootCauseCategory)}</span>
+                <span class="text-error font-bold text-code-sm">${cluster.entryCount} ${cluster.entryCount === 1 ? 'failure' : 'failures'}</span>
+                <span class="text-outline text-code-sm">across ${cluster.scenarioIds.length} scenario(s)</span>
+              </div>
+              <button class="px-2.5 py-1 rounded bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/40 text-code-sm font-semibold transition-colors" onclick="filterByCluster('${cluster.id}')">
+                Filter Explorer to this Cluster
+              </button>
+            </div>
+
+            <div>
+              <h4 class="text-headline-sm font-bold text-on-surface">${escapeHtml(cluster.title)}</h4>
+              <div class="mt-1 font-mono text-code-sm bg-surface-container-lowest p-2 rounded border border-outline-variant text-purple-300">
+                Pattern: ${escapeHtml(cluster.errorPattern)}
+              </div>
+            </div>
+
+            <div class="text-body-sm text-on-surface-variant">
+              <span class="text-outline font-semibold text-code-sm">Sample Failure: </span>
+              <span class="font-mono text-error">${escapeHtml(cluster.sampleError)}</span>
+            </div>
+
+            ${cluster.suggestedRemediation ? `
+              <div class="p-2.5 rounded bg-secondary/10 border border-secondary/20 flex items-start gap-2 text-body-sm text-secondary">
+                <span class="material-symbols-outlined text-[16px] text-secondary shrink-0 mt-0.5" data-icon="tips_and_updates">tips_and_updates</span>
+                <div>
+                  <span class="font-semibold text-code-sm uppercase">Suggested Remediation:</span>
+                  <div class="text-on-surface mt-0.5">${escapeHtml(cluster.suggestedRemediation)}</div>
+                </div>
+              </div>
+            ` : ''}
+
+            <div class="pt-2 border-t border-outline-variant/40">
+              <span class="text-outline text-code-sm font-semibold uppercase block mb-1.5">Affected Test Entries:</span>
+              <div class="flex items-center flex-wrap gap-2">
+                ${entriesListHtml}
+              </div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      window.filterByCluster = filterByCluster;
+      window.selectEntry = selectEntry;
+      window.switchTab = switchTab;
+
       // Populate Manifest & Phases Screen
       function populateManifestScreen() {
         const phasesTbody = document.getElementById('manifest-phases-tbody');
@@ -1565,6 +1767,48 @@ loan_id: jsonpath "$.id"</pre>
       }
 
       populateManifestScreen();
+
+      // Initialize Failure Clusters UI
+      const clusters = runData.failureClusters || [];
+      if (clusters.length > 0) {
+        const kpiClustersContainer = document.getElementById('kpi-clusters-container');
+        if (kpiClustersContainer) {
+          kpiClustersContainer.classList.remove('hidden');
+          document.getElementById('kpi-clusters').textContent = clusters.length;
+          kpiClustersContainer.onclick = () => {
+            switchTab('tab-clusters');
+          };
+        }
+
+        const tabClustersBtn = document.getElementById('btn-tab-clusters');
+        if (tabClustersBtn) {
+          tabClustersBtn.classList.remove('hidden');
+          document.getElementById('tab-badge-clusters').textContent = clusters.length;
+        }
+
+        const clusterFilterContainer = document.getElementById('cluster-filter-container');
+        if (clusterFilterContainer) {
+          clusterFilterContainer.classList.remove('hidden');
+          const select = document.getElementById('cluster-select');
+          select.innerHTML = '<option value="all">All Failure Clusters</option>';
+          clusters.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.id;
+            opt.textContent = `${c.id.toUpperCase()}: ${c.title} (${c.entryCount})`;
+            select.appendChild(opt);
+          });
+          select.onchange = (e) => {
+            filterByCluster(e.target.value);
+          };
+        }
+
+        const clearBtn = document.getElementById('btn-clear-cluster-filter');
+        if (clearBtn) {
+          clearBtn.onclick = () => filterByCluster('all');
+        }
+      }
+
+      renderFailureClusters();
 
       // Initial entry & tab selection from URL hash
       const rawHash = window.location.hash.replace('#', '');

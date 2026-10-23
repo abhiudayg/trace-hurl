@@ -149,6 +149,8 @@ pub struct Entry {
     pub captures_used: Vec<String>,
     pub diffs: Vec<DiffItem>,
     pub curl_cmd: Option<String>,
+    #[serde(default)]
+    pub cluster_id: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
@@ -207,6 +209,20 @@ pub struct Diagnostic {
     pub target_entity: Option<String>,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "camelCase")]
+pub struct FailureCluster {
+    pub id: String,
+    pub title: String,
+    pub root_cause_category: String,
+    pub error_pattern: String,
+    pub entry_count: usize,
+    pub scenario_ids: Vec<String>,
+    pub entry_ids: Vec<String>,
+    pub sample_error: String,
+    pub suggested_remediation: Option<String>,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 #[serde(rename_all = "camelCase")]
 pub struct RunSummary {
@@ -221,6 +237,8 @@ pub struct RunSummary {
     pub total_diagnostics: usize,
     pub overall_status: String,
     pub duration_ms: Option<u64>,
+    #[serde(default)]
+    pub total_failure_clusters: usize,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -237,4 +255,6 @@ pub struct Run {
     pub variables: HashMap<String, String>,
     pub diagnostics: Vec<Diagnostic>,
     pub summary: RunSummary,
+    #[serde(default)]
+    pub failure_clusters: Vec<FailureCluster>,
 }

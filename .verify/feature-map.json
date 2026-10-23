@@ -130,6 +130,27 @@
         "Masks sensitive query parameters (token, secret, auth, password).",
         "Ensures zero raw JWT strings exist in generated HTML."
       ]
+    },
+    {
+      "id": "FEAT-008",
+      "key": "failure_clustering",
+      "name": "Automated Failure Clustering & Root-Cause Analysis",
+      "description": "Groups multi-entry test failures by normalized contractual error signatures, HTTP status codes, and schema diffs into actionable triage clusters.",
+      "status": "verified",
+      "testSuites": [
+        "unit::clustering::test_zero_failures_produce_zero_clusters",
+        "unit::clustering::test_clusters_jsonpath_missing_attributes_with_normalization",
+        "unit::clustering::test_clusters_multiple_distinct_patterns_ordered_by_impact",
+        "functional::verify_report_functional",
+        "isolated::test_isolated_run"
+      ],
+      "acceptanceCriteria": [
+        "Normalizes JSONPath and diff paths (array indices, UUIDs) to cluster related failures across entries.",
+        "Sorts failure clusters descending by impacted entry count.",
+        "Links failed entries to their root-cause cluster ID.",
+        "Provides suggested remediations for status mismatches, missing contract attributes, and type mismatches.",
+        "Enables 1-click cluster filtering in Scenario Explorer and dedicated Root Causes tab."
+      ]
     }
   ],
   "suites": [

@@ -4,8 +4,8 @@
   "startedAt": "2026-10-23T10:00:00Z",
   "finishedAt": "2026-10-23T10:00:05Z",
   "tools": {
-    "tracehurl": "0.1.0",
-    "hurl": "8.0.1"
+    "hurl": "8.0.1",
+    "tracehurl": "0.1.0"
   },
   "phases": [
     {
@@ -141,7 +141,8 @@
           ],
           "capturesUsed": [],
           "diffs": [],
-          "curlCmd": null
+          "curlCmd": null,
+          "clusterId": null
         },
         {
           "id": "scenario-1-entry-2",
@@ -288,7 +289,8 @@
               "origin": "derived"
             }
           ],
-          "curlCmd": null
+          "curlCmd": null,
+          "clusterId": "cluster-1"
         },
         {
           "id": "scenario-1-entry-3",
@@ -357,7 +359,8 @@
           "capturesSet": [],
           "capturesUsed": [],
           "diffs": [],
-          "curlCmd": null
+          "curlCmd": null,
+          "clusterId": null
         },
         {
           "id": "scenario-1-entry-4",
@@ -402,7 +405,8 @@
           "capturesSet": [],
           "capturesUsed": [],
           "diffs": [],
-          "curlCmd": null
+          "curlCmd": null,
+          "clusterId": null
         }
       ],
       "summary": {
@@ -494,6 +498,24 @@
     "weakEntries": 0,
     "totalDiagnostics": 1,
     "overallStatus": "FAILED",
-    "durationMs": null
-  }
+    "durationMs": null,
+    "totalFailureClusters": 1
+  },
+  "failureClusters": [
+    {
+      "id": "cluster-1",
+      "title": "Schema Contract Mismatch: $.authCode",
+      "rootCauseCategory": "Contract Schema Mismatch",
+      "errorPattern": "Missing or invalid attribute: $.authCode",
+      "entryCount": 1,
+      "scenarioIds": [
+        "scenario-1"
+      ],
+      "entryIds": [
+        "scenario-1-entry-2"
+      ],
+      "sampleError": "assert jsonpath \"$.authCode\" != null\n  --> user-service.hurl:33:1\n   |\n33 | jsonpath \"$.authCode\" != null\n   |   actual:   null\n   |   expected: not null\n   |",
+      "suggestedRemediation": "Ensure backend API service populates all required schema attributes in response."
+    }
+  ]
 }
