@@ -36,6 +36,9 @@ pub enum TraceHurlError {
 
     #[error("Open browser failed: {0}")]
     OpenBrowser(String),
+
+    #[error("Sidecar server error: {0}")]
+    SidecarError(String),
 }
 
 pub type Result<T> = std::result::Result<T, TraceHurlError>;

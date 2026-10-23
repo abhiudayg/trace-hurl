@@ -76,4 +76,18 @@ pub enum Commands {
         #[arg(short, long)]
         output: Option<PathBuf>,
     },
+
+    /// Start an interactive local sidecar server for live request replay and inspection
+    Serve {
+        /// Path to the verification run directory
+        run_dir: PathBuf,
+
+        /// Port to bind the local sidecar server on (default: 9090)
+        #[arg(short, long, default_value_t = 9090)]
+        port: u16,
+
+        /// Open the report in default web browser upon starting
+        #[arg(long)]
+        open: bool,
+    },
 }

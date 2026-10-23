@@ -54,7 +54,9 @@ const requiredElementIds = [
   'footer-export-har',
   'entry-retry-container',
   'retry-total-badge',
-  'retry-attempts-steps'
+  'retry-attempts-steps',
+  'btn-replay-request',
+  'replay-modal'
 ];
 
 console.log('\n✓ 2. Verifying DOM Elements & ID Hooks:');

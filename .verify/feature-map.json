@@ -208,6 +208,25 @@
         "Badges retried and flaky entries in the Scenario Explorer sidebar.",
         "Preserves the final evaluated attempt for contract diff inspection."
       ]
+    },
+    {
+      "id": "FEAT-012",
+      "key": "interactive_replay_runner",
+      "name": "Interactive cURL Replay Runner & Live Sidecar",
+      "description": "Local embedded HTTP sidecar (`tracehurl serve`) for executing live cURL request replays directly from the report and comparing recorded vs live responses.",
+      "status": "verified",
+      "testSuites": [
+        "unit::serve::test_rejects_non_curl_command",
+        "unit::serve::test_replay_result_serialization",
+        "cli::tracehurl_serve",
+        "functional::verify_report_functional"
+      ],
+      "acceptanceCriteria": [
+        "Serves interactive HTML report, report.json, and trace.har on configurable local port.",
+        "Executes cURL commands via POST /api/replay and returns status, latency, headers, and body.",
+        "Provides 1-click 'Replay Live' button in report header with side-by-side recorded vs live comparison.",
+        "Rejects non-curl command strings to maintain execution safety."
+      ]
     }
   ],
   "suites": [

@@ -12,3 +12,4 @@ pub mod manifest;
 pub mod model;
 pub mod redaction;
 pub mod render;
+pub mod serve;

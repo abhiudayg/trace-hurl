@@ -4,8 +4,8 @@
   "startedAt": "2026-10-23T10:00:00Z",
   "finishedAt": "2026-10-23T10:00:05Z",
   "tools": {
-    "hurl": "8.0.1",
-    "tracehurl": "0.1.0"
+    "tracehurl": "0.1.0",
+    "hurl": "8.0.1"
   },
   "phases": [
     {
@@ -480,8 +480,8 @@
     }
   ],
   "variables": {
-    "env": "staging",
-    "base_url": "http://localhost:8080"
+    "base_url": "http://localhost:8080",
+    "env": "staging"
   },
   "diagnostics": [
     {

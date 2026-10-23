@@ -35,6 +35,11 @@ fn run_app(cli: Cli) -> Result<()> {
             run_b,
             output,
         } => execute_compare(&run_a, &run_b, output.as_deref()),
+        Commands::Serve {
+            run_dir,
+            port,
+            open,
+        } => tracehurl::serve::serve_run_directory(&run_dir, port, open),
     }
 }
 

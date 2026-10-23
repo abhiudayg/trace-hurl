@@ -373,6 +373,10 @@
           </div>
           <!-- Quick Secondary Actions -->
           <div class="flex items-center gap-2">
+            <button id="btn-replay-request" class="px-2.5 py-1 rounded bg-secondary/20 hover:bg-secondary/30 text-secondary border border-secondary/40 text-body-sm font-semibold flex items-center gap-1.5 transition-all" title="Re-run request live against server">
+              <span class="material-symbols-outlined text-[15px] text-secondary" data-icon="play_circle">play_circle</span>
+              <span>Replay Live</span>
+            </button>
             <button id="btn-copy-repro" class="px-2.5 py-1 rounded bg-surface-container-high border border-outline-variant hover:border-outline text-on-surface text-body-sm font-medium flex items-center gap-1.5 transition-colors">
               <span class="material-symbols-outlined text-[15px] text-primary" data-icon="terminal">terminal</span>
               <span>Repro Command</span>
@@ -847,6 +851,47 @@ loan_id: jsonpath "$.id"</pre>
         </div>
       </footer>
     </main>
+  </div>
+
+  <!-- Live Replay Comparison Modal -->
+  <div id="replay-modal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-surface-container-lowest border border-outline-variant rounded-lg max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="p-4 bg-surface-container-low border-b border-outline-variant flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-[22px]" data-icon="play_circle">play_circle</span>
+          <h3 class="text-headline-sm font-bold text-on-surface">Interactive Live Replay Comparison</h3>
+        </div>
+        <button id="btn-close-replay" class="p-1 text-outline hover:text-on-surface">
+          <span class="material-symbols-outlined" data-icon="close">close</span>
+        </button>
+      </div>
+
+      <div class="p-4 space-y-4 flex-1 overflow-y-auto">
+        <div id="replay-status-banner" class="p-3 rounded border flex items-center justify-between text-body-sm">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Left: Recorded Run Response -->
+          <div class="rounded border border-outline-variant bg-surface-container-low flex flex-col overflow-hidden">
+            <div class="p-2.5 bg-surface border-b border-outline-variant flex items-center justify-between">
+              <span class="text-label-caps font-bold text-outline">RECORDED RUN RESPONSE</span>
+              <span id="replay-recorded-status" class="px-2 py-0.5 rounded text-xs font-bold font-mono">200 OK</span>
+            </div>
+            <pre id="replay-recorded-body" class="p-3 font-mono text-xs overflow-auto max-h-80 text-on-surface-variant flex-1"></pre>
+          </div>
+
+          <!-- Right: Live Sidecar Response -->
+          <div class="rounded border border-outline-variant bg-surface-container-low flex flex-col overflow-hidden">
+            <div class="p-2.5 bg-surface border-b border-outline-variant flex items-center justify-between">
+              <span class="text-label-caps font-bold text-secondary">LIVE REPLAY RESPONSE</span>
+              <span id="replay-live-status" class="px-2 py-0.5 rounded text-xs font-bold font-mono">Executing...</span>
+            </div>
+            <pre id="replay-live-body" class="p-3 font-mono text-xs overflow-auto max-h-80 text-secondary flex-1">Executing request...</pre>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Interactive JavaScript Engine -->
@@ -1696,6 +1741,66 @@ loan_id: jsonpath "$.id"</pre>
       }
       document.getElementById('btn-export-har').onclick = exportHar;
       document.getElementById('footer-export-har').onclick = exportHar;
+
+      async function triggerLiveReplay() {
+        const entry = allEntries.find(e => e.id === activeEntryId);
+        if (!entry) return;
+
+        const modal = document.getElementById('replay-modal');
+        modal.classList.remove('hidden');
+
+        document.getElementById('replay-recorded-status').textContent = `${entry.statusCode} ${entry.statusCode >= 400 ? 'ERROR' : 'OK'}`;
+        document.getElementById('replay-recorded-status').className = `px-2 py-0.5 rounded text-xs font-bold font-mono ${entry.statusCode >= 400 ? 'bg-error-container/40 text-error' : 'bg-secondary/15 text-secondary'}`;
+        document.getElementById('replay-recorded-body').textContent = (entry.response && entry.response.bodySnippet) || 'No recorded payload';
+
+        const liveStatusEl = document.getElementById('replay-live-status');
+        const liveBodyEl = document.getElementById('replay-live-body');
+        const bannerEl = document.getElementById('replay-status-banner');
+
+        liveStatusEl.textContent = 'Executing...';
+        liveStatusEl.className = 'px-2 py-0.5 rounded text-xs font-bold font-mono bg-surface-container text-outline';
+        liveBodyEl.textContent = 'Executing request against live backend...';
+        bannerEl.className = 'p-3 rounded border border-outline-variant bg-surface-container text-outline';
+        bannerEl.textContent = 'Dispatching replay via local sidecar...';
+
+        const curlCmd = entry.curlCmd || `curl -X ${entry.method} "${entry.url}"`;
+
+        try {
+          const res = await fetch('/api/replay', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ entryId: entry.id, curlCmd })
+          });
+
+          if (!res.ok) throw new Error(`Sidecar returned HTTP ${res.status}`);
+          const data = await res.json();
+
+          liveStatusEl.textContent = `${data.statusCode} (${data.durationMs}ms)`;
+          const isMatch = data.statusCode === entry.statusCode;
+          liveStatusEl.className = `px-2 py-0.5 rounded text-xs font-bold font-mono ${data.statusCode >= 400 ? 'bg-error-container/40 text-error' : 'bg-secondary/15 text-secondary'}`;
+
+          liveBodyEl.textContent = data.body || (data.error ? `Error: ${data.error}` : 'Empty body returned');
+
+          if (isMatch) {
+            bannerEl.className = 'p-3 rounded border border-secondary/40 bg-secondary/10 text-secondary font-semibold';
+            bannerEl.textContent = `✓ Status codes match: Both returned HTTP ${data.statusCode}. Roundtrip: ${data.durationMs}ms (vs ${entry.durationMs}ms recorded).`;
+          } else {
+            bannerEl.className = 'p-3 rounded border border-error/50 bg-error-container/20 text-error font-semibold';
+            bannerEl.textContent = `⚠ Status Delta Detected: Recorded ${entry.statusCode}, but Live response returned ${data.statusCode}.`;
+          }
+        } catch (err) {
+          liveStatusEl.textContent = 'Sidecar Offline';
+          liveStatusEl.className = 'px-2 py-0.5 rounded text-xs font-bold font-mono bg-amber-500/20 text-amber-300';
+          liveBodyEl.textContent = `Could not reach local sidecar server at /api/replay.\n\nTo enable 1-click live replay directly from browser, start TraceHurl sidecar:\n\n  tracehurl serve <RUN_DIR> --port 9090\n\nOriginal cURL command:\n\n${curlCmd}`;
+          bannerEl.className = 'p-3 rounded border border-amber-500/40 bg-amber-500/10 text-amber-300';
+          bannerEl.textContent = 'Sidecar offline. Start `tracehurl serve <RUN_DIR>` to execute live replays from browser.';
+        }
+      }
+
+      document.getElementById('btn-replay-request').onclick = triggerLiveReplay;
+      document.getElementById('btn-close-replay').onclick = () => {
+        document.getElementById('replay-modal').classList.add('hidden');
+      };
 
       function escapeHtml(str) {
         if (!str) return '';
