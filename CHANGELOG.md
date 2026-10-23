@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-10-23
+
+### Added
+- **Automated Failure Clustering & Root-Cause Analysis**: Automatically normalizes error signatures, clusters test failures into high-impact semantic categories, and adds a dedicated Root Causes tab and scenario filter dropdown (`src/clustering.rs`).
+- **1-Click W3C HAR 1.2 Export**: CLI subcommand (`tracehurl export-har <RUN_DIR>`) and interactive UI header/footer buttons to export all executed requests and responses into standard HTTP Archive 1.2 format for Postman, Charles, Proxyman, and Insomnia (`src/har.rs`).
+- **Cross-Run Comparison & Regression Diff**: CLI subcommand (`tracehurl compare <RUN_A> <RUN_B>`) generating regression delta reports highlighting fixed failures, new regressions, and latency regressions exceeding 50% (`src/compare.rs`).
+- **Flaky Test & Retry Progression Visualizer**: Ingests intermediate attempt executions from `entry.calls` and visualizes step-by-step retry progression pills with attempt status and latency (`src/ingest.rs`).
+- **Interactive cURL Replay Runner Sidecar**: Embedded HTTP sidecar server (`tracehurl serve <RUN_DIR>`) enabling 1-click in-browser cURL request re-execution (`POST /api/replay`) and side-by-side comparison modal between recorded and live responses (`src/serve.rs`).
+- **agstack Verification Harness Alignment**: Re-architected `.verify/` harness adhering to agstack engineering policy (`verify.toml`, `run.sh`, `doctor.sh`, `gates.conf`, `high-risk.txt`), enforcing strict fixture immutability in `verify/` and runtime artifact isolation in `.verify/artifacts/`.
+
 ## [0.1.0] - 2026-10-23
 
 ### Added

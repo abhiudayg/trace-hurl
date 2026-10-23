@@ -4,7 +4,7 @@
   "startedAt": "2026-10-23T10:00:00Z",
   "finishedAt": "2026-10-23T10:00:05Z",
   "tools": {
-    "tracehurl": "0.1.0",
+    "tracehurl": "0.2.0",
     "hurl": "8.0.1"
   },
   "phases": [

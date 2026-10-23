@@ -11,7 +11,7 @@ const tmpDir = fs.mkdtempSync(path.join('/tmp', 'tracehurl_isolated_'));
 console.log(`\n📁 Step 1: Created isolated test directory: ${tmpDir}`);
 
 const targetRunId = process.argv[2] || 'TRACEHURL_SAMPLE_001';
-const sourceDir = path.resolve('.verify/fixtures/sample_run');
+const sourceDir = path.resolve(fs.existsSync('verify/fixtures/sample_run') ? 'verify/fixtures/sample_run' : '.verify/fixtures/sample_run');
 const binaryPath = path.resolve('target/release/tracehurl');
 
 if (!fs.existsSync(binaryPath)) {

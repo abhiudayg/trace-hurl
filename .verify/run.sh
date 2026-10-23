@@ -1,33 +1,46 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+TARGET="${1:-all}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+cd "${ROOT_DIR}"
+
+mkdir -p .verify/artifacts
+
 echo "========================================================"
-echo "⚡ Running TraceHurl Comprehensive Verification Suite"
+echo "⚡ [agstack] Running TraceHurl Verification Suite (Target: ${TARGET})"
 echo "========================================================"
 
-echo "1. Checking code formatting..."
+# Phase 1: Doctor
+echo "--> Phase 1: Doctor environment preflight..."
+"${SCRIPT_DIR}/doctor.sh"
+
+# Phase 2: Static Checks
+echo "--> Phase 2: Static analysis (Format & Clippy)..."
 cargo fmt -- --check
-
-echo "2. Running Clippy linting (-D warnings)..."
 cargo clippy -- -D warnings
 
-echo "3. Running Cargo unit & integration tests..."
+# Phase 3: Unit Checks
+echo "--> Phase 3: Unit & integration test suites..."
 cargo test --verbose
 
-echo "4. Building release binary..."
+# Phase 4: Functional Verification
+echo "--> Phase 4: Functional report & artifact validation..."
 cargo build --release
 
-echo "5. Generating report on sample run fixture..."
-./target/release/tracehurl report .verify/fixtures/sample_run
+echo "  [1/4] Generating report to .verify/artifacts/report..."
+./target/release/tracehurl report verify/fixtures/sample_run --output .verify/artifacts/report
 
-echo "6. Running functional report verification..."
-node tests/verify_report_functional.js
+echo "  [2/4] Running functional DOM & JSON assertions..."
+node tests/verify_report_functional.js .verify/artifacts/report/index.html
 
-echo "7. Running isolated environment verification..."
+echo "  [3/4] Running isolated environment verification..."
 node tests/test_isolated_run.js
 
-echo "8. Validating manifest cryptographic integrity..."
-./target/release/tracehurl validate .verify/fixtures/sample_run
+echo "  [4/4] Validating manifest cryptographic integrity..."
+./target/release/tracehurl validate verify/fixtures/sample_run
 
 echo "========================================================"
 echo "✅ All TraceHurl verification checks passed successfully!"

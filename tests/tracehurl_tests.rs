@@ -8,7 +8,7 @@ use tracehurl::redaction::{RedactionConfig, Redactor};
 use tracehurl::render::render_report_to_file;
 
 fn get_test_run_dir() -> &'static Path {
-    Path::new(".verify/fixtures/sample_run")
+    Path::new("verify/fixtures/sample_run")
 }
 
 #[test]

@@ -1,7 +1,7 @@
 {
   "$schema": "https://agstack.dev/schemas/feature-map.v1.json",
   "project": "TraceHurl",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "generatedAt": "2026-10-23T11:40:00Z",
   "description": "TraceHurl Feature Map and Verification Test Suite Specifications",
   "features": [
@@ -233,10 +233,10 @@
     {
       "id": "SUITE-01",
       "name": "User Management & Auth Verification Suite",
-      "path": ".verify/fixtures/sample_run/user-service.hurl",
+      "path": "verify/fixtures/sample_run/user-service.hurl",
       "entryCount": 4,
       "modes": ["static", "live", "all"],
-      "artifactsDir": ".verify/fixtures/sample_run",
+      "artifactsDir": "verify/fixtures/sample_run",
       "harness": ".verify/run.sh"
     }
   ]

@@ -1,0 +1,4 @@
+Cargo.toml
+src/manifest.rs
+src/crypto.rs
+src/redaction.rs

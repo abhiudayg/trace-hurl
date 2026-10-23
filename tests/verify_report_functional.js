@@ -3,11 +3,20 @@ const assert = require('assert');
 
 console.log('=== TraceHurl Report Functional Verification ===\n');
 
-const reportPath = fs.existsSync('.verify/fixtures/sample_run/report/index.html')
-  ? '.verify/fixtures/sample_run/report/index.html'
-  : (fs.existsSync('.verify/artifacts/VERIFY1792726500/report/index.html')
-    ? '.verify/artifacts/VERIFY1792726500/report/index.html'
-    : 'verify/artifacts/VERIFY1792726500/report/index.html');
+const candidatePaths = [
+  process.argv[2],
+  '.verify/artifacts/report/index.html',
+  '.verify/artifacts/VERIFY1792726500/report/index.html',
+  'verify/fixtures/sample_run/report/index.html',
+  '.verify/fixtures/sample_run/report/index.html'
+].filter(Boolean);
+
+const reportPath = candidatePaths.find(p => fs.existsSync(p));
+if (!reportPath) {
+  console.error(`❌ Could not locate generated report index.html in candidates: ${candidatePaths.join(', ')}`);
+  process.exit(1);
+}
+console.log(`Loading report from: ${reportPath}`);
 const htmlContent = fs.readFileSync(reportPath, 'utf8');
 
 // 1. Verify JSON Data embedding

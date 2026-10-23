@@ -1,10 +1,16 @@
 [verify]
 commands = [
+  ".verify/run.sh",
+  ".verify/run.sh all",
+  ".verify/doctor.sh",
   "cargo test --verbose",
   "cargo clippy -- -D warnings",
   "cargo fmt -- --check",
-  "node tests/verify_report_functional.js",
+  "cargo build --release",
+  "./target/release/tracehurl report verify/fixtures/sample_run --output .verify/artifacts/report",
+  "node tests/verify_report_functional.js .verify/artifacts/report/index.html",
   "node tests/test_isolated_run.js",
+  "./target/release/tracehurl validate verify/fixtures/sample_run",
 ]
 
 [verify.default]
